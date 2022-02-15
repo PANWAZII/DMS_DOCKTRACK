@@ -1,30 +1,30 @@
 import express from "express";
 const router = express.Router();
-import positions from "../models/position.js";
+import departments from "../../models/User/department.js";
 // Getting all
-router.get("/getAllPositions", async (req, res) => {
+router.get("/getAllDepartments", async (req, res) => {
   try {
-    const allPositions = await positions.find();
-    res.status(200).json(allPositions);
+    const allDepartments = await departments.find();
+    res.status(200).json(allDepartments);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 // Getting One
-// router.get("/:id", getSubscriber, (req, res) => {
-//   res.json(res.subscriber);
-// });
+router.get("/:id", getSubscriber, (req, res) => {
+  res.json(res.subscriber);
+});
 
 // Creating new User
-router.post("/createNewPosition", async (req, res) => {
-  const position = new positions({
-    position_name: req.body.position_name,
+router.post("/createNewDepartment", async (req, res) => {
+  const department = new departments({
+    department_name: req.body.department_name,
     available_status: 1,
   });
   try {
-    const newPosition = await position.save();
-    res.status(201).json(newPosition);
+    const newDepartment = await department.save();
+    res.status(201).json(newDepartment);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

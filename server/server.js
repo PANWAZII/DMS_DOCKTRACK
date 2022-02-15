@@ -11,8 +11,8 @@ const app = express();
 import mongoose from "mongoose";
 const port = 3001;
 
-var corsOptions = {
-  origin: "http://localhost:3000",
+const corsOptions = {
+  origin: "http://localhost:3001",
 };
 app.use(cors(corsOptions));
 
@@ -31,11 +31,13 @@ app.use(
 app.use(express.json());
 
 // const usersRouter = require("./routes/users");
-import usersRouter from "./routes/users.js";
+
+//User API
+import usersRouter from "./routes/User/users.js";
 app.use("/users", usersRouter);
-import departmentsRouter from "./routes/departments.js"
+import departmentsRouter from "./routes/User/departments.js"
 app.use("/departments",departmentsRouter)
-import positionsRouter from "./routes/positions.js"
+import positionsRouter from "./routes/User/positions.js"
 app.use("/positions",positionsRouter)
 
 app.listen(port, () => console.log("Server Started at port: ", port));

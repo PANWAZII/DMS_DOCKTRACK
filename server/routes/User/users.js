@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import users from "../models/user.js";
+import users from "../../models/User/user.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
