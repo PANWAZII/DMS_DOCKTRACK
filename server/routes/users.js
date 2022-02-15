@@ -33,7 +33,7 @@ router.get("/userInfo", async (req, res) => {
   try {
     // const user = await users.find({ uid: user_uid });
     const userInfo = await users.find({ uid: user_uid });
-    if (userInfo == null) {
+    if (userInfo[0] == null) {
       return res.status(404).json({ message: "Cannot find this user" });
     }
     console.log("res user : ", userInfo[0]);
