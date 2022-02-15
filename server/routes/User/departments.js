@@ -26,7 +26,7 @@ router.post("/createNewDepartment", async (req, res) => {
     const newDepartment = await department.save();
     res.status(201).json(newDepartment);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.json({ message: err.message });
   }
 });
 

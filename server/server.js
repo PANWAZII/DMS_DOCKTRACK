@@ -12,7 +12,7 @@ import mongoose from "mongoose";
 const port = 3001;
 
 const corsOptions = {
-  origin: "http://localhost:3001",
+  origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions));
 
