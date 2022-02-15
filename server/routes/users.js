@@ -32,7 +32,7 @@ router.get("/userInfo", async (req, res) => {
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const userInfo = await users.find( {uid: user_uid} );
+    const userInfo = await users.find({ uid: user_uid });
     if (userInfo == null) {
       return res.status(404).json({ message: "Cannot find this user" });
     }
@@ -48,7 +48,14 @@ router.post("/createNewUser", async (req, res) => {
   const auth = getAuth();
   const email = req.body.email;
   const password = req.body.password;
-  const firstname = req.body.first_name
+  const firstname = req.body.first_name;
+  const lastname = req.body.last_name;
+  const position_id = req.body.position_id;
+  const department_id = req.body.department_id;
+  const telephone = req.body.tel;
+  const fax = req.body.fax;
+  const created_date = req.body.created_date;
+  const modified_date = req.body.modified_date;
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -59,8 +66,15 @@ router.post("/createNewUser", async (req, res) => {
       const user = new users({
         uid: user_id,
         first_name: firstname,
+        last_name: lastname,
         email: email,
+        position_id: position_id,
+        department_id: department_id,
+        tel: telephone,
+        fax: fax,
         available_status: 1,
+        created_date: created_date,
+        modified_date: modified_date,
       });
       const newUser = user.save();
       res.status(201).json(newUser);

@@ -7,7 +7,7 @@
             <v-col cols="12" sm="8" md="8" lg="6">
               <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150">
               </v-img>
-              {{form}}
+              {{ form }}
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
@@ -187,7 +187,7 @@ export default {
       nameRules: [(v) => !!v || 'โปรดระบุชื่อของคุณ'],
       emailRules: [
         (v) => !!v || 'โปรดระบุอีเมล',
-        (v) => /.+@.+/.testv || 'โปรดระบุอีเมลที่ถูกต้อง',
+        (v) => /.+@.+/.test(v) || 'โปรดระบุอีเมลที่ถูกต้อง',
       ],
       passwordRules: [(v) => !!v || 'โปรดระบุรหัสผ่าน'],
       // rules:{
@@ -221,20 +221,23 @@ export default {
     },
     async createUser() {
       try {
+        const date = Date.now()
         console.log(this.form)
         console.log('start loading')
         this.loading = true
         console.log('start posting')
         await axios
-          .post('/createUser', {
+          .post('/users/createNewUser', {
             email: this.form.email,
             password: this.form.pass,
-            firstname: this.form.firstname,
-            lastname: this.form.lastname,
-            telephone: this.form.tel,
+            first_name: this.form.firstname,
+            last_name: this.form.lastname,
+            tel: this.form.tel,
             fax: this.form.fax,
-            position: this.form.posi_name,
-            department: this.form.dept_id,
+            position_id: this.form.position_id,
+            department_id: this.form.department_id,
+            created_date: date,
+            modified_date: date,
           })
           .then((res) => {
             console.log('start response')
