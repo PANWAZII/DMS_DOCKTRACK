@@ -83,7 +83,7 @@ router.post("/createNewUser", async (req, res) => {
       const errorMessage = error.message;
       console.log(errorCode);
       // console.log(errorMessage);
-      res.json(errorCode);
+      res.json({ message: errorCode });
     });
 
   // try {
