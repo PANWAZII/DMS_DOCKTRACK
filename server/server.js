@@ -35,5 +35,7 @@ import usersRouter from "./routes/users.js";
 app.use("/users", usersRouter);
 import departmentsRouter from "./routes/departments.js"
 app.use("/departments",departmentsRouter)
+import positionsRouter from "./routes/positions.js"
+app.use("/positions",positionsRouter)
 
 app.listen(port, () => console.log("Server Started at port: ", port));
