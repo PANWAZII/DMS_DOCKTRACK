@@ -5,15 +5,11 @@
         <v-card elevation="1" height="1100" width="900">
           <v-row align="center" justify="center" dense>
             <v-col cols="12" sm="8" md="8" lg="6">
-              <v-img
-                class="mt-15 mb-5"
-                src="img/logo.png"
-                contain
-                height="150"
-              >
+              <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150">
               </v-img>
+              {{form}}
               <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation >
+                <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
                     required
                     label="ชื่อ"
@@ -33,18 +29,18 @@
                     v-model="form.lastname"
                   >
                   </v-text-field>
-                  <!-- <v-select
-                    v-model="form.posi_name"
-                    item-text="posi_name"
-                    item-value="posi_name"
+                  <v-select
+                    v-model="form.position_id"
+                    item-text="position_name"
+                    item-value="_id"
                     :items="position"
                     label="ตำแหน่ง"
                     outlined
                     required
                     :rules="positionRules"
-                  ></v-select> -->
+                  ></v-select>
                   <v-select
-                    v-model="form._id"
+                    v-model="form.department_id"
                     item-text="department_name"
                     item-value="_id"
                     :items="department"
@@ -84,7 +80,7 @@
                   </v-text-field>
                   <!-- {{ rules.password }} -->
                   <v-text-field
-                  v-model="form.pass"
+                    v-model="form.pass"
                     :rules="passwordRules"
                     @keyup.enter="login"
                     label="รหัสผ่าน"
@@ -161,16 +157,20 @@ export default {
   //   this.department = await this.getDept()
   //   // this.position = await this.getPosition()
   // },
-  async asyncData () {
-    let department = [];
-    let position =[];
+  async asyncData() {
+    let department = []
+    let position = []
     try {
-        department = await axios.get('/departments/getAllDepartments').then(res => res.data);
-        // position = await axios.get('/positions/getUserPosition').then(res => res.data);
-      } catch (err) {
-        console.log(err)
-      }
-    return { department }
+      department = await axios
+        .get('/departments/getAllDepartments')
+        .then((res) => res.data)
+      position = await axios
+        .get('/positions/getAllPositions')
+        .then((res) => res.data)
+    } catch (err) {
+      console.log(err)
+    }
+    return { department, position }
   },
   data() {
     return {
@@ -202,8 +202,8 @@ export default {
       form: {
         firstname: '',
         lastname: '',
-        position: '',
-        dept_id: '',
+        position_id: '',
+        department_id: '',
         tel: '',
         fax: '',
         email: '',
@@ -248,28 +248,6 @@ export default {
             }
           })
         // this.loading = false
-      } catch (err) {
-        console.log(err)
-      }
-    },
-    async getPosition() {
-      try {
-        const response = await axios.get(
-          'http://localhost:3001/getUserPosition'
-        )
-        this.position = response.data
-      } catch (err) {
-        console.log(err)
-      }
-    },
-    async getDept() {
-      try {
-        const response = await axios.get(
-          'http://localhost:3001/departments/getAllDepartments'
-        )
-        const departmentDetail = response.data
-        console.log(departmentDetail)
-        return departmentDetail
       } catch (err) {
         console.log(err)
       }
