@@ -1,0 +1,40 @@
+{
+  "name": "dms-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint:prettier": "prettier --check .",
+    "lint": "npm run lint:prettier",
+    "lintfix": "prettier --write --list-different ."
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/firebase": "^8.2.0",
+    "axios": "^0.25.0",
+    "bahttext": "^2.1.0",
+    "cookie-universal-nuxt": "^2.1.5",
+    "cookieparser": "^0.1.0",
+    "core-js": "^3.19.3",
+    "firebase": "^9.6.5",
+    "firebase-admin": "^10.0.2",
+    "jwt-decode": "^3.1.2",
+    "nuxt": "^2.15.8",
+    "vee-validate": "^3.4.14",
+    "vue": "^2.6.14",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "vuelidate": "^0.7.7",
+    "vuetify": "^2.6.1",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.3",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
+  }
+}
