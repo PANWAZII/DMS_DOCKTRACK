@@ -166,7 +166,7 @@ export default {
     let position =[];
     try {
         department = await axios.get('/departments/getAllDepartments').then(res => res.data);
-        // position = await axios.get('/getUserPosition').then(res => res.data);
+        // position = await axios.get('/positions/getUserPosition').then(res => res.data);
       } catch (err) {
         console.log(err)
       }
