@@ -45,6 +45,7 @@ router.get("/userInfo", async (req, res) => {
 
 // Creating new User
 router.post("/createNewUser", async (req, res) => {
+  const date = Date.now()
   const auth = getAuth();
   const email = req.body.email;
   const password = req.body.password;
@@ -54,8 +55,6 @@ router.post("/createNewUser", async (req, res) => {
   const department_id = req.body.department_id;
   const telephone = req.body.tel;
   const fax = req.body.fax;
-  const created_date = req.body.created_date;
-  const modified_date = req.body.modified_date;
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -73,8 +72,8 @@ router.post("/createNewUser", async (req, res) => {
         tel: telephone,
         fax: fax,
         available_status: 1,
-        created_date: created_date,
-        modified_date: modified_date,
+        created_date: date,
+        modified_date: date,
       });
       const newUser = user.save();
       res.status(201).json(newUser);

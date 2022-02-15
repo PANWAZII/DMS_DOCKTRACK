@@ -9,14 +9,14 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-//   created_date: {
-//     type: Date,
-//     required: false,
-//   },
-//   modified_date: {
-//     type: Date,
-//     required: false,
-//   },
+  created_date: {
+    type: Date,
+    required: false,
+  },
+  modified_date: {
+    type: Date,
+    required: false,
+  },
 });
 
 //this is type name
