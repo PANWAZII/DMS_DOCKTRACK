@@ -7,7 +7,7 @@
             <v-col cols="12" sm="8" md="8" lg="6">
               <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150">
               </v-img>
-              {{ form }}
+              <!-- {{ form }} -->
               <v-card-text>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
@@ -16,7 +16,7 @@
                     name="Name"
                     class="rounded-1"
                     outlined
-                    :rules="passwordRules"
+                    :rules="nameRules"
                     v-model="form.firstname"
                   >
                   </v-text-field>
@@ -26,6 +26,7 @@
                     name="Surname"
                     class="rounded-1"
                     outlined
+                    :rules="surnameRules"
                     v-model="form.lastname"
                   >
                   </v-text-field>
@@ -46,6 +47,7 @@
                     :items="department"
                     label="หน่วยงานสังกัด"
                     outlined
+                    :rules="departRules"
                     required
                   ></v-select>
 
@@ -55,6 +57,7 @@
                     name="Tel"
                     class="rounded-1"
                     outlined
+                    :rules="telRules"
                     v-model="form.tel"
                   >
                   </v-text-field>
@@ -64,6 +67,7 @@
                     name="Fax"
                     class="rounded-1"
                     outlined
+                    :rules="faxRules"
                     v-model="form.fax"
                   >
                   </v-text-field>
@@ -221,8 +225,6 @@ export default {
     },
     async createUser() {
       try {
-        const date = Date.now()
-        console.log(this.form)
         console.log('start loading')
         this.loading = true
         console.log('start posting')
@@ -236,16 +238,14 @@ export default {
             fax: this.form.fax,
             position_id: this.form.position_id,
             department_id: this.form.department_id,
-            created_date: date,
-            modified_date: date,
           })
           .then((res) => {
             console.log('start response')
-            console.log(res)
+            console.log("this is res: ",res)
             if (res.status == 201) {
               console.log('stop loading')
               this.loading = false
-            } else if ((res = 'auth/email-already-in-use')) {
+            } else if (res.data.message == "auth/email-already-in-use") {
               this.loading = false
               this.registerDialog = true
             }
