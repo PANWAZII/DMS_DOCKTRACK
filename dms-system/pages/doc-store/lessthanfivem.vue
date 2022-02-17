@@ -20,7 +20,7 @@
     <v-row class="d-flex justify-center align-center">
       <v-col cols="8">
         <template>
-          <form>
+          <v-form ref="form" v-model="valid" lazy-validation>
             <p class="topices">ก. ข้อมูลทั่วไป</p>
             <p class="topices">1. ชื่อโครงการ</p>
 
@@ -393,13 +393,13 @@
             <v-btn
               class="rounded-1"
               color="#056839"
-              @click="testfunc"
+              @click="submit"
               x-large
               block
             >
               <div class="white--text font-weight-bold">ส่งข้อมูล</div>
             </v-btn>
-          </form>
+          </v-form>
           <br />
         </template>
       </v-col>
@@ -423,6 +423,7 @@ export default {
   name: 'lessthanfivem',
 
   data: () => ({
+    valid: true,
     ProjN: '',
     projnRules: [
       (v) => !!v || 'โปรดระบุชื่อโครงการ',
@@ -565,6 +566,13 @@ export default {
     ],
   }),
   methods: {
+    submit() {
+      this.$refs.form.validate()
+      console.log(this.$refs.form.validate())
+      if (this.$refs.form.validate() == true) {
+        this.testfunc()
+      }
+    },
     // Create New product
     testfunc() {
       const mutiplied = this.Quant * this.Price
