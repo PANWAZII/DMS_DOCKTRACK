@@ -21,7 +21,6 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
-
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -35,9 +34,15 @@ app.use(express.json());
 //User API
 import usersRouter from "./routes/User/users.js";
 app.use("/users", usersRouter);
-import departmentsRouter from "./routes/User/departments.js"
-app.use("/departments",departmentsRouter)
-import positionsRouter from "./routes/User/positions.js"
-app.use("/positions",positionsRouter)
+import departmentsRouter from "./routes/User/departments.js";
+app.use("/departments", departmentsRouter);
+import positionsRouter from "./routes/User/positions.js";
+app.use("/positions", positionsRouter);
+
+//Documents API
+import lessthanfivesRouter from "./routes/AllDocument/lessthanfives.js";
+app.use("/lessthanfives", lessthanfivesRouter);
+import morethanfivesRouter from "./routes/AllDocument/morethanfives.js";
+app.use("/morethanfives", morethanfivesRouter);
 
 app.listen(port, () => console.log("Server Started at port: ", port));

@@ -1,5 +1,5 @@
 import express from "express";
-import morethanfivems from "../../models/AllDocument/lessthanfivem.js";
+import morethanfivems from "../../models/AllDocument/morethanfivem.js";
 const router = express.Router();
 // Getting all
 router.get("/getAllDocuments", async (req, res) => {
