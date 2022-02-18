@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const lessthanSchema = new mongoose.Schema({
+const lessthanfivemSchema = new mongoose.Schema({
   uid: {
     type: String,
     required: false,
   },
-  proj_name: {
+  project_name: {
     type: String,
     required: false,
   },
-  dept_name: {
+  department_name: {
     type: String,
     required: false,
   },
@@ -17,7 +17,7 @@ const lessthanSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  boss_posi: {
+  boss_position: {
     type: String,
     required: false,
   },
@@ -33,7 +33,7 @@ const lessthanSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  user2_posi: {
+  user2_position: {
     type: String,
     required: false,
   },
@@ -53,7 +53,7 @@ const lessthanSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  user3_posi: {
+  user3_position: {
     type: String,
     required: false,
   },
@@ -105,7 +105,7 @@ const lessthanSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  desti: {
+  destination: {
     type: String,
     required: false,
   },
@@ -160,4 +160,4 @@ const lessthanSchema = new mongoose.Schema({
 });
 
 //this is type name
-export default mongoose.model("lessthanfive", lessthanSchema);
+export default mongoose.model("lessthanfivem", lessthanfivemSchema);
