@@ -157,6 +157,10 @@ const morethanfivemSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  available_status: {
+    type: Number,
+    requiredP: false,
+  },
 });
 
 //this is type name
