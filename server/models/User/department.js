@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const departmentSchema = new mongoose.Schema({
   department_name: {
     type: String,
     required: true,
@@ -20,4 +20,4 @@ const userSchema = new mongoose.Schema({
 });
 
 //this is type name
-export default mongoose.model("departments", userSchema);
+export default mongoose.model("departments", departmentSchema);
