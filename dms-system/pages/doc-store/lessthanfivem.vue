@@ -677,7 +677,7 @@ export default {
         return deny
       } else {
         // this.sum = parseInt(mutiplied)
-        this.sum = 45
+        this.form.sum = mutiplied
         return mutiplied
       }
     },
