@@ -26,6 +26,7 @@ router.post("/createNewDocument", async (req, res) => {
     boss_position: req.body.boss_position,
     boss_tel: req.body.boss_tel,
     boss_fax: req.body.boss_fax,
+    boss_email:req.body.boss_email,
     user2_name: req.body.user2_name,
     user2_position: req.body.user2_position,
     user2_tel: req.body.user2_tel,

@@ -29,6 +29,10 @@ const morethanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  boss_email: {
+    type: String,
+    required: false,
+  },
   user2_name: {
     type: String,
     required: false,
