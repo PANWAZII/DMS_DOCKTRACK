@@ -73,10 +73,6 @@ const morethanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  total: {
-    type: String,
-    required: false,
-  },
   baht_text: {
     type: String,
     required: false,
