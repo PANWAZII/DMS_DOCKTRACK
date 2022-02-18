@@ -1,10 +1,10 @@
 import express from "express";
-import lessthanfivems from "../../models/AllDocument/lessthanfivem.js";
+import morethanfivems from "../../models/AllDocument/lessthanfivem.js";
 const router = express.Router();
 // Getting all
 router.get("/getAllDocuments", async (req, res) => {
   try {
-    const allDocuments = await lessthanfivems.find();
+    const allDocuments = await morethanfivems.find();
     res.status(200).json(allDocuments);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -18,7 +18,7 @@ router.get("/getAllDocuments", async (req, res) => {
 
 // Creating new User
 router.post("/createNewDocument", async (req, res) => {
-  const lessthanfivem = new lessthanfivems({
+  const morethanfivem = new morethanfivems({
     uid: req.body.uid,
     project_name: req.body.project_name,
     department_name: req.body.department_name,
@@ -61,8 +61,8 @@ router.post("/createNewDocument", async (req, res) => {
     available_status: 1,
   });
   try {
-    const newLessthanfivem = await lessthanfivem.save();
-    res.status(201).json(newLessthanfivem);
+    const newMorethanfivem = await morethanfivem.save();
+    res.status(201).json(newMorethanfivem);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
