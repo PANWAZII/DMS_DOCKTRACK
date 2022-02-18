@@ -160,4 +160,4 @@ const morethanfivemSchema = new mongoose.Schema({
 });
 
 //this is type name
-export default mongoose.model("morethanfivem", morethanfivemSchema);
+export default mongoose.model("morethanfivems", morethanfivemSchema);
