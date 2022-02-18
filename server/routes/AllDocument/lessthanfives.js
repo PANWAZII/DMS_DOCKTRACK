@@ -18,6 +18,7 @@ router.get("/getAllDocuments", async (req, res) => {
 
 // Creating new User
 router.post("/createNewDocument", async (req, res) => {
+  const date = Date.now();
   const lessthanfivem = new lessthanfivems({
     uid: req.body.uid,
     project_name: req.body.project_name,
@@ -26,7 +27,7 @@ router.post("/createNewDocument", async (req, res) => {
     boss_position: req.body.boss_position,
     boss_tel: req.body.boss_tel,
     boss_fax: req.body.boss_fax,
-    boss_email:req.body.boss_email,
+    boss_email: req.body.boss_email,
     user2_name: req.body.user2_name,
     user2_position: req.body.user2_position,
     user2_tel: req.body.user2_tel,
@@ -57,8 +58,8 @@ router.post("/createNewDocument", async (req, res) => {
     major: req.body.major,
     quantity_major: req.body.quantity_major,
     specific_info: req.body.specific_info,
-    created_date: req.body.created_date,
-    modified_date: req.body.modified_date,
+    created_date: date,
+    modified_date: date,
     available_status: 1,
   });
   try {
