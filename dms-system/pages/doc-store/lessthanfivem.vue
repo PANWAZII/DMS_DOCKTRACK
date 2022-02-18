@@ -14,7 +14,7 @@
         <p class="topices">
           แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5
           ล้านบาท
-        </p>
+        </p>{{form}}
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
@@ -25,7 +25,7 @@
             <p class="topices">1. ชื่อโครงการ</p>
 
             <v-text-field
-              v-model="ProjN"
+              v-model="form.project_name"
               :rules="projnRules"
               :counter="255"
               label="ชื่อโครงการ (ระบุทั้งภาษาไทยและภาษาอังกฤษ)"
@@ -35,7 +35,7 @@
             <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p>
             <p class="subtop">2.1 ชื่อส่วนราชการ</p>
             <v-text-field
-              v-model="DeptN"
+              v-model="form.department_name"
               :rules="deptnRules"
               :counter="255"
               label="ชื่อส่วนราชการ"
@@ -46,7 +46,7 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="BossName"
+                  v-model="form.boss_name"
                   :rules="bossnameRules"
                   :counter="255"
                   label="ชื่อ สกุล"
@@ -56,7 +56,7 @@
 
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="BossPos"
+                  v-model="form.boss_position"
                   :rules="bossposRules"
                   :counter="255"
                   label="ตำแหน่ง"
@@ -65,7 +65,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="BossT"
+                  v-model="form.boss_tel"
                   :rules="bosstRules"
                   :counter="10"
                   label="โทรศัพท์"
@@ -74,7 +74,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="BossF"
+                  v-model="form.boss_fax"
                   :rules="bossfRules"
                   :counter="10"
                   label="โทรสาร"
@@ -84,7 +84,7 @@
 
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="BossE"
+                  v-model="form.boss_email"
                   :rules="bosseRules"
                   :counter="100"
                   label="อีเมล"
@@ -99,7 +99,7 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="Proj1"
+                  v-model="form.Proj1"
                   :rules="proj1Rules"
                   :counter="255"
                   label="ชื่อ สกุล"
@@ -109,7 +109,7 @@
 
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="ProjPos1"
+                  v-model="form.ProjPos1"
                   :rules="projpos1Rules"
                   :counter="255"
                   label="ตำแหน่ง"
@@ -118,7 +118,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="ProjT1"
+                  v-model="form.ProjT1"
                   :rules="projt1Rules"
                   :counter="10"
                   label="โทรศัพท์"
@@ -127,7 +127,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="ProjF1"
+                  v-model="form.ProjF1"
                   :rules="projf1Rules"
                   :counter="10"
                   label="โทรสาร"
@@ -137,7 +137,7 @@
 
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="ProjE1"
+                  v-model="form.ProjE1"
                   :rules="proje1Rules"
                   :counter="100"
                   label="อีเมล"
@@ -159,7 +159,7 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-modal="Texttotal"
+                  v-model="form.baht_text"
                   :rules="texttotalRules"
                   dense
                   label="ตัวอักษร"
@@ -171,8 +171,8 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
-                  v-model="select"
-                  :items="items"
+                  v-model="form.resource"
+                  :items="form.items"
                   :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
                   label="โปรดระบุแหล่งเงิน"
                   required
@@ -187,7 +187,7 @@
               รายละเอียดที่ไม่ตรงกับมาตรฐานกลาง พร้อมระบุเหตุผล ความจำเป็น
             </p>
             <v-textarea
-              v-model="Textareas"
+              v-model="form.detail_notstd"
               label="กรอกรายละเอียด"
               required
               :counter="3000"
@@ -197,7 +197,7 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="Quant"
+                  v-model="form.quantity"
                   :rules="quantRules"
                   :counter="10"
                   label="จำนวน"
@@ -206,8 +206,8 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-select
-                  v-model="selectUnit"
-                  :items="iunit"
+                  v-model="form.unit"
+                  :items="form.iunit"
                   :rules="[(v) => !!v || 'โปรดระบุหน่วยการนับ']"
                   label="โปรดเลือกหน่วยการนับ"
                   required
@@ -215,7 +215,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="Price"
+                  v-model="form.price_unit"
                   :rules="priceRules"
                   label="ราคาต่อหน่วย"
                   required
@@ -238,10 +238,10 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group
-                  v-model="Findmethod"
+                  v-model="form.method"
                   row
                   required
-                  @blur="$v.Findmethod.$touch()"
+                  @blur="$v.form.method.$touch()"
                 >
                   <v-radio label="จัดซื้อ" color="red" value="first"></v-radio>
                   <v-radio label="จัดจ้าง" color="red" value="second"></v-radio>
@@ -254,7 +254,7 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="Desti"
+                  v-model="form.destination"
                   :rules="destiRules"
                   :counter="255"
                   label="ชื่อสถานที่/หน่วยงานติดตั้ง"
@@ -263,7 +263,7 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="Recom"
+                  v-model="form.cert"
                   :rules="recomRules"
                   :counter="255"
                   label="คำรับรองการปฏิบัติราชการกรมการแพทย์ (ใส่ - กรณีไม่ระบุ)"
@@ -278,7 +278,7 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="List"
+                  v-model="form.list_old"
                   :rules="listRules"
                   :counter="255"
                   label="รายการ"
@@ -287,7 +287,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="Locaold"
+                  v-model="form.locate_old"
                   :rules="locaoldRules"
                   :counter="255"
                   label="สถานที่ติดตั้ง"
@@ -297,7 +297,7 @@
               </v-col>
               <v-col cols="12" md="4">
                 <v-text-field
-                  v-model="Insyear"
+                  v-model="form.year_old"
                   :rules="insyearRules"
                   :counter="255"
                   label="ติดตั้งใช้งานเมื่อปี พ.ศ."
@@ -312,7 +312,7 @@
               ปัญหาอุปสรรคในการปฏิบัติงาน/เหตุผลความจำเป็นที่ต้องจัดหาอุปกรณ์ในครั้งนี้
             </p>
             <v-textarea
-              v-model="Obst"
+              v-model="form.obstacle"
               label="กรอกปัญหาอุปสรรค/เหตุผลความจำเป็น"
               required
               :counter="700"
@@ -323,7 +323,7 @@
               9. ลักษณะงานหรือระบบงานที่จะใช้กับอุปกรณ์ที่จัดหาครั้งนี้
             </p>
             <v-textarea
-              v-model="Pouse"
+              v-model="form.purpose_of_use"
               label="กรอกลักษณะ/ระบบงานที่จะใช้กับอุปกรณ์ที่จัดหา"
               required
               :counter="700"
@@ -334,7 +334,7 @@
               10. เปรียบเทียบอุปกรณ์ที่จัดหาครั้งนี้กับปริมาณงาน
             </p>
             <v-textarea
-              v-model="Compare"
+              v-model="form.compare"
               label="เปรียบเทียบอุปกรณ์ที่จัดหากับปริมาณงาน"
               required
               :counter="700"
@@ -348,7 +348,7 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="Maj"
+                  v-model="form.major"
                   :rules="majRules"
                   :counter="255"
                   label="ด้าน/สาขา"
@@ -357,7 +357,7 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="Qmaj"
+                  v-model="form.quantity_major"
                   :rules="qmajRules"
                   :counter="255"
                   label="จำนวน (คน)"
@@ -368,7 +368,7 @@
             <p class="topices">ข. ข้อมูลเฉพาะกรณี</p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-radio-group v-model="Spi" row required>
+                <v-radio-group v-model="form.specific_info" row required>
                   <v-radio
                     label="จัดหาใหม่"
                     color="red"
@@ -424,145 +424,183 @@ export default {
 
   data: () => ({
     valid: true,
-    ProjN: '',
+    form: {
+      project_name: '',
+      department_name: '',
+      boss_name: '',
+      boss_position: '',
+      boss_tel: '',
+      boss_fax: '',
+      boss_email: '',
+      Proj1: '',
+      ProjPos1: '',
+      ProjT1: '',
+      ProjF1: '',
+      ProjE1: '',
+      user2_name: '',
+      user2_position: '',
+      user2_tel: '',
+      user2_fax: '',
+      user2_email: '',
+      user3_name: '',
+      user3_position: '',
+      user3_tel: '',
+      user3_fax: '',
+      user3_email: '',
+
+      baht_text: '',
+      resource: null,
+      detail_notstd: '',
+      quantity: 0,
+      unit: null,
+      price_unit: 0,
+      sum: '',
+      method: '',
+      destination: '',
+      cert: '',
+      list_old: '',
+      locate_old: '',
+      year_old: '',
+      obstacle: '',
+      purpose_of_use: '',
+      compare: '',
+      major: '',
+      quantity_major: '',
+      specific_info: '',
+      iunit: ['ระบบ', 'เครื่อง'],
+      items: [
+        'งบประมาณประจำปี 2565',
+        'เงินรายได้',
+        'เงินบำรุง',
+        'เปลี่ยนแปลงรายการ/เงินเหลือจ่าย',
+        'เงินช่วยเหลือ/เงินนอกงบประมาณ',
+      ],
+    },
+
     projnRules: [
       (v) => !!v || 'โปรดระบุชื่อโครงการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    DeptN: '',
+
     deptnRules: [
       (v) => !!v || 'โปรดระบุชื่อหน่วยงาน',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    BossName: '',
+
     bossnameRules: [
       (v) => !!v || 'โปรดระบุชื่อหัวหน้าส่วนราชการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    BossPos: '',
+
     bossposRules: [
       (v) => !!v || 'โปรดระบุตำแหน่งหัวหน้าส่วนราชการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    BossT: '',
+
     bosstRules: [
       (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
       (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    BossF: '',
+
     bossfRules: [
       (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
       (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    BossE: '',
+
     bosseRules: [
       (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
       (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
       (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Proj1: '',
+
     proj1Rules: [
       (v) => !!v || 'โปรดระบุชื่อผู้รับผิดชอบโครงการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    ProjPos1: '',
+
     projpos1Rules: [
       (v) => !!v || 'โปรดระบุตำแหน่ง',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    ProjT1: '',
+
     projt1Rules: [
       (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์ผู้รับผิดชอบโครงการ',
       (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    ProjF1: '',
+
     projf1Rules: [
       (v) => !!v || 'โปรดระบุเบอร์โทรสารผู้รับผิดชอบโครงการ',
       (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    ProjE1: '',
+
     proje1Rules: [
       (v) => !!v || 'โปรดระบุอีเมลผู้รับผิดชอบโครงการ',
       (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
       (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Texttotal: '',
+
     texttotalRules: [(v) => !!v || 'โปรดระบุจำนวนเงินแบบตัวอักษร'],
-    select: null,
-    Textareas: '',
+
     textareasRules: [
       (v) => !!v || 'โปรดระบุรายละเอียด',
       (v) => v.length <= 3000 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Quant: 0,
+
     quantRules: [
       (v) => !!v || 'โปรดระบุจำนวน',
       (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    selectUnit: null,
-    Price: 0,
+
     priceRules: [(v) => !!v || 'โปรดระบุราคาต่อหน่วย'],
-    Multiply: '',
-    Findmethod: '',
-    Desti: '',
+
     destiRules: [
       (v) => !!v || 'โปรดระบุสถานที่ตั้งอุปกรณ์',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Recom: '',
+
     recomRules: [
       (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    List: '',
+
     listRules: [
       (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Locaold: '',
+
     locaoldRules: [
       (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Insyear: '',
+
     insyearRules: [
       (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Obst: '',
+
     obstRules: [
       (v) => !!v || 'โปรดระบุปัญหาอุปสรรค เหตุความจำเป็น',
       (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Pouse: '',
+
     pouseRules: [
       (v) => !!v || 'โปรดระบุลักษณะงานหรือระบบที่จะใช้กับอุปกรณ์นี้',
       (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Compare: '',
+
     compareRules: [
       (v) => !!v || 'โปรดระบุการเปรียบเทียบ',
       (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Maj: '',
+
     majRules: [
       (v) => !!v || 'โปรดระบุด้าน/สาขา',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    Qmaj: '',
+
     qmajRules: [
       (v) => !!v || 'โปรดระบุจำนวน',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
-    Spi: '',
-    name: '',
-    iunit: ['ระบบ', 'เครื่อง'],
-    items: [
-      'งบประมาณประจำปี 2565',
-      'เงินรายได้',
-      'เงินบำรุง',
-      'เปลี่ยนแปลงรายการ/เงินเหลือจ่าย',
-      'เงินช่วยเหลือ/เงินนอกงบประมาณ',
     ],
   }),
   methods: {
@@ -579,53 +617,51 @@ export default {
       if (mutiplied > 5000000) {
         alert('ราคารวมเกินห้าล้านบาท โปรดเลือกแบบฟอร์มชนิดอื่น')
       } else {
-        alert('Send data')
+        this.saveAct()
       }
     },
     async saveAct() {
       try {
-        await axios.post('http://localhost:5000/activity', {
-          dept: this.select,
-          topic: this.Topic,
-          target: this.selecttarget,
-          start_date: this.sdate,
-          end_date: this.edate,
-          detail: this.Detail,
-          file_name: this.files,
+        const user_id = await this.$cookies.get('uid_token')
+        await axios.post('/lessthanfives/createNewDocument', {
+          uid: user_id,
+          project_name: this.form.project_name,
+          department_name: this.form.department_name,
+          boss_name: this.form.boss_name,
+          boss_position: this.form.boss_position,
+          boss_tel: this.form.boss_tel,
+          boss_fax: this.form.boss_fax,
+          boss_email: this.form.boss_email,
+          user2_name: this.form.user2_name,
+          user2_position: this.form.user2_position,
+          user2_tel: this.form.user2_tel,
+          user2_fax: this.form.user2_fax,
+          user2_email: this.form.user2_email,
+          user3_name: this.form.user3_name,
+          user3_position: this.form.user3_position,
+          user3_tel: this.form.user3_tel,
+          user3_fax: this.form.user3_fax,
+          user3_email: this.form.user3_email,
+          baht_text: this.form.baht_text,
+          resource: this.form.resource,
+          detail_notstd: this.form.detail_notstd,
+          quantity: this.form.quantity,
+          unit: this.form.unit,
+          price_unit: this.form.price_unit,
+          sum: this.form.sum,
+          method: this.form.method,
+          destination: this.form.destination,
+          cert: this.form.cert,
+          list_old: this.form.list_old,
+          locate_old: this.form.locate_old,
+          year_old: this.form.year_old,
+          obstacle: this.form.obstacle,
+          purpose_of_use: this.form.purpose_of_use,
+          compare: this.form.compare,
+          major: this.form.major,
+          quantity_major: this.form.quantity_major,
+          specific_info: this.form.specific_info,
         })
-        this.ProjN = ''
-        this.DeptN = ''
-        this.BossName = ''
-        this.BossPos = ''
-        this.BossT = ''
-        this.BossF = ''
-        this.BossE = ''
-        this.Proj1 = ''
-        this.ProjPos1 = ''
-        this.ProjT1 = ''
-        this.ProjF1 = ''
-        this.ProjE1 = ''
-        this.Texttotal = ''
-        this.select = ''
-        this.Textareas = ''
-        this.Quant = ''
-        this.selectUnit = ''
-        this.Price = ''
-        this.Multiply = ''
-        this.Findmethod = ''
-        this.Desti = ''
-        this.Recom = ''
-        this.List = ''
-        this.Locaold = ''
-        this.Insyear = ''
-        this.Obst = ''
-        this.Pouse = ''
-        this.Compare = ''
-        this.Maj = ''
-        this.Qmaj = ''
-        this.Spi = ''
-
-        this.$router.push('/completedHw')
       } catch (err) {
         console.log(err)
       }
@@ -634,12 +670,14 @@ export default {
   },
   computed: {
     sumresult() {
-      const mutiplied = this.Quant * this.Price
+      const mutiplied = this.form.quantity * this.form.price_unit
       if (mutiplied > 5000000) {
         alert('ราคารวมเกินห้าล้านบาท โปรดเลือกแบบฟอร์มชนิดอื่น')
         const deny = 'ไม่สามารถใช้ฟอร์มนี้ได้'
         return deny
       } else {
+        // this.sum = parseInt(mutiplied)
+        this.sum = 45
         return mutiplied
       }
     },
