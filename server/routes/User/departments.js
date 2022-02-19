@@ -1,9 +1,11 @@
 import express from "express";
+import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
 import departments from "../../models/User/department.js";
 // Getting all
-router.get("/getAllDepartments", async (req, res) => {
+router.get("/getAllDepartments" ,async (req, res) => {
   try {
+    console.log(req.headers)
     const allDepartments = await departments.find();
     res.status(200).json(allDepartments);
   } catch (err) {
@@ -12,9 +14,9 @@ router.get("/getAllDepartments", async (req, res) => {
 });
 
 // Getting One
-router.get("/:id", getSubscriber, (req, res) => {
-  res.json(res.subscriber);
-});
+// router.get("/:id", getSubscriber, (req, res) => {
+//   res.json(res.subscriber);
+// });
 
 // Creating new User
 router.post("/createNewDepartment", async (req, res) => {
