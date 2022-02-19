@@ -5,7 +5,6 @@ import departments from "../../models/User/department.js";
 // Getting all
 router.get("/getAllDepartments" ,async (req, res) => {
   try {
-    console.log(req.headers)
     const allDepartments = await departments.find();
     res.status(200).json(allDepartments);
   } catch (err) {
