@@ -14,7 +14,8 @@
         <p class="topices">
           แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5
           ล้านบาท
-        </p>{{form}}
+        </p>
+        {{ form }}
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
@@ -605,11 +606,12 @@ export default {
   }),
   methods: {
     submit() {
-      this.$refs.form.validate()
-      console.log(this.$refs.form.validate())
-      if (this.$refs.form.validate() == true) {
-        this.testfunc()
-      }
+      this.saveAct()
+      // this.$refs.form.validate()
+      // console.log(this.$refs.form.validate())
+      // if (this.$refs.form.validate() == true) {
+      //   this.testfunc()
+      // }
     },
     // Create New product
     testfunc() {
@@ -622,8 +624,9 @@ export default {
     },
     async saveAct() {
       try {
-        const user_id = await this.$cookies.get('uid_token')
-        await axios.post('/lessthanfives/createNewDocument', {
+        // const user_id = await this.$cookies.get('uid_token')
+        const user_id = this.$store.getters.uid
+        await this.$store.dispatch('api/lessThanCreatDoc', {
           uid: user_id,
           project_name: this.form.project_name,
           department_name: this.form.department_name,
@@ -662,10 +665,13 @@ export default {
           quantity_major: this.form.quantity_major,
           specific_info: this.form.specific_info,
         })
+        
+        alert('Add Completed')
       } catch (err) {
         console.log(err)
+        alert('Add Fail')
       }
-      alert('Add Completed')
+      
     },
   },
   computed: {

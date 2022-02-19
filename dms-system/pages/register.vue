@@ -161,16 +161,12 @@ export default {
   //   this.department = await this.getDept()
   //   // this.position = await this.getPosition()
   // },
-  async asyncData() {
+  async asyncData({store}) {
     let department = []
     let position = []
     try {
-      department = await axios
-        .get('/departments/getAllDepartments')
-        .then((res) => res.data)
-      position = await axios
-        .get('/positions/getAllPositions')
-        .then((res) => res.data)
+      department = await store.dispatch("api/getAllDepartments")
+      position = await store.dispatch("api/getAllPositions")
     } catch (err) {
       console.log(err)
     }
