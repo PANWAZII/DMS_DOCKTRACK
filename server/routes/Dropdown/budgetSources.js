@@ -1,7 +1,7 @@
 import express from "express";
 import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
-import budgetsources from "../../models/Dropdown/budgetSource";
+import budgetsources from "../../models/Dropdown/budgetSource.js";
 // Getting all
 router.get("/getAllSources" ,async (req, res) => {
   try {
