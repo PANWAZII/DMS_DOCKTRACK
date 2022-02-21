@@ -157,9 +157,13 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  approval_status: {
+    type: String,
+    require: false,
+  },
   available_status: {
     type: Number,
-    requiredP: false,
+    required: false,
   },
 });
 
