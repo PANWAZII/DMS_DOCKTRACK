@@ -15,7 +15,6 @@
           แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5
           ล้านบาท
         </p>
-        {{ budget }}
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
