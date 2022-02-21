@@ -159,7 +159,7 @@
               </v-col>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-modal="Texttotal"
+                  v-model="Texttotal"
                   :rules="texttotalRules"
                   dense
                   label="ตัวอักษร"
@@ -387,7 +387,7 @@
                 </v-radio-group>
               </v-col>
             </v-row>
-            <v-space></v-space>
+            <v-spacer></v-spacer>
             <br />
 
             <v-btn

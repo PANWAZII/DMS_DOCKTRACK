@@ -388,7 +388,7 @@
                 </v-radio-group>
               </v-col>
             </v-row>
-            <v-space></v-space>
+            <v-spacer></v-spacer>
             <br />
 
             <v-btn
@@ -665,13 +665,12 @@ export default {
           quantity_major: this.form.quantity_major,
           specific_info: this.form.specific_info,
         })
-        
+
         alert('Add Completed')
       } catch (err) {
         console.log(err)
         alert('Add Fail')
       }
-      
     },
   },
   computed: {
