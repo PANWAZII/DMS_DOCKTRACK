@@ -401,6 +401,17 @@
             >
               <div class="white--text font-weight-bold">ส่งข้อมูล</div>
             </v-btn>
+            <br />
+
+            <v-btn
+              class="rounded-1"
+              color="error"
+              x-large
+              block
+              @click.stop="warningdialog = true"
+            >
+              <div class="white--text font-weight-bold">ยกเลิก</div>
+            </v-btn>
           </v-form>
           <br />
         </template>
@@ -409,6 +420,37 @@
 
     <v-row>
       <v-col cols="12" class="d-flex justify-center align-center"> </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="warningdialog" max-width="300" max-height="300">
+        <v-card>
+          <v-card-title class="text-h5"> คำเตือน </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text
+            >คำขอจัดซื้อครุภัณฑ์กำลังจะถูกยกเลิก ทำให้ข้อมูลไม่ถูกบันทึกในระบบ
+            ท่านจะต้องกรอกใหม่อีกครั้ง</v-card-text
+          >
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              text
+              color="success"
+              @click="warningdialog = false"
+              class="font-weight-medium mt-3"
+            >
+              ยกเลิก
+            </v-btn>
+            <v-btn
+              text
+              color="error"
+              to="/document"
+              class="font-weight-medium mt-3"
+            >
+              ตกลง
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-row>
   </v-container>
 </template>
@@ -427,6 +469,7 @@ export default {
     return { budget }
   },
   data: () => ({
+    warningdialog: false,
     buget: [],
     valid: true,
     form: {
