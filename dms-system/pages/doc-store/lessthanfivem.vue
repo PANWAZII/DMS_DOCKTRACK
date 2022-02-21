@@ -15,7 +15,7 @@
           แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5
           ล้านบาท
         </p>
-        {{ form }}
+        {{ budget }}
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
@@ -173,7 +173,9 @@
               <v-col cols="12" md="4">
                 <v-select
                   v-model="form.resource"
-                  :items="form.items"
+                  :items="budget"
+                  item-text="budget_sources"
+                  item-value="budget_sources"
                   :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
                   label="โปรดระบุแหล่งเงิน"
                   required
@@ -472,13 +474,13 @@ export default {
       quantity_major: '',
       specific_info: '',
       iunit: ['ระบบ', 'เครื่อง'],
-      items: [
-        'งบประมาณประจำปี 2565',
-        'เงินรายได้',
-        'เงินบำรุง',
-        'เปลี่ยนแปลงรายการ/เงินเหลือจ่าย',
-        'เงินช่วยเหลือ/เงินนอกงบประมาณ',
-      ],
+      // items: [
+      //   'งบประมาณประจำปี 2565',
+      //   'เงินรายได้',
+      //   'เงินบำรุง',
+      //   'เปลี่ยนแปลงรายการ/เงินเหลือจ่าย',
+      //   'เงินช่วยเหลือ/เงินนอกงบประมาณ',
+      // ],
     },
 
     projnRules: [
