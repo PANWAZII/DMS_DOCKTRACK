@@ -27,4 +27,9 @@ export const actions = {
       .post('/lessthanfives/createNewDocument', { data }, { headers })
       .then((res) => res.data)
   },
+  async getAllSources({ getters }, data) {
+    return await axios
+      .get('/budgetSources/getAllSources')
+      .then((res) => res.data)
+  },
 }

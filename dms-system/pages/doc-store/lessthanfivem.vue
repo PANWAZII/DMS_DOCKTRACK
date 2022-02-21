@@ -413,17 +413,20 @@
 </template>
 
 <script>
-import { bahttext } from 'bahttext'
-
-import axios from 'axios'
-
 export default {
-  //   },
-
   middleware: 'middleware-auth',
   name: 'lessthanfivem',
-
+  async asyncData({ store }) {
+    let budget = []
+    try {
+      budget = await store.dispatch('api/getAllSources')
+    } catch (err) {
+      console.log(err)
+    }
+    return { budget }
+  },
   data: () => ({
+    buget: [],
     valid: true,
     form: {
       project_name: '',
