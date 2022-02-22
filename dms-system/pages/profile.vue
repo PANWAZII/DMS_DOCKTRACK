@@ -13,36 +13,39 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="4">
-                  <v-text-field
-                    disabled
+                  <v-select
+                    v-model="form.department"
+                    :items="form.dept"
+                    item-text=""
+                    item-value=""
+                    :rules="[(v) => !!v || 'โปรดระบุหน่วยงานสังกัด']"
                     label="หน่วยงานสังกัด"
-                    value="สำนักดิจิทัลการแพทย์"
-                  />
+                    required
+                  ></v-select>
                 </v-col>
               </v-row>
             </v-container>
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field
-                    label="ชื่อ"
-                    value="Jirayus"
-                    disabled
-                  ></v-text-field>
+                  <v-text-field label="ชื่อ" value="Jirayus"></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
                     label="นามสกุล"
                     value="Preechadech"
-                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field
+                  <v-select
+                    v-model="form.position"
+                    :items="form.position_choice"
+                    item-text=""
+                    item-value=""
+                    :rules="[(v) => !!v || 'โปรดระบุตำแหน่ง']"
                     label="ตำแหน่ง"
-                    value="นักวิชาการคอมพิวเตอร์"
-                    disabled
-                  ></v-text-field>
+                    required
+                  ></v-select>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
@@ -94,9 +97,19 @@ export default {
     return {
       valid: true,
       form: {
+        position: 'นักวิชาการคอมพิวเตอร์',
+        department: 'สำนักดิจิทัลการแพทย์',
+        user_position: '',
+        user_department: '',
         user_tel: '3751',
         user_fax: '4751',
         user_email: 'test1@moph.go.th',
+        dept: [
+          'สำนักดิจิทัลการแพทย์',
+          'กองยุทธศาสตร์และแผนงาน',
+          'กองกฎหมายและจริยธรรม',
+        ],
+        position_choice: ['นักวิชาการคอมพิวเตอร์', 'นักวิเคราะห์นโยบายและแผน'],
       },
       telRules: [
         (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์',
