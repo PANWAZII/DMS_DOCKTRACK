@@ -30,6 +30,18 @@
           </v-list-item>
         </v-list-item-group>
         <v-list-item-group color="primary" class="mb-1">
+          <v-list-item :to="this.menu.profile.to">
+            <v-list-item-icon>
+              <v-icon>{{ this.menu.profile.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="this.menu.profile.title"
+              ></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+        <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.document.to">
             <v-list-item-icon>
               <v-icon>{{ this.menu.document.icon }}</v-icon>
@@ -74,7 +86,7 @@
         </template>
         <v-list class="text-center font-weight-bold">
           <v-divider></v-divider>
-          <v-list-item class="ma-0" height="200" width="100" to="/document">
+          <v-list-item class="ma-0" height="200" width="100" to="/profile">
             <v-list-item-title><h5>Profile</h5></v-list-item-title>
           </v-list-item>
           <v-divider></v-divider>
@@ -134,16 +146,23 @@ export default {
           title: 'Home',
           to: '/',
         },
+        profile: {
+          icon: 'mdi-account',
+          title: 'Profile',
+          to: '/profile',
+        },
         document: {
           icon: 'mdi-file-document-multiple',
           title: 'Document',
           to: '/document',
         },
+
         support: {
           icon: 'mdi-face-agent',
           title: 'Support',
           to: '/support',
         },
+
         logout: {
           icon: 'mdi-account-arrow-right',
           title: 'Logout',
@@ -176,7 +195,7 @@ export default {
     async getUserInfo() {
       try {
         // const user_uid = await this.$cookies.get('uid_token')
-const user_uid = this.$store.getters.uid
+        const user_uid = this.$store.getters.uid
         console.log('this is user uid from cookie', user_uid)
         const response = await axios.get('/users/userInfo', {
           data: { uid: user_uid },
@@ -201,6 +220,8 @@ const user_uid = this.$store.getters.uid
         return 'Document'
       } else if (this.$route.name === 'support') {
         return 'Support'
+      } else if (this.$route.name === 'profile') {
+        return 'Profile'
       }
     },
   },
