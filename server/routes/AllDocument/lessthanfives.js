@@ -89,14 +89,18 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getRejected", async (req, res) => {
+router.get("/getRejected", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const rejectedDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'rejected'}]});
+    const rejectedDoc = await lessthanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "rejected" }],
+    });
     if (rejectedDoc[0] == null) {
-      return res.status(404).json({ message: "Cannot find rejected documents" });
+      return res
+        .status(404)
+        .json({ message: "Cannot find rejected documents" });
     }
     res.status(200).json(rejectedDoc);
   } catch (err) {
@@ -104,12 +108,14 @@ router.get("/getRejected", async (req, res) => {
   }
 });
 
-router.get("/getWaiting", async (req, res) => {
+router.get("/getWaiting", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const waitingDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'waiting'}]});
+    const waitingDoc = await lessthanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "waiting" }],
+    });
     if (waitingDoc[0] == null) {
       return res.status(404).json({ message: "Cannot find waiting documents" });
     }
@@ -119,14 +125,18 @@ router.get("/getWaiting", async (req, res) => {
   }
 });
 
-router.get("/getApproved", async (req, res) => {
+router.get("/getApproved", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const approvedDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'approved'}]});
+    const approvedDoc = await lessthanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "approved" }],
+    });
     if (approvedDoc[0] == null) {
-      return res.status(404).json({ message: "Cannot find approved documents" });
+      return res
+        .status(404)
+        .json({ message: "Cannot find approved documents" });
     }
     res.status(200).json(approvedDoc);
   } catch (err) {
