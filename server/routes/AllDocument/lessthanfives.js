@@ -19,10 +19,9 @@ router.get("/getAllDocuments", async (req, res) => {
 
 // Creating new User
 router.post("/createNewDocument", checkAuth, async (req, res) => {
-
-  const { data } = req.body
-  if(!data) {
-    res.status(400).send('Data not ....')
+  const { data } = req.body;
+  if (!data) {
+    res.status(400).send("Data not ....");
     return;
   }
   const date = Date.now();
@@ -30,11 +29,11 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   const more = {
     created_date: date,
     modified_date: date,
-    approval_status:"waiting",
+    approval_status: "waiting",
     available_status: 1,
   };
-  
-  // const data = 
+
+  // const data =
   // console.log("this is Header : ",req.headers)
   // console.log("this is req data",req.body)
   // const lessthanfivem = new lessthanfivems({
@@ -80,29 +79,58 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   //   available_status: 1,
   // });
   try {
-    console.log("start creating doc ")
-    const lessthanfivem = new lessthanfivems({...data, ...more})
+    console.log("start creating doc ");
+    const lessthanfivem = new lessthanfivems({ ...data, ...more });
     const newLessthanfivem = await lessthanfivem.save();
-    console.log("finish creating doc ")
+    console.log("finish creating doc ");
     res.status(201).json(newLessthanfivem);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 
-// Updating One
-router.patch("/:id", getSubscriber, async (req, res) => {
-  if (req.body.name != null) {
-    res.subscriber.name = req.body.name;
-  }
-  if (req.body.subscribedToChannel != null) {
-    res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
-  }
+router.get("/getRejected", async (req, res) => {
+  const user_uid = req.body.uid;
+  console.log("req user : ", user_uid);
   try {
-    const updatedSubscriber = await res.subscriber.save();
-    res.json(updatedSubscriber);
+    // const user = await users.find({ uid: user_uid });
+    const rejectedDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'rejected'}]});
+    if (rejectedDoc[0] == null) {
+      return res.status(404).json({ message: "Cannot find rejected documents" });
+    }
+    res.status(200).json(rejectedDoc);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getWaiting", async (req, res) => {
+  const user_uid = req.body.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const waitingDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'waiting'}]});
+    if (waitingDoc[0] == null) {
+      return res.status(404).json({ message: "Cannot find waiting documents" });
+    }
+    res.status(200).json(waitingDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getApproved", async (req, res) => {
+  const user_uid = req.body.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const approvedDoc = await lessthanfivems.find({$and:[{ uid: user_uid },{approval_status:'approved'}]});
+    if (approvedDoc[0] == null) {
+      return res.status(404).json({ message: "Cannot find approved documents" });
+    }
+    res.status(200).json(approvedDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
