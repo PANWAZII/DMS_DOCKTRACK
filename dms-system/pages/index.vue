@@ -6,32 +6,7 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
-                APPROVED
-              </div>
-              <v-list-item-title class="text-h3 mb-3"> 15 </v-list-item-title>
-              <v-list-item-subtitle style="font-weight: bold"
-                >คำขอจัดซื้อครุภัณฑ์ได้รับการอนุมัติแล้ว</v-list-item-subtitle
-              >
-            </v-list-item-content>
-
-            <v-list-item-avatar tile size="90" color="success"
-              ><v-icon color="#ffff" size="50"
-                >mdi-check-underline</v-icon
-              ></v-list-item-avatar
-            >
-          </v-list-item>
-          <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
-          <v-list-item three-line>
-            <v-list-item-content>
-              <div class="text-overline mb-4" style="font-weight: bold">
-                WAITING
+                รอเข้าที่ประชุมพิจารณา
               </div>
               <v-list-item-title class="text-h3 mb-3"> 3 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
@@ -57,7 +32,83 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
-                REJECT
+                รอกรมการแพทย์ลงนาม
+              </div>
+              <v-list-item-title class="text-h3 mb-3"> 7 </v-list-item-title>
+              <v-list-item-subtitle style="font-weight: bold"
+                >ที่ประชุมมีมติอนุมัติ
+                รอการลงนามโดยกรมการแพทย์</v-list-item-subtitle
+              >
+            </v-list-item-content>
+
+            <v-list-item-avatar tile size="90" color="success"
+              ><v-icon color="#ffff" size="50">mdi-account-edit</v-icon>
+            </v-list-item-avatar>
+          </v-list-item>
+          <v-divider class="mx-4"></v-divider>
+          <v-card-actions class="justify-center">
+            <v-btn text small> ดูทั้งหมด </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="4">
+        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4" style="font-weight: bold">
+                รอกระทรวงสาธารณสุขลงนาม
+              </div>
+              <v-list-item-title class="text-h3 mb-3"> 0 </v-list-item-title>
+              <v-list-item-subtitle style="font-weight: bold">
+                รอการลงนามโดยกระทรวงสาธารณสุข</v-list-item-subtitle
+              >
+            </v-list-item-content>
+
+            <v-list-item-avatar tile size="90" color="#156623"
+              ><v-icon color="#ffff" size="50">mdi-draw-pen</v-icon>
+            </v-list-item-avatar>
+          </v-list-item>
+          <v-divider class="mx-4"></v-divider>
+          <v-card-actions class="justify-center">
+            <v-btn text small> ดูทั้งหมด </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="center" dense>
+      <v-col cols="12" md="6">
+        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4" style="font-weight: bold">
+                ส่งคืนแล้ว
+              </div>
+              <v-list-item-title class="text-h3 mb-3"> 15 </v-list-item-title>
+              <v-list-item-subtitle style="font-weight: bold"
+                >คำขอจัดซื้อครุภัณฑ์ได้รับการอนุมัติ
+                ลงนามและส่งคืนแล้ว</v-list-item-subtitle
+              >
+            </v-list-item-content>
+
+            <v-list-item-avatar tile size="90" color="success"
+              ><v-icon color="#ffff" size="50"
+                >mdi-check-underline</v-icon
+              ></v-list-item-avatar
+            >
+          </v-list-item>
+          <v-divider class="mx-4"></v-divider>
+          <v-card-actions class="justify-center">
+            <v-btn text small> ดูทั้งหมด </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="text-overline mb-4" style="font-weight: bold">
+                มีข้อแก้ไข
               </div>
               <v-list-item-title class="text-h3 mb-3"> 1 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
