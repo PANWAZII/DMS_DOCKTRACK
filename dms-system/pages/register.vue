@@ -213,9 +213,9 @@ export default {
   },
   methods: {
     register() {
-      const vali = this.$refs.form.validate()
-      console.log(vali)
-      if (vali) {
+      const valid = this.$refs.form.validate()
+      console.log(valid)
+      if (valid) {
         this.createUser()
       }
     },
