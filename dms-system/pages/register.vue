@@ -117,13 +117,6 @@
                 >ย้อนกลับ</v-btn
               ></v-col
             >
-            <v-progress-linear
-              :active="loading"
-              :indeterminate="loading"
-              absolute
-              bottom
-              color="deep-purple accent-4"
-            ></v-progress-linear>
           </v-row>
         </v-card>
       </v-container>
@@ -143,6 +136,38 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-dialog v-model="finishDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text-h5"> Finish </v-card-title>
+
+        <v-card-text> Please go to login</v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn color="green darken-1" text @click="goToLogin()">
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- loading dialog -->
+    <v-overlay :value="loadingDialog"></v-overlay>
+    <div class="text-center">
+      <v-dialog v-model="loadingDialog" hide-overlay persistent width="300">
+        <v-card color="primary" dark>
+          <v-card-text>
+            Please stand by
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-app>
 </template>
 <script>
@@ -161,12 +186,12 @@ export default {
   //   this.department = await this.getDept()
   //   // this.position = await this.getPosition()
   // },
-  async asyncData({store}) {
+  async asyncData({ store }) {
     let department = []
     let position = []
     try {
-      department = await store.dispatch("api/getAllDepartments")
-      position = await store.dispatch("api/getAllPositions")
+      department = await store.dispatch('api/getAllDepartments')
+      position = await store.dispatch('api/getAllPositions')
     } catch (err) {
       console.log(err)
     }
@@ -175,10 +200,11 @@ export default {
   data() {
     return {
       registerDialog: false,
+      finishDialog: false,
       valid: true,
       department: [],
       position: [],
-      loading: false,
+      loadingDialog: false,
       faxRules: [(v) => !!v || 'โปรดระบุโทรสาร'],
       telRules: [(v) => !!v || 'โปรดระบุเบอร์โทรศัพท์'],
       positionRules: [(v) => !!v || 'โปรดระบุตำแหน่ง'],
@@ -219,10 +245,13 @@ export default {
         this.createUser()
       }
     },
+    goToLogin() {
+      this.$router.push('/login')
+    },
     async createUser() {
       try {
         console.log('start loading')
-        this.loading = true
+        this.loadingDialog = true
         console.log('start posting')
         await axios
           .post('/users/createNewUser', {
@@ -237,12 +266,13 @@ export default {
           })
           .then((res) => {
             console.log('start response')
-            console.log("this is res: ",res)
+            console.log('this is res: ', res)
             if (res.status == 201) {
               console.log('stop loading')
-              this.loading = false
-            } else if (res.data.message == "auth/email-already-in-use") {
-              this.loading = false
+              this.loadingDialog = false
+              this.finishDialog = true
+            } else if (res.data.message == 'auth/email-already-in-use') {
+              this.loadingDialog = false
               this.registerDialog = true
             }
           })
