@@ -56,7 +56,7 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
-                รอกระทรวงสาธารณสุขลงนาม
+                กระทรวงสาธารณสุขลงนาม
               </div>
               <v-list-item-title class="text-h3 mb-3"> 0 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold">
