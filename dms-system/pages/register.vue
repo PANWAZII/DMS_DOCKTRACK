@@ -123,15 +123,16 @@
     </v-main>
     <v-dialog v-model="registerDialog" max-width="290">
       <v-card>
-        <v-card-title class="text-h5"> Error </v-card-title>
+        <v-card-title class="text-h5"> ข้อผิดพลาด </v-card-title
+        ><v-divider></v-divider><br />
 
-        <v-card-text> This email is already taken </v-card-text>
+        <v-card-text>อีเมลนี้มีในระบบแล้ว </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn color="green darken-1" text @click="registerDialog = false">
-            Close
+          <v-btn color="error darken-1" text @click="registerDialog = false">
+            ปิด
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -139,15 +140,16 @@
 
     <v-dialog v-model="finishDialog" max-width="290">
       <v-card>
-        <v-card-title class="text-h5"> Finish </v-card-title>
+        <v-card-title class="text-h5"> ลงทะเบียนสำเร็จ </v-card-title>
+        <v-divider></v-divider><br />
 
-        <v-card-text> Please go to login</v-card-text>
+        <v-card-text> โปรดเข้าสู่ระบบ</v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
 
           <v-btn color="green darken-1" text @click="goToLogin()">
-            Close
+            เข้าสู่ระบบ
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -156,9 +158,9 @@
     <v-overlay :value="loadingDialog"></v-overlay>
     <div class="text-center">
       <v-dialog v-model="loadingDialog" hide-overlay persistent width="300">
-        <v-card color="primary" dark>
+        <v-card color="#056839" dark>
           <v-card-text>
-            Please stand by
+            กำลังลงทะเบียน
             <v-progress-linear
               indeterminate
               color="white"
