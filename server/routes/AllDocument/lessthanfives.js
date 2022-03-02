@@ -125,6 +125,40 @@ router.get("/getWaiting", checkAuth, async (req, res) => {
   }
 });
 
+router.get("/getDms", checkAuth, async (req, res) => {
+  const user_uid = req.body.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const dmsDoc = await lessthanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "dms" }],
+    });
+    if (dmsDoc[0] == null) {
+      return res.status(404).json({ message: "Cannot find waiting documents" });
+    }
+    res.status(200).json(dmsDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getMoph", checkAuth, async (req, res) => {
+  const user_uid = req.body.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const mophDoc = await lessthanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "moph" }],
+    });
+    if (mophDoc[0] == null) {
+      return res.status(404).json({ message: "Cannot find waiting documents" });
+    }
+    res.status(200).json(mophDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 router.get("/getApproved", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   console.log("req user : ", user_uid);
