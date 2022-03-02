@@ -41,7 +41,30 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-item-group color="primary" class="mb-1">
+        <v-list-group :value="true" prepend-icon="mdi-file-document-multiple">
+          <template v-slot:activator>
+            <v-list-item-title to="/document">Document</v-list-item-title>
+          </template>
+          <v-list-item :to="this.menu.all_doc.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.all_doc.title"
+            ></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.track_doc.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.track_doc.title"
+            ></v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+        <!-- <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.document.to">
             <v-list-item-icon>
               <v-icon>{{ this.menu.document.icon }}</v-icon>
@@ -52,7 +75,7 @@
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </v-list-item-group>
+        </v-list-item-group> -->
 
         <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.support.to">
@@ -155,6 +178,16 @@ export default {
           icon: 'mdi-file-document-multiple',
           title: 'Document',
           to: '/document',
+        },
+        all_doc: {
+          icon: 'mdi-file-document-multiple',
+          title: 'สร้างแบบรายงานฯ',
+          to: '/document',
+        },
+        track_doc: {
+          icon: 'mdi-file-document-multiple',
+          title: 'ติดตามแบบรายงานฯ',
+          to: '/',
         },
 
         support: {
