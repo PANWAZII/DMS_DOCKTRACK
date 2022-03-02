@@ -54,13 +54,13 @@
               v-text="this.menu.all_doc.title"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item :to="this.menu.track_doc.to">
+          <v-list-item :to="this.menu.waiting.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
 
             <v-list-item-title
-              v-text="this.menu.track_doc.title"
+              v-text="this.menu.waiting.title"
             ></v-list-item-title>
           </v-list-item>
         </v-list-group>
@@ -195,6 +195,11 @@ export default {
           title: 'Support',
           to: '/support',
         },
+        waiting: {
+          icon: 'mdi-face-agent',
+          title: 'รอพิจารณา',
+          to: '/waitinglist',
+        },
 
         logout: {
           icon: 'mdi-account-arrow-right',
@@ -255,6 +260,8 @@ export default {
         return 'Support'
       } else if (this.$route.name === 'profile') {
         return 'Profile'
+      } else if (this.$route.name === 'waitinglist') {
+        return 'Waiting'
       }
     },
   },
