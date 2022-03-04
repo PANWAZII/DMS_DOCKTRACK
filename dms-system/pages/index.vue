@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    {{ approvedDoc }}
+    {{ rejectedDoc }}
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card class="mx-auto" max-width="auto" outlined elevation="1">
@@ -9,7 +9,7 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 รอเข้าที่ประชุมพิจารณา
               </div>
-              <v-list-item-title class="text-h3 mb-3"> 3 </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3"> {{waitingDocCount}} </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >คำขอจัดซื้อครุภัณฑ์รอการพิจาณา</v-list-item-subtitle
               >
@@ -35,7 +35,7 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 รอกรมการแพทย์ลงนาม
               </div>
-              <v-list-item-title class="text-h3 mb-3"> 7 </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3"> {{mophDocCount}} </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >ที่ประชุมมีมติอนุมัติ
                 รอการลงนามโดยกรมการแพทย์</v-list-item-subtitle
@@ -59,7 +59,7 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 กระทรวงสาธารณสุขลงนาม
               </div>
-              <v-list-item-title class="text-h3 mb-3"> 0 </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3"> {{mophDocCount}} </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold">
                 รอการลงนามโดยกระทรวงสาธารณสุข</v-list-item-subtitle
               >
@@ -84,7 +84,9 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 ส่งคืนแล้ว
               </div>
-              <v-list-item-title class="text-h3 mb-3"> 15 </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3">
+                {{ approvedDocCount }}
+              </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >คำขอจัดซื้อครุภัณฑ์ได้รับการอนุมัติ
                 ลงนามและส่งคืนแล้ว</v-list-item-subtitle
@@ -111,7 +113,9 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 มีข้อแก้ไข
               </div>
-              <v-list-item-title class="text-h3 mb-3"> 1 </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3">
+                {{ rejectedDocCount }}
+              </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >คำขอจัดซื้อครุภัณฑ์ต้องแก้ไขแล้วจัดส่งใหม่</v-list-item-subtitle
               >
@@ -166,21 +170,67 @@ export default {
   //   this.approvedDoc = await this.$store.dispatch('api/getApprovedDoc',{uid:user_uid})
   // },
   async asyncData({ store }) {
+    let waitingDoc = []
+    let waitingDocCount = ''
+    let dmsDoc = []
+    let dmsDocCount = ''
+    let mophDoc = []
+    let mophDocCount = ''
     let approvedDoc = []
+    let approvedDocCount = ''
+    let rejectedDoc = []
+    let rejectedDocCount = ''
     try {
       // const user_uid = await $cookies.get('uid_token')
       const user_uid = store.getters.uid
+      waitingDoc = await store.dispatch('api/getWaitingDoc', {
+        params: { uid: user_uid },
+      })
+      dmsDoc = await store.dispatch('api/getDmsDoc', {
+        params: { uid: user_uid },
+      })
+      mophDoc = await store.dispatch('api/getMophDoc', {
+        params: { uid: user_uid },
+      })
       approvedDoc = await store.dispatch('api/getApprovedDoc', {
         params: { uid: user_uid },
       })
+      rejectedDoc = await store.dispatch('api/getRejectedDoc', {
+        params: { uid: user_uid },
+      })
+      waitingDocCount = waitingDoc.length
+      dmsDocCount = dmsDoc.length
+      mophDocCount = mophDoc.length
+      approvedDocCount = approvedDoc.length
+      rejectedDocCount = rejectedDoc.length
     } catch (err) {
       console.log(err)
     }
-    return { approvedDoc }
+    return {
+      waitingDoc,
+      waitingDocCount,
+      dmsDoc,
+      dmsDocCount,
+      mophDoc,
+      mophDocCount,
+      approvedDoc,
+      approvedDocCount,
+      rejectedDoc,
+      rejectedDocCount,
+    }
   },
   data() {
     return {
+      waitingDoc: [],
+      waitingDocCount: '',
+      dmsDoc: [],
+      dmsDocCount: '',
+      mophDoc: [],
+      mophDocCount: '',
       approvedDoc: [],
+      approvedDocCount: '',
+      rejectedDoc: [],
+      rejectedDocCount: '',
       search: '',
       headers: [
         {
@@ -215,5 +265,6 @@ export default {
       ],
     }
   },
+  computed: {},
 }
 </script>

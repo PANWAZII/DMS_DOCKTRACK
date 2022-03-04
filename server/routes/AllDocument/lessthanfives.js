@@ -89,7 +89,7 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getRejected", checkAuth, async (req, res) => {
+router.get("/getRejected", async (req, res) => {
   const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
@@ -98,9 +98,7 @@ router.get("/getRejected", checkAuth, async (req, res) => {
       $and: [{ uid: user_uid }, { approval_status: "rejected" }],
     });
     if (rejectedDoc[0] == null) {
-      return res
-        .status(404)
-        .json({ message: "Cannot find rejected documents" });
+      return res.status(200).json();
     }
     res.status(200).json(rejectedDoc);
   } catch (err) {
@@ -108,7 +106,7 @@ router.get("/getRejected", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getWaiting", checkAuth, async (req, res) => {
+router.get("/getWaiting", async (req, res) => {
   const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
@@ -117,7 +115,7 @@ router.get("/getWaiting", checkAuth, async (req, res) => {
       $and: [{ uid: user_uid }, { approval_status: "waiting" }],
     });
     if (waitingDoc[0] == null) {
-      return res.status(404).json({ message: "Cannot find waiting documents" });
+      return res.status(200).json();
     }
     res.status(200).json(waitingDoc);
   } catch (err) {
@@ -125,7 +123,7 @@ router.get("/getWaiting", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getDms", checkAuth, async (req, res) => {
+router.get("/getDms", async (req, res) => {
   const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
@@ -134,7 +132,7 @@ router.get("/getDms", checkAuth, async (req, res) => {
       $and: [{ uid: user_uid }, { approval_status: "dms" }],
     });
     if (dmsDoc[0] == null) {
-      return res.status(404).json({ message: "Cannot find waiting documents" });
+      return res.status(200).json();
     }
     res.status(200).json(dmsDoc);
   } catch (err) {
@@ -142,7 +140,7 @@ router.get("/getDms", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getMoph", checkAuth, async (req, res) => {
+router.get("/getMoph", async (req, res) => {
   const user_uid = req.query.uid;
   try {
     // const user = await users.find({ uid: user_uid });
@@ -150,7 +148,7 @@ router.get("/getMoph", checkAuth, async (req, res) => {
       $and: [{ uid: user_uid }, { approval_status: "moph" }],
     });
     if (mophDoc[0] == null) {
-      return res.status(404).json({ message: "Cannot find waiting documents" });
+      return res.status(200).json();
     }
     res.status(200).json(mophDoc);
   } catch (err) {
@@ -167,9 +165,7 @@ router.get("/getApproved", async (req, res) => {
       $and: [{ uid: user_uid }, { approval_status: "approved" }],
     });
     if (approvedDoc[0] == null) {
-      return res
-        .status(400)
-        .json({ message: "Cannot find approved documents" });
+      return res.status(200).json();
     }
     res.status(200).json(approvedDoc);
   } catch (err) {
