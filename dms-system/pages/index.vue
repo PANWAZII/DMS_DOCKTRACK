@@ -170,7 +170,6 @@ export default {
     try {
       // const user_uid = await $cookies.get('uid_token')
       const user_uid = store.getters.uid
-      console.log('uid from async', user_uid)
       approvedDoc = await store.dispatch('api/getApprovedDoc', {
         params: { uid: user_uid },
       })

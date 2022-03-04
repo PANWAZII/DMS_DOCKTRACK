@@ -6,7 +6,6 @@ function getAuthToken(cookies) {
   if (token) {
     headers = { Authorization: 'bearer ' + token }
   }
-  console.log('header from store', headers)
   return headers
 }
 
@@ -23,7 +22,6 @@ export const actions = {
   //User
   async getUserInfo({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
-    console.log('this is header from api',headers);
     return await axios
       .get('/users/userInfo',  data ,  {headers} )
       .then((res) => res.data)
