@@ -90,7 +90,7 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
 });
 
 router.get("/getRejected", checkAuth, async (req, res) => {
-  const user_uid = req.body.uid;
+  const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
@@ -109,7 +109,7 @@ router.get("/getRejected", checkAuth, async (req, res) => {
 });
 
 router.get("/getWaiting", checkAuth, async (req, res) => {
-  const user_uid = req.body.uid;
+  const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
@@ -126,7 +126,7 @@ router.get("/getWaiting", checkAuth, async (req, res) => {
 });
 
 router.get("/getDms", checkAuth, async (req, res) => {
-  const user_uid = req.body.uid;
+  const user_uid = req.query.uid;
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
@@ -143,8 +143,7 @@ router.get("/getDms", checkAuth, async (req, res) => {
 });
 
 router.get("/getMoph", checkAuth, async (req, res) => {
-  const user_uid = req.body.uid;
-  console.log("req user : ", user_uid);
+  const user_uid = req.query.uid;
   try {
     // const user = await users.find({ uid: user_uid });
     const mophDoc = await lessthanfivems.find({
@@ -159,9 +158,9 @@ router.get("/getMoph", checkAuth, async (req, res) => {
   }
 });
 
-router.get("/getApproved", checkAuth, async (req, res) => {
-  const user_uid = req.body.uid;
-  console.log("req user : ", user_uid);
+router.get("/getApproved", async (req, res) => {
+  const user_uid = req.query.uid;
+  console.log("req query : ", req.query);
   try {
     // const user = await users.find({ uid: user_uid });
     const approvedDoc = await lessthanfivems.find({
@@ -169,7 +168,7 @@ router.get("/getApproved", checkAuth, async (req, res) => {
     });
     if (approvedDoc[0] == null) {
       return res
-        .status(404)
+        .status(400)
         .json({ message: "Cannot find approved documents" });
     }
     res.status(200).json(approvedDoc);

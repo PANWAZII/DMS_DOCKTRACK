@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    {{ approvedDoc }}
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card class="mx-auto" max-width="auto" outlined elevation="1">
@@ -159,8 +160,28 @@
 <script>
 export default {
   middleware: 'middleware-auth',
+  //  async fetch() {
+  //   const user_uid = await this.$cookies.get('uid_token')
+  //   // const user_uid ="LCrJh2BQO7hcwzbd8CcAUcWRRPu1"
+  //   this.approvedDoc = await this.$store.dispatch('api/getApprovedDoc',{uid:user_uid})
+  // },
+  async asyncData({ store }) {
+    let approvedDoc = []
+    try {
+      // const user_uid = await $cookies.get('uid_token')
+      const user_uid = store.getters.uid
+      console.log('uid from async', user_uid)
+      approvedDoc = await store.dispatch('api/getApprovedDoc', {
+        params: { uid: user_uid },
+      })
+    } catch (err) {
+      console.log(err)
+    }
+    return { approvedDoc }
+  },
   data() {
     return {
+      approvedDoc: [],
       search: '',
       headers: [
         {

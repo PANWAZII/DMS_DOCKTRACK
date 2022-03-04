@@ -104,7 +104,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn depressed class="ma-2" v-bind="attrs" v-on="on"
             ><v-icon>mdi-account-circle</v-icon>
-            <h5 class="ml-2">name</h5></v-btn
+            <h5 class="ml-2">{{ userInfo.first_name }}</h5></v-btn
           >
         </template>
         <v-list class="text-center font-weight-bold">
@@ -157,8 +157,23 @@
 import axios from 'axios'
 export default {
   name: 'DefaultLayout',
-  async fetch() {
-    // this.userInfo = await this.getUserInfo()
+  // async asyncData({ store }) {
+  //   let userInfo = []
+  //   try {
+  //     // const user_uid = await $cookies.get('uid_token')
+  //     const user_uid = store.getters.uid
+  //     console.log('uid from async', user_uid)
+  //     userInfo = await store.dispatch('api/getUserInfo', {
+  //       params: { uid: user_uid },
+  //     })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  //   return { userInfo }
+  // },
+   async fetch() {
+    const user_uid = await this.$cookies.get('uid_token')
+    this.userInfo = await this.$store.dispatch('api/getUserInfo',{params:{uid:user_uid}})
   },
   data() {
     return {

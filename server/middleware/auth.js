@@ -1,7 +1,7 @@
 import { getAuth } from "@firebase/auth";
 export default function checkAuth(req, res, next) {
   const token = req.headers.authorization;
-  // console.log("this is req ",req)
+  console.log("this is req ",req.headers)
   console.log("this is token ", token);
   if (!token) {
     res.status(401).send("Access Deny");

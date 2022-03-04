@@ -47,7 +47,6 @@ export const getters = {
 }
 
 export const actions = {
-  
   async nuxtServerInit({ dispatch }, { req }) {
     const user = getUserFromCookie(req)
     console.log('[User From cookie]')

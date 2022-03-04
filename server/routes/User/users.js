@@ -3,6 +3,7 @@ const router = express.Router();
 import users from "../../models/User/user.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import checkAuth from "../../middleware/auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAA4gEFyqUFR-XH0LYGbysywjdIBB_Exn4",
@@ -28,10 +29,12 @@ router.get("/getAllUsers", async (req, res) => {
 
 // Getting One
 router.get("/userInfo", async (req, res) => {
-  const user_uid = req.body.uid;
-  console.log("req user : ", user_uid);
+  const user_uid = req.query.uid;
   try {
     // const user = await users.find({ uid: user_uid });
+    if (user_uid == null) {
+      return res.status(400).json({ message: "Bad req" });
+    }
     const userInfo = await users.find({ uid: user_uid });
     if (userInfo[0] == null) {
       return res.status(404).json({ message: "Cannot find this user" });
@@ -45,7 +48,7 @@ router.get("/userInfo", async (req, res) => {
 
 // Creating new User
 router.post("/createNewUser", async (req, res) => {
-  const date = Date.now()
+  const date = Date.now();
   const auth = getAuth();
   const email = req.body.email;
   const password = req.body.password;
