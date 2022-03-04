@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-    {{ rejectedDoc }}
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card class="mx-auto" max-width="auto" outlined elevation="1">
