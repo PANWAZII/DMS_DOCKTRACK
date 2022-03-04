@@ -41,7 +41,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-group :value="true" prepend-icon="mdi-file-document-multiple">
+        <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
           <template v-slot:activator>
             <v-list-item-title to="/document">Document</v-list-item-title>
           </template>
