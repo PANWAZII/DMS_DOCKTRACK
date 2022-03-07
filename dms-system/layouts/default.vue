@@ -248,23 +248,23 @@ export default {
         },
         waiting: {
           title: 'รอพิจารณา',
-          to: '/waitinglist',
+          to: '/doc-list/waitingList',
         },
         dms: {
           title: 'กรมฯ ลงนาม',
-          to: '/waitinglist',
+          to: '/doc-list/dmsList',
         },
         moph: {
           title: 'กระทรวงฯ ลงนาม',
-          to: '/waitinglist',
+          to: '/doc-list/mophList',
         },
         approved: {
           title: 'ส่งคืนแล้ว',
-          to: '/waitinglist',
+          to: '/doc-list/approvedList',
         },
         rejected: {
           title: 'มีข้อแก้ไข',
-          to: '/waitinglist',
+          to: '/doc-list/rejectedList',
         },
         logout: {
           icon: 'mdi-account-arrow-right',
@@ -325,8 +325,16 @@ export default {
         return 'Support'
       } else if (this.$route.name === 'profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.name === 'waitinglist') {
+      } else if (this.$route.name === '/doc-list/waitingList') {
         return 'แบบคำขอฯ รอการพิจารณา'
+      } else if (this.$route.name === '/doc-list/dmsList') {
+        return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
+      } else if (this.$route.name === 'doc-list/mophList') {
+        return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
+      } else if (this.$route.name === 'doc-list/approvedList') {
+        return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
+      } else if (this.$route.name === 'doc-list/rejectedList') {
+        return 'แบบคำขอฯ มีข้อแก้ไข'
       }
     },
   },
