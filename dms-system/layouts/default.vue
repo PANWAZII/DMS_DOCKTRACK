@@ -317,23 +317,23 @@ export default {
   },
   computed: {
     currentRouteName() {
-      if (this.$route.name === 'index') {
+      if (this.$route.path === '/') {
         return 'หน้าหลัก'
-      } else if (this.$route.name === 'document') {
+      } else if (this.$route.path === '/document') {
         return 'แบบคำขอจัดหาระบบคอมพิวเตอร์ภาครัฐ'
-      } else if (this.$route.name === 'support') {
+      } else if (this.$route.path === '/support') {
         return 'Support'
-      } else if (this.$route.name === 'profile') {
+      } else if (this.$route.path === '/profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.name === '/doc-list/waitingList') {
+      } else if (this.$route.path === '/doc-list/waitingList') {
         return 'แบบคำขอฯ รอการพิจารณา'
-      } else if (this.$route.name === '/doc-list/dmsList') {
+      } else if (this.$route.path === '/doc-list/dmsList') {
         return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
-      } else if (this.$route.name === 'doc-list/mophList') {
+      } else if (this.$route.path === '/doc-list/mophList') {
         return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
-      } else if (this.$route.name === 'doc-list/approvedList') {
+      } else if (this.$route.path === '/doc-list/approvedList') {
         return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
-      } else if (this.$route.name === 'doc-list/rejectedList') {
+      } else if (this.$route.path === '/doc-list/rejectedList') {
         return 'แบบคำขอฯ มีข้อแก้ไข'
       }
     },
