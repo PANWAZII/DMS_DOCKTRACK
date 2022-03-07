@@ -39,7 +39,7 @@
                 รอกรมการแพทย์ลงนาม
               </div>
               <v-list-item-title class="text-h3 mb-3">
-                {{ mophDocCount }}
+                {{ dmsDocCount }}
               </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >ที่ประชุมมีมติอนุมัติ
@@ -145,7 +145,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col cols="12">
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
@@ -162,14 +162,13 @@
           <v-data-table
             :headers="headers"
             :items="allDoc"
-            :search="search"
           ></v-data-table>
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
+    </v-row> -->
+    <!-- <v-row>
       <v-col cols="12"> </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 <script>
@@ -266,7 +265,7 @@ export default {
           sortable: false,
           value: 'order',
         },
-        { text: 'คำร้อง', value: 'title' },
+        { text: 'คำร้อง', value: 'project_name' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
         { text: 'สถานะ', value: 'approve_status' },
       ],
