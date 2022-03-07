@@ -56,13 +56,6 @@
               </v-card-text>
             </v-col>
           </v-row>
-          <v-progress-linear
-            :active="loading"
-            :indeterminate="loading"
-            absolute
-            bottom
-            color="deep-purple accent-4"
-          ></v-progress-linear>
         </v-card>
       </v-container>
     </v-main>
@@ -80,6 +73,21 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-overlay :value="loading"></v-overlay>
+    <div class="text-center">
+      <v-dialog v-model="loading" hide-overlay persistent width="300">
+        <v-card color="#056839" dark>
+          <v-card-text>
+            กำลังเข้าสู่ระบบ
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-app>
 </template>
 <script>
