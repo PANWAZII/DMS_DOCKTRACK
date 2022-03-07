@@ -18,7 +18,6 @@ router.get("/getMyDoc", async (req, res) => {
     res.status(400)
     return;
   }
-  console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
     const myDoc = await lessthanfivems.find({ uid: uid });

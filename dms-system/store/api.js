@@ -36,7 +36,7 @@ export const actions = {
   async getAllDocByUid({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
     return await axios
-      .get('/lessthanfives/getApproved',  data , { headers })
+      .get('/lessthanfives/getMyDoc',  data , { headers })
       .then((res) => res.data)
   },
   async getApprovedDoc({ getters }, data) {

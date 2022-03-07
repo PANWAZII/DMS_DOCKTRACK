@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-    {{allDoc}}
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card class="mx-auto" max-width="auto" outlined elevation="1">
@@ -193,6 +192,7 @@ export default {
     let rejectedDoc = []
     let rejectedDocCount = ''
     let allDoc = []
+    let allDocCount = ''
     try {
       // const user_uid = await $cookies.get('uid_token')
       const user_uid = store.getters.uid
@@ -219,6 +219,7 @@ export default {
       mophDocCount = mophDoc.length
       approvedDocCount = approvedDoc.length
       rejectedDocCount = rejectedDoc.length
+      allDocCount = allDoc.length
     } catch (err) {
       console.log(err)
     }
@@ -234,6 +235,7 @@ export default {
       rejectedDoc,
       rejectedDocCount,
       allDoc,
+      allDocCount,
     }
   },
   data() {
