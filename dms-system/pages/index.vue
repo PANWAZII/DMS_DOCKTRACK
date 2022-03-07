@@ -238,15 +238,13 @@ export default {
       approvedDocCount: '',
       rejectedDoc: [],
       rejectedDocCount: '',
-      dashBoardRoute: [
-        {
-          waiting: 'doc-list/waitingList',
-          dms: 'doc-list/dmsList',
-          moph: 'doc-list/mophList',
-          approved: 'doc-list/approvedList',
-          rejected: 'doc-list/rejectedList',
-        },
-      ],
+      dashBoardRoute: {
+        waiting: 'doc-list/waitingList',
+        dms: 'doc-list/dmsList',
+        moph: 'doc-list/mophList',
+        approved: 'doc-list/approvedList',
+        rejected: 'doc-list/rejectedList',
+      },
       search: '',
       headers: [
         {
