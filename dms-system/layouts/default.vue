@@ -157,7 +157,7 @@
           <!-- <v-divider></v-divider> -->
           <v-list-item @click="logout"
             ><v-icon medium>{{ this.menu.logout.icon }}</v-icon>
-            <h5 class="ml-1">Logout</h5></v-list-item
+            <h5 class="ml-1">{{ this.menu.logout.title }}</h5></v-list-item
           >
           <!-- <v-btn color="red" @click="logout" class="mt-2 p-0 font-weight-bold">
             <v-icon>{{ this.menu.logout.icon }}</v-icon
@@ -268,7 +268,7 @@ export default {
         },
         logout: {
           icon: 'mdi-account-arrow-right',
-          title: 'Logout',
+          title: 'ออกจากระบบ',
         },
       },
       clipped: false,
