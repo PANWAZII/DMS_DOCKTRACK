@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    {{allDoc}}
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card class="mx-auto" max-width="auto" outlined elevation="1">
@@ -161,7 +162,7 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="doc_info"
+            :items="allDoc"
             :search="search"
           ></v-data-table>
         </v-card>
@@ -191,6 +192,7 @@ export default {
     let approvedDocCount = ''
     let rejectedDoc = []
     let rejectedDocCount = ''
+    let allDoc = []
     try {
       // const user_uid = await $cookies.get('uid_token')
       const user_uid = store.getters.uid
@@ -207,6 +209,9 @@ export default {
         params: { uid: user_uid },
       })
       rejectedDoc = await store.dispatch('api/getRejectedDoc', {
+        params: { uid: user_uid },
+      })
+      allDoc = await store.dispatch('api/getAllDocByUid', {
         params: { uid: user_uid },
       })
       waitingDocCount = waitingDoc.length
@@ -228,6 +233,7 @@ export default {
       approvedDocCount,
       rejectedDoc,
       rejectedDocCount,
+      allDoc,
     }
   },
   data() {
@@ -242,6 +248,7 @@ export default {
       approvedDocCount: '',
       rejectedDoc: [],
       rejectedDocCount: '',
+      allDoc: [],
       dashBoardRoute: {
         waiting: 'doc-list/waitingList',
         dms: 'doc-list/dmsList',

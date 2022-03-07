@@ -33,6 +33,12 @@ export const actions = {
       .post('/lessthanfives/createNewDocument', { data }, { headers })
       .then((res) => res.data)
   },
+  async getAllDocByUid({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .get('/lessthanfives/getApproved',  data , { headers })
+      .then((res) => res.data)
+  },
   async getApprovedDoc({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
     return await axios

@@ -12,6 +12,25 @@ router.get("/getAllDocuments", async (req, res) => {
   }
 });
 
+router.get("/getMyDoc", async (req, res) => {
+  const uid = req.query.uid;
+  if (!uid) {
+    res.status(400)
+    return;
+  }
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const myDoc = await lessthanfivems.find({ uid: uid });
+    if (myDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(myDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Getting One
 // router.get("/:id", getSubscriber, (req, res) => {
 //   res.json(res.subscriber);
