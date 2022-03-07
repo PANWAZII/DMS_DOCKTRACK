@@ -53,7 +53,7 @@
           </v-list-item>
           <v-divider class="mx-4"></v-divider>
           <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
+            <v-btn text small :to="this.dashBoardRoute.dms"> ดูทั้งหมด </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -78,7 +78,7 @@
           </v-list-item>
           <v-divider class="mx-4"></v-divider>
           <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
+            <v-btn text small :to="this.dashBoardRoute.moph"> ดูทั้งหมด </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -108,7 +108,9 @@
           </v-list-item>
           <v-divider class="mx-4"></v-divider>
           <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
+            <v-btn text small :to="this.dashBoardRoute.approved">
+              ดูทั้งหมด
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -136,7 +138,9 @@
           </v-list-item>
           <v-divider class="mx-4"></v-divider>
           <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
+            <v-btn text small :to="this.dashBoardRoute.rejected">
+              ดูทั้งหมด
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
