@@ -8,7 +8,9 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 รอเข้าที่ประชุมพิจารณา
               </div>
-              <v-list-item-title class="text-h3 mb-3"> {{waitingDocCount}} </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3">
+                {{ waitingDocCount }}
+              </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >คำขอจัดซื้อครุภัณฑ์รอการพิจาณา</v-list-item-subtitle
               >
@@ -23,7 +25,9 @@
 
           <v-divider class="mx-4"></v-divider>
           <v-card-actions class="justify-center">
-            <v-btn text small> ดูทั้งหมด </v-btn>
+            <v-btn text small :to="this.dashBoardRoute.waiting">
+              ดูทั้งหมด
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -34,7 +38,9 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 รอกรมการแพทย์ลงนาม
               </div>
-              <v-list-item-title class="text-h3 mb-3"> {{mophDocCount}} </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3">
+                {{ mophDocCount }}
+              </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
                 >ที่ประชุมมีมติอนุมัติ
                 รอการลงนามโดยกรมการแพทย์</v-list-item-subtitle
@@ -58,7 +64,9 @@
               <div class="text-overline mb-4" style="font-weight: bold">
                 กระทรวงสาธารณสุขลงนาม
               </div>
-              <v-list-item-title class="text-h3 mb-3"> {{mophDocCount}} </v-list-item-title>
+              <v-list-item-title class="text-h3 mb-3">
+                {{ mophDocCount }}
+              </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold">
                 รอการลงนามโดยกระทรวงสาธารณสุข</v-list-item-subtitle
               >
@@ -230,6 +238,15 @@ export default {
       approvedDocCount: '',
       rejectedDoc: [],
       rejectedDocCount: '',
+      dashBoardRoute: [
+        {
+          waiting: 'doc-list/waitingList',
+          dms: 'doc-list/dmsList',
+          moph: 'doc-list/mophList',
+          approved: 'doc-list/approvedList',
+          rejected: 'doc-list/rejectedList',
+        },
+      ],
       search: '',
       headers: [
         {
