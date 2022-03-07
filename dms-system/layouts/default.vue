@@ -12,7 +12,7 @@
           <v-list-item-avatar>
             <v-img :src="require('../assets/logo.png')"></v-img>
           </v-list-item-avatar>
-          <h4>DMS DOCTRACK</h4>
+          <h5>ระบบจัดหา<br />คอมพิวเตอร์ภาครัฐ</h5>
         </v-list-item>
       </v-list>
       <v-divider></v-divider>
@@ -43,7 +43,7 @@
         </v-list-item-group>
         <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
           <template v-slot:activator>
-            <v-list-item-title to="/document">Document</v-list-item-title>
+            <v-list-item-title to="/document">แบบคำขอฯ</v-list-item-title>
           </template>
           <v-list-item :to="this.menu.all_doc.to">
             <v-list-item-icon>
@@ -61,6 +61,40 @@
 
             <v-list-item-title
               v-text="this.menu.waiting.title"
+            ></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.dms.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title v-text="this.menu.dms.title"></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.moph.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.moph.title"
+            ></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.approved.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.approved.title"
+            ></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.rejected.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.rejected.title"
             ></v-list-item-title>
           </v-list-item>
         </v-list-group>
@@ -108,8 +142,8 @@
           >
         </template>
         <v-list class="text-center font-weight-bold">
-          <v-divider></v-divider>
-          <v-list-item class="ma-0" height="200" width="100" to="/profile">
+          <!-- <v-divider></v-divider> -->
+          <!-- <v-list-item class="ma-0" height="200" width="100" to="/profile">
             <v-list-item-title><h5>Profile</h5></v-list-item-title>
           </v-list-item>
           <v-divider></v-divider>
@@ -119,8 +153,8 @@
           <v-divider></v-divider>
           <v-list-item class="ma-0" height="200" width="100" to="/document">
             <v-list-item-title><h5>Pfsdffile</h5></v-list-item-title>
-          </v-list-item>
-          <v-divider></v-divider>
+          </v-list-item> -->
+          <!-- <v-divider></v-divider> -->
           <v-list-item @click="logout"
             ><v-icon medium>{{ this.menu.logout.icon }}</v-icon>
             <h5 class="ml-1">Logout</h5></v-list-item
@@ -171,9 +205,11 @@ export default {
   //   }
   //   return { userInfo }
   // },
-   async fetch() {
+  async fetch() {
     const user_uid = await this.$cookies.get('uid_token')
-    this.userInfo = await this.$store.dispatch('api/getUserInfo',{params:{uid:user_uid}})
+    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+      params: { uid: user_uid },
+    })
   },
   data() {
     return {
@@ -181,22 +217,22 @@ export default {
       menu: {
         home: {
           icon: 'mdi-home',
-          title: 'Home',
+          title: 'หน้าหลัก',
           to: '/',
         },
         profile: {
           icon: 'mdi-account',
-          title: 'Profile',
+          title: 'โปรไฟล์',
           to: '/profile',
         },
         document: {
           icon: 'mdi-file-document-multiple',
-          title: 'Document',
+          title: 'แบบรายงานการจัดซื้อ',
           to: '/document',
         },
         all_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'สร้างแบบรายงานฯ',
+          title: 'สร้างแบบคำขอฯ',
           to: '/document',
         },
         track_doc: {
@@ -211,11 +247,25 @@ export default {
           to: '/support',
         },
         waiting: {
-          icon: 'mdi-face-agent',
           title: 'รอพิจารณา',
           to: '/waitinglist',
         },
-
+        dms: {
+          title: 'กรมฯ ลงนาม',
+          to: '/waitinglist',
+        },
+        moph: {
+          title: 'กระทรวงฯ ลงนาม',
+          to: '/waitinglist',
+        },
+        approved: {
+          title: 'ส่งคืนแล้ว',
+          to: '/waitinglist',
+        },
+        rejected: {
+          title: 'มีข้อแก้ไข',
+          to: '/waitinglist',
+        },
         logout: {
           icon: 'mdi-account-arrow-right',
           title: 'Logout',
@@ -268,15 +318,15 @@ export default {
   computed: {
     currentRouteName() {
       if (this.$route.name === 'index') {
-        return 'Home'
+        return 'หน้าหลัก'
       } else if (this.$route.name === 'document') {
-        return 'Document'
+        return 'แบบคำขอจัดหาระบบคอมพิวเตอร์ภาครัฐ'
       } else if (this.$route.name === 'support') {
         return 'Support'
       } else if (this.$route.name === 'profile') {
-        return 'Profile'
+        return 'โปรไฟล์'
       } else if (this.$route.name === 'waitinglist') {
-        return 'Waiting'
+        return 'แบบคำขอฯ รอการพิจารณา'
       }
     },
   },
