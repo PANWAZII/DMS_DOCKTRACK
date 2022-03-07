@@ -5,7 +5,8 @@
         <v-card elevation="1" height="1100" width="900">
           <v-row align="center" justify="center" dense>
             <v-col cols="12" sm="8" md="8" lg="6">
-              <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150">
+              <!-- <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150"> -->
+              <v-img class="mt-15 mb-5" :src="require('../assets/logo.png')" contain height="150">
               </v-img>
               <!-- {{ form }} -->
               <v-card-text>
