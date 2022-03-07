@@ -367,6 +367,7 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+
             <p class="topices">ข. ข้อมูลเฉพาะกรณี</p>
             <v-row>
               <v-col cols="12" md="6">
@@ -387,6 +388,13 @@
                     value="third"
                   ></v-radio>
                 </v-radio-group>
+              </v-col>
+            </v-row>
+            <br />
+            <p class="topices">ใบเสนอราคา</p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="แนบใบเสนอราคา"></v-file-input>
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
