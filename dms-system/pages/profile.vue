@@ -33,7 +33,6 @@
                   <v-text-field
                     v-model="userInfo.first_name"
                     label="ชื่อ"
-                    value="Jirayus"
                     disabled
                   ></v-text-field>
                 </v-col>
@@ -59,9 +58,8 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="userInfo.tel"
-                    :rules="telRules"
+        
                     label="โทรศัพท์"
-                    value="9072"
                     required
                     disabled
                   ></v-text-field>
@@ -69,9 +67,8 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="userInfo.fax"
-                    :rules="faxRules"
+                
                     label="โทรสาร"
-                    value="9073"
                     required
                     disabled
                   ></v-text-field>
@@ -79,7 +76,7 @@
                 <v-col cols="12" sm="4">
                   <v-text-field
                     v-model="userInfo.email"
-                    :rules="emailRules"
+                 
                     label="อีเมล"
                     required
                     disabled
@@ -131,19 +128,19 @@ export default {
         ],
         position_choice: ['นักวิชาการคอมพิวเตอร์', 'นักวิเคราะห์นโยบายและแผน'],
       },
-      telRules: [
-        (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์',
-        (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      ],
-      faxRules: [
-        (v) => !!v || 'โปรดระบุเบอร์โทรสาร',
-        (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      ],
-      emailRules: [
-        (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
-        (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
-        (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      ],
+      // telRules: [
+      //   (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์',
+      //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+      // ],
+      // faxRules: [
+      //   (v) => !!v || 'โปรดระบุเบอร์โทรสาร',
+      //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+      // ],
+      // emailRules: [
+      //   (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
+      //   (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
+      //   (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+      // ],
     }
   },
 }
