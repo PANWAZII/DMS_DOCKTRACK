@@ -145,7 +145,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row>
+    <v-row>
       <v-col cols="12">
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
@@ -154,18 +154,39 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Search"
+              label="ค้นหา"
               single-line
               hide-details
             ></v-text-field>
           </v-card-title>
+          <!-- <v-simple-table fixed-header elevation="2">
+            <template v-slot: default>
+              <thead>
+                <tr>
+                  <th>ชื่อโครงการ</th>
+                  <th>วันที่ยื่นคำร้อง</th>
+                  <th>สถานะ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="allDoc in allDocs" v-bind:key="allDoc.project_name">
+                  <td>{{ allDoc.project_name }}</td>
+                  <td>{{ allDoc.created_date }}</td>
+                  <td>{{ allDoc.approval_status }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table> -->
           <v-data-table
             :headers="headers"
-            :items="allDoc"
+            :items="allDocs"
+            sort-by="created_date"
+            :search="search"
+            :items-per-page="5"
           ></v-data-table>
         </v-card>
       </v-col>
-    </v-row> -->
+    </v-row>
     <!-- <v-row>
       <v-col cols="12"> </v-col>
     </v-row> -->
@@ -190,7 +211,7 @@ export default {
     let approvedDocCount = ''
     let rejectedDoc = []
     let rejectedDocCount = ''
-    let allDoc = []
+    let allDocs = []
     let allDocCount = ''
     try {
       // const user_uid = await $cookies.get('uid_token')
@@ -210,7 +231,7 @@ export default {
       rejectedDoc = await store.dispatch('api/getRejectedDoc', {
         params: { uid: user_uid },
       })
-      allDoc = await store.dispatch('api/getAllDocByUid', {
+      allDocs = await store.dispatch('api/getAllDocByUid', {
         params: { uid: user_uid },
       })
       waitingDocCount = waitingDoc.length
@@ -218,7 +239,7 @@ export default {
       mophDocCount = mophDoc.length
       approvedDocCount = approvedDoc.length
       rejectedDocCount = rejectedDoc.length
-      allDocCount = allDoc.length
+      allDocCount = allDocs.length
     } catch (err) {
       console.log(err)
     }
@@ -233,7 +254,7 @@ export default {
       approvedDocCount,
       rejectedDoc,
       rejectedDocCount,
-      allDoc,
+      allDocs,
       allDocCount,
     }
   },
@@ -267,27 +288,7 @@ export default {
         },
         { text: 'คำร้อง', value: 'project_name' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
-        { text: 'สถานะ', value: 'approve_status' },
-      ],
-      doc_info: [
-        {
-          order: '1',
-          title: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
-          created_date: '21 / 02 / 2565',
-          approve_status: 'อนุมัติ',
-        },
-        {
-          order: '2',
-          title: 'โครงการระบบสแกนลายนิ้วมือเพื่อความปลอดภัย',
-          created_date: '17 / 01 / 2565',
-          approve_status: 'รอการตรวจสอบ',
-        },
-        {
-          order: '3',
-          title: 'โครงการ TeleMedicine',
-          created_date: '14 / 12 / 2564',
-          approve_status: 'อนุมัติ',
-        },
+        { text: 'สถานะ', value: 'approval_status' },
       ],
     }
   },
