@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    {{ userInfo }}
     <v-row justify="center">
       <v-col cols="12">
         <v-card>
@@ -17,10 +16,10 @@
                   <v-select
                     v-model="userInfo.department_id"
                     :items="form.dept"
-                    item-text=""
+                    :item-text="departmentConverter(userInfo.department_id)"
                     item-value=""
                     :rules="[(v) => !!v || 'โปรดระบุหน่วยงานสังกัด']"
-                    label="หน่วยงานสังกัด"
+                    :label="departmentConverter(userInfo.department_id)"
                     required
                     disabled
                   ></v-select>
@@ -47,10 +46,10 @@
                   <v-select
                     v-model="userInfo.position_id"
                     :items="form.position_choice"
-                    item-text=""
-                    item-value=""
+                    :item-text="positionConverter(userInfo.position_id)"
+                    :item-value="userInfo.position_id"
                     :rules="[(v) => !!v || 'โปรดระบุตำแหน่ง']"
-                    label="ตำแหน่ง"
+                    :label="positionConverter(userInfo.position_id)"
                     required
                     disabled
                   ></v-select>
@@ -58,7 +57,6 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="userInfo.tel"
-        
                     label="โทรศัพท์"
                     required
                     disabled
@@ -67,7 +65,6 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     v-model="userInfo.fax"
-                
                     label="โทรสาร"
                     required
                     disabled
@@ -76,7 +73,6 @@
                 <v-col cols="12" sm="4">
                   <v-text-field
                     v-model="userInfo.email"
-                 
                     label="อีเมล"
                     required
                     disabled
@@ -107,9 +103,22 @@ export default {
       params: { uid: user_uid },
     })
   },
+  async asyncData({ store }) {
+    let department = []
+    let position = []
+    try {
+      department = await store.dispatch('api/getAllDepartments')
+      position = await store.dispatch('api/getAllPositions')
+    } catch (err) {
+      console.log(err)
+    }
+    return { department, position }
+  },
   data() {
     return {
       userInfo: [],
+      position: [],
+      department: [],
       valid: true,
       form: {
         user_firstname: '',
@@ -142,6 +151,21 @@ export default {
       //   (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
       // ],
     }
+  },
+  methods: {
+    departmentConverter(department_id) {
+      // console.log('this is params', department_id)
+      const dept = this.department.find((dept) => dept._id === department_id)
+      const dept_name = dept.department_name
+      console.log(dept_name)
+      return dept_name
+    },
+    positionConverter(position_id) {
+      const dept = this.position.find((dept) => dept._id === position_id)
+      const position_name = dept.position_name
+      console.log(position_name)
+      return position_name
+    },
   },
 }
 </script>
