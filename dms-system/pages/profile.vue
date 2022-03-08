@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
+      {{department}}
       <v-col cols="12">
         <v-card>
           <v-card-title>
@@ -15,13 +16,11 @@
                 <v-col cols="12" sm="4">
                   <v-select
                     v-model="userInfo.department_id"
-                    :items="form.dept"
-                    :item-text="departmentConverter(userInfo.department_id)"
-                    item-value=""
+                    :items="department"
+                    item-text="department_name"
+                    item-value="_id"
                     :rules="[(v) => !!v || 'โปรดระบุหน่วยงานสังกัด']"
-                    :label="departmentConverter(userInfo.department_id)"
                     required
-                    disabled
                   ></v-select>
                 </v-col>
               </v-row>
@@ -43,7 +42,7 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <v-select
+                  <!-- <v-select
                     v-model="userInfo.position_id"
                     :items="form.position_choice"
                     :item-text="positionConverter(userInfo.position_id)"
@@ -52,7 +51,7 @@
                     :label="positionConverter(userInfo.position_id)"
                     required
                     disabled
-                  ></v-select>
+                  ></v-select> -->
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
@@ -154,7 +153,7 @@ export default {
   },
   methods: {
     departmentConverter(department_id) {
-      // console.log('this is params', department_id)
+      console.log('this is params', department_id)
       const dept = this.department.find((dept) => dept._id === department_id)
       const dept_name = dept.department_name
       console.log(dept_name)
