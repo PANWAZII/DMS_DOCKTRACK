@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    {{userInfo}}
+    {{ userInfo }}
     <v-row justify="center">
       <v-col cols="12">
         <v-card>
@@ -15,13 +15,14 @@
               <v-row>
                 <v-col cols="12" sm="4">
                   <v-select
-                    v-model="form.department"
+                    v-model="userInfo.department_id"
                     :items="form.dept"
                     item-text=""
                     item-value=""
                     :rules="[(v) => !!v || 'โปรดระบุหน่วยงานสังกัด']"
                     label="หน่วยงานสังกัด"
                     required
+                    disabled
                   ></v-select>
                 </v-col>
               </v-row>
@@ -29,50 +30,59 @@
             <v-container>
               <v-row>
                 <v-col cols="12" sm="6" md="4">
-                  <v-text-field label="ชื่อ" value="Jirayus"></v-text-field>
+                  <v-text-field
+                    v-model="userInfo.first_name"
+                    label="ชื่อ"
+                    value="Jirayus"
+                    disabled
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-text-field
+                    v-model="userInfo.last_name"
                     label="นามสกุล"
-                    value="Preechadech"
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
                   <v-select
-                    v-model="form.position"
+                    v-model="userInfo.position_id"
                     :items="form.position_choice"
                     item-text=""
                     item-value=""
                     :rules="[(v) => !!v || 'โปรดระบุตำแหน่ง']"
                     label="ตำแหน่ง"
                     required
+                    disabled
                   ></v-select>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
-                    v-model="form.user_tel"
+                    v-model="userInfo.tel"
                     :rules="telRules"
                     label="โทรศัพท์"
                     value="9072"
                     required
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
-                    v-model="form.user_fax"
+                    v-model="userInfo.fax"
                     :rules="faxRules"
                     label="โทรสาร"
                     value="9073"
                     required
+                    disabled
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="4">
                   <v-text-field
-                    v-model="form.user_email"
+                    v-model="userInfo.email"
                     :rules="emailRules"
                     label="อีเมล"
-                    value="jirayus.p62@rsu.ac.th"
                     required
+                    disabled
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -102,16 +112,18 @@ export default {
   },
   data() {
     return {
-      userInfo:[],
+      userInfo: [],
       valid: true,
       form: {
-        position: 'นักวิชาการคอมพิวเตอร์',
-        department: 'สำนักดิจิทัลการแพทย์',
+        user_firstname: '',
+        user_lastname: '',
+        position: '',
+        department: '',
         user_position: '',
         user_department: '',
-        user_tel: '3751',
-        user_fax: '4751',
-        user_email: 'test1@moph.go.th',
+        user_tel: '',
+        user_fax: '',
+        user_email: '',
         dept: [
           'สำนักดิจิทัลการแพทย์',
           'กองยุทธศาสตร์และแผนงาน',
