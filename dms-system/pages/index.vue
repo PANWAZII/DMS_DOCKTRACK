@@ -281,12 +281,11 @@ export default {
       search: '',
       headers: [
         {
-          text: 'ที่',
+          text: 'ชื่อโครงการ',
+          value: 'project_name',
           align: 'start',
           sortable: false,
-          value: 'order',
         },
-        { text: 'คำร้อง', value: 'project_name' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
         { text: 'สถานะ', value: 'approval_status' },
       ],
