@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    {{userInfo}}
     <v-row justify="center">
       <v-col cols="12">
         <v-card>
@@ -93,8 +94,15 @@
 export default {
   middleware: 'middleware-auth',
   name: 'profile',
+  async fetch() {
+    const user_uid = await this.$cookies.get('uid_token')
+    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+      params: { uid: user_uid },
+    })
+  },
   data() {
     return {
+      userInfo:[],
       valid: true,
       form: {
         position: 'นักวิชาการคอมพิวเตอร์',
