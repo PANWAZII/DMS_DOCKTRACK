@@ -54,4 +54,8 @@ app.use("/budgetSources", budgetSourceRouter);
 import adminsRouter from "./routes/Admin/admins.js";
 app.use("/admins", adminsRouter);
 
+//Level checker
+import checkLevelRouter from "./routes/checkLevel.js"
+app.use("/auth",checkLevelRouter)
+
 app.listen(port, () => console.log("Server Started at port: ", port));

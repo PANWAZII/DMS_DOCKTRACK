@@ -10,6 +10,11 @@ function getAuthToken(cookies) {
 }
 
 export const actions = {
+  async getLevel({ getters }, data) {
+    return await axios
+      .post('/auth/getLevel',data)
+      .then((res) => res.data)
+  },
   //Register
   async getAllDepartments({ getters }, data) {
     return await axios
