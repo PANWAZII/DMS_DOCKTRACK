@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <v-row justify="center">
-      {{department}}
       <v-col cols="12">
         <v-card>
           <v-card-title>
@@ -42,16 +41,15 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="4">
-                  <!-- <v-select
+                  <v-select
                     v-model="userInfo.position_id"
-                    :items="form.position_choice"
-                    :item-text="positionConverter(userInfo.position_id)"
-                    :item-value="userInfo.position_id"
+                    :items="position"
+                    item-text="position_name"
+                    item-value="_id"
                     :rules="[(v) => !!v || 'โปรดระบุตำแหน่ง']"
-                    :label="positionConverter(userInfo.position_id)"
                     required
                     disabled
-                  ></v-select> -->
+                  ></v-select>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
