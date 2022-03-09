@@ -49,4 +49,9 @@ app.use("/morethanfives", morethanfivesRouter);
 import budgetSourceRouter from "./routes/Dropdown/budgetSources.js";
 app.use("/budgetSources", budgetSourceRouter);
 
+
+//Admin api
+import adminsRouter from "./routes/Admin/admins.js";
+app.use("/admins", adminsRouter);
+
 app.listen(port, () => console.log("Server Started at port: ", port));

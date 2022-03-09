@@ -36,7 +36,7 @@ router.get("/userInfo", async (req, res) => {
     if (user_uid == null) {
       return res.status(400).json({ message: "Bad req" });
     }
-    const userInfo = await users.find({ uid: user_uid });
+    const userInfo = await admins.find({ uid: user_uid });
     if (userInfo[0] == null) {
       return res.status(404).json({ message: "Cannot find this user" });
     }
