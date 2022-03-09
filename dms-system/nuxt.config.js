@@ -25,9 +25,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { ssr: true, src: '~/plugins/axios.js', }
-  ],
+  plugins: [{ ssr: true, src: '~/plugins/axios.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -48,13 +46,13 @@ export default {
       '@nuxtjs/firebase',
       {
         config: {
-          apiKey: "AIzaSyAA4gEFyqUFR-XH0LYGbysywjdIBB_Exn4",
-          authDomain: "dms-document-tracking-ef733.firebaseapp.com",
-          projectId: "dms-document-tracking-ef733",
-          storageBucket: "dms-document-tracking-ef733.appspot.com",
-          messagingSenderId: "331164339207",
-          appId: "1:331164339207:web:72498673e3b1db30ef6ea2",
-          measurementId: "G-DRWDF7NT3R"
+          apiKey: 'AIzaSyAA4gEFyqUFR-XH0LYGbysywjdIBB_Exn4',
+          authDomain: 'dms-document-tracking-ef733.firebaseapp.com',
+          projectId: 'dms-document-tracking-ef733',
+          storageBucket: 'dms-document-tracking-ef733.appspot.com',
+          messagingSenderId: '331164339207',
+          appId: '1:331164339207:web:72498673e3b1db30ef6ea2',
+          measurementId: 'G-DRWDF7NT3R',
         },
         services: {
           auth: true, // Just as example. Can be any other service.
