@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  level: {
+    type: String,
+    required: true,
+  },
   available_status: {
     type: Number,
     required: true,

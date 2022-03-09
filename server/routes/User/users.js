@@ -58,6 +58,7 @@ router.post("/createNewUser", async (req, res) => {
   const department_id = req.body.department_id;
   const telephone = req.body.tel;
   const fax = req.body.fax;
+  const level = "user";
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -74,6 +75,7 @@ router.post("/createNewUser", async (req, res) => {
         department_id: department_id,
         tel: telephone,
         fax: fax,
+        level:level,
         available_status: 1,
         created_date: date,
         modified_date: date,
