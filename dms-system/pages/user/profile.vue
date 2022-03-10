@@ -92,7 +92,7 @@
 </template>
 <script>
 export default {
-  middleware: 'middleware-auth',
+  middleware: 'middleware-user-auth',
   name: 'profile',
   async fetch() {
     const user_uid = await this.$cookies.get('uid_token')

@@ -426,7 +426,7 @@ import axios from 'axios'
 export default {
   //   },
   name: 'lessthanfivem',
-  middleware: 'middleware-auth',
+  middleware: 'middleware-user-auth',
   name: 'Lessthanfivem',
 
   data: () => ({

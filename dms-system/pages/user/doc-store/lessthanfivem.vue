@@ -465,7 +465,7 @@
 
 <script>
 export default {
-  middleware: 'middleware-auth',
+  middleware: 'middleware-user-auth',
   name: 'lessthanfivem',
   async asyncData({ store }) {
     let budget = []

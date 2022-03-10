@@ -78,7 +78,7 @@
 </template>
 <script>
 export default {
-  middleware: 'middleware-auth',
+  middleware: 'middleware-user-auth',
   data() {
     return {
       createform: false,
