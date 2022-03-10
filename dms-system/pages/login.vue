@@ -124,9 +124,21 @@ export default {
           this.pass
         )
         await this.$store.dispatch('login', credential.user)
-        this.loading = false
-        this.$router.push('/')
+        const user_id = credential.user.uid
+        console.log('this is creds', user_id)
+        const auth = await this.$store.dispatch('api/getLevel', { uid: user_id })
+        console.log('this is level', auth.level)
+        if (auth.level === 'user') {
+          this.loading = false
+          this.$router.push('/user')
+        } else if (auth.level === 'admin') {
+          this.loading = false
+          this.$router.push('/admin')
+        }
+        
+        // this.$router.push('/')
       } catch (error) {
+        console.log("this is error ",error)
         if ((error.code = 'auth/wrong-password')) {
           this.loading = false
           this.dialog = true

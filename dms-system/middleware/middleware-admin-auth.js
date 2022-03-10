@@ -1,6 +1,7 @@
 export default function ({ store, redirect }) {
-    const level = store.dispatch('api/getLevel', { uid: user_uid })
-    if (!(store.getters.isAuthenticated && level == 'admin')) {
+    const user_uid = store.getters.uid
+    const auth = store.dispatch('api/getLevel', { uid: user_uid })
+    if (!(store.getters.isAuthenticated && auth.level == 'admin')) {
       return redirect('/login')
     }
   }

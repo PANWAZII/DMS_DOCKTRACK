@@ -202,7 +202,7 @@
 <script>
 export default {
   layout: 'firstpage',
-  middleware: 'middleware-auth',
+  middleware: 'login',
   //  async fetch() {
   //   const user_uid = await this.$cookies.get('uid_token')
   //   // const user_uid ="LCrJh2BQO7hcwzbd8CcAUcWRRPu1"
