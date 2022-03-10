@@ -15,8 +15,8 @@ router.post("/getLevel", async (req, res) => {
     if (userAuth[0] == null) {
       const adminAuth = await admins.find({ uid: user_uid });
       console.log("res user level : ", adminAuth[0].level);
-      res.status(200).json({level:adminAuth[0].level});
-      if (userAuth[0] == null) {
+      return res.status(200).json({level:adminAuth[0].level});
+      if (adminAuth[0] == null) {
         return res.status(404).json({ message: "Cannot find this user" });
       }
     }
