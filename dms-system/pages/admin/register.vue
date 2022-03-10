@@ -1,8 +1,9 @@
 <template>
-  <v-app style="background: #056839">
+  <!-- <v-app style="background: #056839"> -->
+    <v-app>
     <v-main>
       <v-container class="fill-height justify-center">
-        <v-card elevation="1" height="1100" width="900">
+        <v-card elevation="2" height="1100" width="900">
           <v-row align="center" justify="center" dense>
             <v-col cols="12" sm="8" md="8" lg="6">
               <!-- <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150"> -->
@@ -181,7 +182,7 @@
 <script>
 import axios from 'axios'
 export default {
-  layout: 'empty',
+  layout: 'admin',
   middleware: 'middleware-admin-auth',
   // fetchOnServer: true,
   // async fetch() {

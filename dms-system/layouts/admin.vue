@@ -244,7 +244,7 @@ export default {
         register: {
           icon: 'mdi-face-agent',
           title: 'Create new user',
-          to: '/register',
+          to: '/admin/register',
         },
         waiting: {
           title: 'รอพิจารณา',
@@ -317,23 +317,23 @@ export default {
   },
   computed: {
     currentRouteName() {
-      if (this.$route.path === '/') {
+      if (this.$route.path === '/admin') {
         return 'หน้าหลัก'
-      } else if (this.$route.path === '/document') {
+      } else if (this.$route.path === '/admin/document') {
         return 'แบบคำขอจัดหาระบบคอมพิวเตอร์ภาครัฐ'
-      } else if (this.$route.path === '/register') {
+      } else if (this.$route.path === '/admin/register') {
         return 'Register'
-      } else if (this.$route.path === '/profile') {
+      } else if (this.$route.path === '/admin/profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.path === '/doc-list/waitingList') {
+      } else if (this.$route.path === '/admin/doc-list/waitingList') {
         return 'แบบคำขอฯ รอการพิจารณา'
-      } else if (this.$route.path === '/doc-list/dmsList') {
+      } else if (this.$route.path === '/admin/doc-list/dmsList') {
         return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
-      } else if (this.$route.path === '/doc-list/mophList') {
+      } else if (this.$route.path === '/admin/doc-list/mophList') {
         return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
-      } else if (this.$route.path === '/doc-list/approvedList') {
+      } else if (this.$route.path === '/admin/doc-list/approvedList') {
         return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
-      } else if (this.$route.path === '/doc-list/rejectedList') {
+      } else if (this.$route.path === '/admin/doc-list/rejectedList') {
         return 'แบบคำขอฯ มีข้อแก้ไข'
       }
     },
