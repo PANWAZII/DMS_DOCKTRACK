@@ -112,13 +112,13 @@
         </v-list-item-group> -->
 
         <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.support.to">
+          <v-list-item :to="this.menu.register.to">
             <v-list-item-icon>
-              <v-icon>{{ this.menu.support.icon }}</v-icon>
+              <v-icon>{{ this.menu.register.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title
-                v-text="this.menu.support.title"
+                v-text="this.menu.register.title"
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -207,7 +207,7 @@ export default {
   // },
   async fetch() {
     const user_uid = await this.$cookies.get('uid_token')
-    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+    this.userInfo = await this.$store.dispatch('api/getAdminInfo', {
       params: { uid: user_uid },
     })
   },
@@ -241,10 +241,10 @@ export default {
           to: '/',
         },
 
-        support: {
+        register: {
           icon: 'mdi-face-agent',
-          title: 'Support',
-          to: '/support',
+          title: 'Create new user',
+          to: '/register',
         },
         waiting: {
           title: 'รอพิจารณา',
@@ -321,8 +321,8 @@ export default {
         return 'หน้าหลัก'
       } else if (this.$route.path === '/document') {
         return 'แบบคำขอจัดหาระบบคอมพิวเตอร์ภาครัฐ'
-      } else if (this.$route.path === '/support') {
-        return 'Support'
+      } else if (this.$route.path === '/register') {
+        return 'Register'
       } else if (this.$route.path === '/profile') {
         return 'โปรไฟล์'
       } else if (this.$route.path === '/doc-list/waitingList') {
