@@ -182,7 +182,7 @@
 import axios from 'axios'
 export default {
   layout: 'empty',
-  // middleware: 'middleware.auth',
+  middleware: 'middleware-admin-auth',
   // fetchOnServer: true,
   // async fetch() {
   //   this.isDataReady = false
