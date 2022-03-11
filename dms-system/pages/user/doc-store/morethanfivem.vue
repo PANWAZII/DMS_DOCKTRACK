@@ -12,8 +12,7 @@
 
       <v-col class="mb-4">
         <p class="topices">
-          แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าเกิน 5
-          ล้านบาท
+          รายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าเกิน 5 ล้านบาท
         </p>
       </v-col>
     </v-row>
@@ -21,8 +20,8 @@
       <v-col cols="8">
         <template>
           <v-form ref="form" v-model="valid" lazy-validation>
-            <p class="topices">ก. ข้อมูลทั่วไป</p>
-            <p class="topices">1. ชื่อโครงการ</p>
+            <!-- <p class="topices">ก. ข้อมูลทั่วไป</p> -->
+            <p class="topices">ชื่อโครงการ</p>
 
             <v-text-field
               v-model="ProjN"
@@ -32,18 +31,18 @@
               required
             ></v-text-field>
             <br />
-            <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p>
-            <p class="subtop">2.1 ชื่อส่วนราชการ</p>
-            <v-text-field
+            <!-- <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p> -->
+            <!-- <p class="subtop">2.1 ชื่อส่วนราชการ</p> -->
+            <!-- <v-text-field
               v-model="DeptN"
               :rules="deptnRules"
               :counter="255"
               label="ชื่อส่วนราชการ"
               required
-            ></v-text-field>
-            <br />
-            <p class="subtop">2.2 หัวหน้าส่วนราชการ</p>
-            <v-row>
+            ></v-text-field> -->
+            <!-- <br /> -->
+            <!-- <p class="subtop">2.2 หัวหน้าส่วนราชการ</p> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="BossName"
@@ -91,12 +90,12 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="subtop">2.3 ผู้รับผิดชอบโครงการ</p>
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="subtop">2.3 ผู้รับผิดชอบโครงการ</p> -->
 
-            <p class="smalltop">ผู้รับผิดชอบโครงการลำดับที่ 1</p>
-            <v-row>
+            <!-- <p class="smalltop">ผู้รับผิดชอบโครงการลำดับที่ 1</p> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="Proj1"
@@ -145,19 +144,21 @@
                 >
                 </v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">3. งบประมาณ</p>
-            <p class="subtop">3.1 งบประมาณรวมทั้งสิ้น</p>
+            </v-row> -->
+            <!-- <br /> -->
+            <p class="topices">งบประมาณ</p>
+            <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
             <v-row>
-              <v-col cols="12" md="6">
-                <div>
-                  <h3>
-                    ตัวเลข &nbsp; &nbsp; {{ sumresult }} &nbsp; &nbsp; บาท
-                  </h3>
-                </div>
+              <v-col cols="12" md="6"
+                ><v-text-field
+                  v-model="int_baht"
+                  dense
+                  label="จำนวนเงิน (บาท)"
+                  required
+                >
+                </v-text-field>
               </v-col>
-              <v-col cols="12" md="6">
+              <!-- <v-col cols="12" md="6">
                 <v-text-field
                   v-model="Texttotal"
                   :rules="texttotalRules"
@@ -165,9 +166,10 @@
                   label="ตัวอักษร"
                   required
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
             </v-row>
-            <p class="subtop">3.2 แหล่งเงิน</p>
+            <br />
+            <p class="subtop">แหล่งเงิน</p>
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
@@ -180,21 +182,21 @@
                 </v-select>
               </v-col>
             </v-row>
-            <br />
-            <p class="topices">4. รายละเอียดของอุปกรณ์</p>
+            <!-- <br /> -->
+            <!-- <p class="topices">4. รายละเอียดของอุปกรณ์</p> -->
 
-            <p class="subtop">
+            <!-- <p class="subtop">
               รายละเอียดที่ไม่ตรงกับมาตรฐานกลาง พร้อมระบุเหตุผล ความจำเป็น
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="Textareas"
               label="กรอกรายละเอียด"
               required
               :counter="3000"
               :rules="textareasRules"
-            ></v-textarea>
-            <br />
-            <v-row>
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="Quant"
@@ -221,9 +223,9 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <v-row>
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <v-row>
               <v-col cols="12">
                 <div>
                   <h3>
@@ -232,9 +234,9 @@
                   </h3>
                 </div>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">5. วิธีการจัดหา</p>
+            </v-row> -->
+            <!-- <br /> -->
+            <p class="topices">วิธีการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group
@@ -249,9 +251,9 @@
                 </v-radio-group>
               </v-col>
             </v-row>
-            <br />
-            <p class="topices">6. สถานที่ติดตั้งอุปกรณ์</p>
-            <v-row>
+            <!-- <br /> -->
+            <!-- <p class="topices">6. สถานที่ติดตั้งอุปกรณ์</p> -->
+            <!-- <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="Desti"
@@ -270,12 +272,12 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               7. ระบบหรืออุปกรณ์คอมพิวเตอร์ทั้งหมดที่มีอยู่เดิม
-            </p>
-            <v-row>
+            </p> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="List"
@@ -305,47 +307,47 @@
                 >
                 </v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               8.
               ปัญหาอุปสรรคในการปฏิบัติงาน/เหตุผลความจำเป็นที่ต้องจัดหาอุปกรณ์ในครั้งนี้
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="Obst"
               label="กรอกปัญหาอุปสรรค/เหตุผลความจำเป็น"
               required
               :counter="700"
               :rules="obstRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
-              9. ลักษณะงานหรือระบบงานที่จะใช้กับอุปกรณ์ที่จัดหาครั้งนี้
-            </p>
-            <v-textarea
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
+              ลักษณะงานหรือระบบงานที่จะใช้กับอุปกรณ์ที่จัดหาครั้งนี้
+            </p> -->
+            <!-- <v-textarea
               v-model="Pouse"
               label="กรอกลักษณะ/ระบบงานที่จะใช้กับอุปกรณ์ที่จัดหา"
               required
               :counter="700"
               :rules="pouseRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               10. เปรียบเทียบอุปกรณ์ที่จัดหาครั้งนี้กับปริมาณงาน
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="Compare"
               label="เปรียบเทียบอุปกรณ์ที่จัดหากับปริมาณงาน"
               required
               :counter="700"
               :rules="compareRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               11. บุคลากรด้านคอมพิวเตอร์
               หรือบุคลากรที่ได้รับมอบหมายให้รับผิดชอบด้าน IT ที่มีอยู่ในปัจจุบัน
-            </p>
-            <v-row>
+            </p> -->
+            <!-- <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="Maj"
@@ -364,8 +366,8 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <p class="topices">ข. ข้อมูลเฉพาะกรณี</p>
+            </v-row> -->
+            <p class="topices">ประเภทการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group v-model="Spi" row required>
@@ -388,12 +390,34 @@
               </v-col>
             </v-row>
             <br />
-            <p class="topices">ใบเสนอราคา</p>
+            <p class="topices">กรณีไม่ตรงเกณฑ์ราคากลางฯ โปรดแนบใบเสนอราคา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-file-input label="แนบใบเสนอราคา"></v-file-input>
               </v-col>
             </v-row>
+            <v-spacer></v-spacer>
+            <br />
+            <p class="topices">
+              กรณี Software โปรดแนบบัญชีราคากลางและแผนพัฒนา software
+            </p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="บัญชีราคากลาง"></v-file-input>
+                <v-file-input label="แผนพัฒนาซอฟต์แวร์"></v-file-input>
+              </v-col>
+            </v-row>
+            <v-spacer></v-spacer>
+            <br />
+            <p class="topices">
+              กรณีระบบเครือข่ายหรือกล้อง CCTV โปรดแนบผังเครือข่าย
+            </p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="ผังเครือข่าย"></v-file-input>
+              </v-col>
+            </v-row>
+
             <v-spacer></v-spacer>
             <br />
 
@@ -426,6 +450,7 @@ import axios from 'axios'
 export default {
   //   },
   name: 'lessthanfivem',
+  layout: 'userDefault',
   middleware: 'middleware-user-auth',
   name: 'Lessthanfivem',
 

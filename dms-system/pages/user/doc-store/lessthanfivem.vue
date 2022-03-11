@@ -12,8 +12,7 @@
 
       <v-col class="mb-4">
         <p class="topices">
-          แบบฟอร์มรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5
-          ล้านบาท
+          รายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐ<br />ที่มีมูลค่าไม่เกิน 5 ล้านบาท
         </p>
       </v-col>
     </v-row>
@@ -21,8 +20,8 @@
       <v-col cols="8">
         <template>
           <v-form ref="form" v-model="valid" lazy-validation>
-            <p class="topices">ก. ข้อมูลทั่วไป</p>
-            <p class="topices">1. ชื่อโครงการ</p>
+            <!-- <p class="topices">ก. ข้อมูลทั่วไป</p> -->
+            <p class="topices">ชื่อโครงการ</p>
 
             <v-text-field
               v-model="form.project_name"
@@ -32,19 +31,19 @@
               required
             ></v-text-field>
             <br />
-            <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p>
-            <p class="subtop">2.1 ชื่อส่วนราชการ</p>
-            <v-text-field
+            <!-- <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p> -->
+            <!-- <p class="subtop">2.1 ชื่อส่วนราชการ</p> -->
+            <!-- <v-text-field
               v-model="form.department_name"
               :rules="deptnRules"
               :counter="255"
               label="ชื่อส่วนราชการ"
               required
-            ></v-text-field>
-            <br />
-            <p class="subtop">2.2 หัวหน้าส่วนราชการ</p>
-            <v-row>
-              <v-col cols="12" md="4">
+            ></v-text-field> -->
+            <!-- <br /> -->
+            <!-- <p class="subtop">2.2 หัวหน้าส่วนราชการ</p> -->
+            <!-- <v-row> -->
+            <!-- <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.boss_name"
                   :rules="bossnameRules"
@@ -52,9 +51,9 @@
                   label="ชื่อ สกุล"
                   required
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
 
-              <v-col cols="12" md="4">
+            <!-- <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.boss_position"
                   :rules="bossposRules"
@@ -62,8 +61,8 @@
                   label="ตำแหน่ง"
                   required
                 ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="4">
+              </v-col> -->
+            <!-- <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.boss_tel"
                   :rules="bosstRules"
@@ -71,8 +70,8 @@
                   label="โทรศัพท์"
                   required
                 ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="4">
+              </v-col> -->
+            <!-- <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.boss_fax"
                   :rules="bossfRules"
@@ -80,9 +79,9 @@
                   label="โทรสาร"
                   required
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
 
-              <v-col cols="12" md="4">
+            <!-- <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.boss_email"
                   :rules="bosseRules"
@@ -90,13 +89,13 @@
                   label="อีเมล"
                   required
                 ></v-text-field>
-              </v-col>
-            </v-row>
-            <br />
-            <p class="subtop">2.3 ผู้รับผิดชอบโครงการ</p>
+              </v-col> -->
+            <!-- </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="subtop">2.3 ผู้รับผิดชอบโครงการ</p> -->
 
-            <p class="smalltop">ผู้รับผิดชอบโครงการลำดับที่ 1</p>
-            <v-row>
+            <!-- <p class="smalltop">ผู้รับผิดชอบโครงการลำดับที่ 1</p> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.Proj1"
@@ -145,19 +144,21 @@
                 >
                 </v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">3. งบประมาณ</p>
-            <p class="subtop">3.1 งบประมาณรวมทั้งสิ้น</p>
+            </v-row> -->
+            <!-- <br /> -->
+            <p class="topices">งบประมาณ</p>
+            <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
             <v-row>
               <v-col cols="12" md="6">
-                <div>
-                  <h3>
-                    ตัวเลข &nbsp; &nbsp; {{ sumresult }} &nbsp; &nbsp; บาท
-                  </h3>
-                </div>
+                <v-text-field
+                  v-model="int_baht"
+                  dense
+                  label="จำนวนเงิน (บาท)"
+                  required
+                >
+                </v-text-field>
               </v-col>
-              <v-col cols="12" md="6">
+              <!-- <v-col cols="12" md="6">
                 <v-text-field
                   v-model="form.baht_text"
                   :rules="texttotalRules"
@@ -165,9 +166,10 @@
                   label="ตัวอักษร"
                   required
                 ></v-text-field>
-              </v-col>
+              </v-col> -->
             </v-row>
-            <p class="subtop">3.2 แหล่งเงิน</p>
+            <br />
+            <p class="subtop">แหล่งเงิน</p>
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
@@ -182,21 +184,21 @@
                 </v-select>
               </v-col>
             </v-row>
-            <br />
-            <p class="topices">4. รายละเอียดของอุปกรณ์</p>
+            <!-- <br /> -->
+            <!-- <p class="topices">4. รายละเอียดของอุปกรณ์</p> -->
 
-            <p class="subtop">
+            <!-- <p class="subtop">
               รายละเอียดที่ไม่ตรงกับมาตรฐานกลาง พร้อมระบุเหตุผล ความจำเป็น
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="form.detail_notstd"
               label="กรอกรายละเอียด"
               required
               :counter="3000"
               :rules="textareasRules"
-            ></v-textarea>
-            <br />
-            <v-row>
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.quantity"
@@ -223,9 +225,9 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <v-row>
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <v-row>
               <v-col cols="12">
                 <div>
                   <h3>
@@ -234,9 +236,9 @@
                   </h3>
                 </div>
               </v-col>
-            </v-row>
+            </v-row> -->
             <br />
-            <p class="topices">5. วิธีการจัดหา</p>
+            <p class="topices">วิธีการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group
@@ -252,8 +254,8 @@
               </v-col>
             </v-row>
             <br />
-            <p class="topices">6. สถานที่ติดตั้งอุปกรณ์</p>
-            <v-row>
+            <!-- <p class="topices">6. สถานที่ติดตั้งอุปกรณ์</p> -->
+            <!-- <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="form.destination"
@@ -272,12 +274,12 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               7. ระบบหรืออุปกรณ์คอมพิวเตอร์ทั้งหมดที่มีอยู่เดิม
-            </p>
-            <v-row>
+            </p> -->
+            <!-- <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
                   v-model="form.list_old"
@@ -307,47 +309,47 @@
                 >
                 </v-text-field>
               </v-col>
-            </v-row>
-            <br />
-            <p class="topices">
+            </v-row> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               8.
               ปัญหาอุปสรรคในการปฏิบัติงาน/เหตุผลความจำเป็นที่ต้องจัดหาอุปกรณ์ในครั้งนี้
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="form.obstacle"
               label="กรอกปัญหาอุปสรรค/เหตุผลความจำเป็น"
               required
               :counter="700"
               :rules="obstRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               9. ลักษณะงานหรือระบบงานที่จะใช้กับอุปกรณ์ที่จัดหาครั้งนี้
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="form.purpose_of_use"
               label="กรอกลักษณะ/ระบบงานที่จะใช้กับอุปกรณ์ที่จัดหา"
               required
               :counter="700"
               :rules="pouseRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               10. เปรียบเทียบอุปกรณ์ที่จัดหาครั้งนี้กับปริมาณงาน
-            </p>
-            <v-textarea
+            </p> -->
+            <!-- <v-textarea
               v-model="form.compare"
               label="เปรียบเทียบอุปกรณ์ที่จัดหากับปริมาณงาน"
               required
               :counter="700"
               :rules="compareRules"
-            ></v-textarea>
-            <br />
-            <p class="topices">
+            ></v-textarea> -->
+            <!-- <br /> -->
+            <!-- <p class="topices">
               11. บุคลากรด้านคอมพิวเตอร์
               หรือบุคลากรที่ได้รับมอบหมายให้รับผิดชอบด้าน IT ที่มีอยู่ในปัจจุบัน
-            </p>
-            <v-row>
+            </p> -->
+            <!-- <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="form.major"
@@ -366,9 +368,9 @@
                   required
                 ></v-text-field>
               </v-col>
-            </v-row>
+            </v-row> -->
 
-            <p class="topices">ข. ข้อมูลเฉพาะกรณี</p>
+            <p class="topices">ประเภทการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group v-model="form.specific_info" row required>
@@ -391,10 +393,31 @@
               </v-col>
             </v-row>
             <br />
-            <p class="topices">ใบเสนอราคา</p>
+            <p class="topices">กรณีไม่ตรงเกณฑ์ราคากลางฯ โปรดแนบใบเสนอราคา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-file-input label="แนบใบเสนอราคา"></v-file-input>
+              </v-col>
+            </v-row>
+            <v-spacer></v-spacer>
+            <br />
+            <p class="topices">
+              กรณี Software โปรดแนบบัญชีราคากลางและแผนพัฒนา software
+            </p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="บัญชีราคากลาง"></v-file-input>
+                <v-file-input label="แผนพัฒนาซอฟต์แวร์"></v-file-input>
+              </v-col>
+            </v-row>
+            <v-spacer></v-spacer>
+            <br />
+            <p class="topices">
+              กรณีระบบเครือข่ายหรือกล้อง CCTV โปรดแนบผังเครือข่าย
+            </p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="ผังเครือข่าย"></v-file-input>
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
@@ -466,6 +489,7 @@
 <script>
 export default {
   middleware: 'middleware-user-auth',
+  layout: 'userDefault',
   name: 'lessthanfivem',
   async asyncData({ store }) {
     let budget = []
@@ -482,46 +506,46 @@ export default {
     valid: true,
     form: {
       project_name: '',
-      department_name: '',
-      boss_name: '',
-      boss_position: '',
-      boss_tel: '',
-      boss_fax: '',
-      boss_email: '',
-      Proj1: '',
-      ProjPos1: '',
-      ProjT1: '',
-      ProjF1: '',
-      ProjE1: '',
-      user2_name: '',
-      user2_position: '',
-      user2_tel: '',
-      user2_fax: '',
-      user2_email: '',
-      user3_name: '',
-      user3_position: '',
-      user3_tel: '',
-      user3_fax: '',
-      user3_email: '',
+      // department_name: '',
+      // boss_name: '',
+      // boss_position: '',
+      // boss_tel: '',
+      // boss_fax: '',
+      // boss_email: '',
+      // Proj1: '',
+      // ProjPos1: '',
+      // ProjT1: '',
+      // ProjF1: '',
+      // ProjE1: '',
+      // user2_name: '',
+      // user2_position: '',
+      // user2_tel: '',
+      // user2_fax: '',
+      // user2_email: '',
+      // user3_name: '',
+      // user3_position: '',
+      // user3_tel: '',
+      // user3_fax: '',
+      // user3_email: '',
 
       baht_text: '',
       resource: null,
-      detail_notstd: '',
-      quantity: 0,
-      unit: null,
-      price_unit: 0,
+      // detail_notstd: '',
+      // quantity: 0,
+      // unit: null,
+      // price_unit: 0,
       sum: '',
       method: '',
-      destination: '',
-      cert: '',
-      list_old: '',
-      locate_old: '',
-      year_old: '',
-      obstacle: '',
-      purpose_of_use: '',
-      compare: '',
-      major: '',
-      quantity_major: '',
+      // destination: '',
+      // cert: '',
+      // list_old: '',
+      // locate_old: '',
+      // year_old: '',
+      // obstacle: '',
+      // purpose_of_use: '',
+      // compare: '',
+      // major: '',
+      // quantity_major: '',
       specific_info: '',
       iunit: ['ระบบ', 'เครื่อง'],
       // items: [
@@ -538,126 +562,126 @@ export default {
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
 
-    deptnRules: [
-      (v) => !!v || 'โปรดระบุชื่อหน่วยงาน',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // deptnRules: [
+    //   (v) => !!v || 'โปรดระบุชื่อหน่วยงาน',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    bossnameRules: [
-      (v) => !!v || 'โปรดระบุชื่อหัวหน้าส่วนราชการ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // bossnameRules: [
+    //   (v) => !!v || 'โปรดระบุชื่อหัวหน้าส่วนราชการ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    bossposRules: [
-      (v) => !!v || 'โปรดระบุตำแหน่งหัวหน้าส่วนราชการ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // bossposRules: [
+    //   (v) => !!v || 'โปรดระบุตำแหน่งหัวหน้าส่วนราชการ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    bosstRules: [
-      (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
-      (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // bosstRules: [
+    //   (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
+    //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    bossfRules: [
-      (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
-      (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // bossfRules: [
+    //   (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์หัวหน้าส่วนราชการ',
+    //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    bosseRules: [
-      (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
-      (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
-      (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // bosseRules: [
+    //   (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
+    //   (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
+    //   (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    proj1Rules: [
-      (v) => !!v || 'โปรดระบุชื่อผู้รับผิดชอบโครงการ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // proj1Rules: [
+    //   (v) => !!v || 'โปรดระบุชื่อผู้รับผิดชอบโครงการ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    projpos1Rules: [
-      (v) => !!v || 'โปรดระบุตำแหน่ง',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // projpos1Rules: [
+    //   (v) => !!v || 'โปรดระบุตำแหน่ง',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    projt1Rules: [
-      (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์ผู้รับผิดชอบโครงการ',
-      (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // projt1Rules: [
+    //   (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์ผู้รับผิดชอบโครงการ',
+    //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    projf1Rules: [
-      (v) => !!v || 'โปรดระบุเบอร์โทรสารผู้รับผิดชอบโครงการ',
-      (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // projf1Rules: [
+    //   (v) => !!v || 'โปรดระบุเบอร์โทรสารผู้รับผิดชอบโครงการ',
+    //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    proje1Rules: [
-      (v) => !!v || 'โปรดระบุอีเมลผู้รับผิดชอบโครงการ',
-      (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
-      (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // proje1Rules: [
+    //   (v) => !!v || 'โปรดระบุอีเมลผู้รับผิดชอบโครงการ',
+    //   (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
+    //   (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    texttotalRules: [(v) => !!v || 'โปรดระบุจำนวนเงินแบบตัวอักษร'],
+    // texttotalRules: [(v) => !!v || 'โปรดระบุจำนวนเงินแบบตัวอักษร'],
 
-    textareasRules: [
-      (v) => !!v || 'โปรดระบุรายละเอียด',
-      (v) => v.length <= 3000 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // textareasRules: [
+    //   (v) => !!v || 'โปรดระบุรายละเอียด',
+    //   (v) => v.length <= 3000 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    quantRules: [
-      (v) => !!v || 'โปรดระบุจำนวน',
-      (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // quantRules: [
+    //   (v) => !!v || 'โปรดระบุจำนวน',
+    //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    priceRules: [(v) => !!v || 'โปรดระบุราคาต่อหน่วย'],
+    // priceRules: [(v) => !!v || 'โปรดระบุราคาต่อหน่วย'],
 
-    destiRules: [
-      (v) => !!v || 'โปรดระบุสถานที่ตั้งอุปกรณ์',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // destiRules: [
+    //   (v) => !!v || 'โปรดระบุสถานที่ตั้งอุปกรณ์',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    recomRules: [
-      (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // recomRules: [
+    //   (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    listRules: [
-      (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // listRules: [
+    //   (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    locaoldRules: [
-      (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // locaoldRules: [
+    //   (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    insyearRules: [
-      (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // insyearRules: [
+    //   (v) => !!v || 'โปรดใส่เครื่องหมาย - กรณีไม่ระบุ',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    obstRules: [
-      (v) => !!v || 'โปรดระบุปัญหาอุปสรรค เหตุความจำเป็น',
-      (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // obstRules: [
+    //   (v) => !!v || 'โปรดระบุปัญหาอุปสรรค เหตุความจำเป็น',
+    //   (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    pouseRules: [
-      (v) => !!v || 'โปรดระบุลักษณะงานหรือระบบที่จะใช้กับอุปกรณ์นี้',
-      (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // pouseRules: [
+    //   (v) => !!v || 'โปรดระบุลักษณะงานหรือระบบที่จะใช้กับอุปกรณ์นี้',
+    //   (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    compareRules: [
-      (v) => !!v || 'โปรดระบุการเปรียบเทียบ',
-      (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // compareRules: [
+    //   (v) => !!v || 'โปรดระบุการเปรียบเทียบ',
+    //   (v) => v.length <= 700 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    majRules: [
-      (v) => !!v || 'โปรดระบุด้าน/สาขา',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // majRules: [
+    //   (v) => !!v || 'โปรดระบุด้าน/สาขา',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
 
-    qmajRules: [
-      (v) => !!v || 'โปรดระบุจำนวน',
-      (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-    ],
+    // qmajRules: [
+    //   (v) => !!v || 'โปรดระบุจำนวน',
+    //   (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    // ],
   }),
   methods: {
     submit() {
