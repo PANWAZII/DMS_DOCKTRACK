@@ -25,7 +25,13 @@
             ><v-icon>mdi-shield-account</v-icon>
             <h5 class="ml-2">สำหรับผู้ดูแลระบบ</h5></v-btn
           >
-          <v-btn color="info" depressed class="ma-2" v-bind="attrs" v-on="on"
+          <v-btn
+            to="/login"
+            color="info"
+            depressed
+            class="ma-2"
+            v-bind="attrs"
+            v-on="on"
             ><v-icon>mdi-account-circle</v-icon>
             <h5 class="ml-2">เข้าสู่ระบบ</h5></v-btn
           >

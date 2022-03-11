@@ -79,6 +79,7 @@
 <script>
 export default {
   middleware: 'middleware-user-auth',
+  layout: 'userDefault',
   data() {
     return {
       createform: false,
