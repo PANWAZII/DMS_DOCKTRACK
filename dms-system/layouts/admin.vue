@@ -242,8 +242,8 @@ export default {
         },
 
         register: {
-          icon: 'mdi-face-agent',
-          title: 'Create new user',
+          icon: 'mdi-account-plus',
+          title: 'ลงทะเบียนผู้ใช้งาน',
           to: '/admin/register',
         },
         // waiting: {
