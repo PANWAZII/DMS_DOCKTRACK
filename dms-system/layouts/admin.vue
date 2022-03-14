@@ -45,32 +45,32 @@
           <template v-slot:activator>
             <v-list-item-title to="/document">แบบคำขอฯ</v-list-item-title>
           </template>
-          <v-list-item :to="this.menu.all_doc.to">
+          <v-list-item :to="this.menu.new_doc.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
 
             <v-list-item-title
-              v-text="this.menu.all_doc.title"
+              v-text="this.menu.new_doc.title"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item :to="this.menu.waiting.to">
+          <v-list-item :to="this.menu.manage_doc.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
 
             <v-list-item-title
-              v-text="this.menu.waiting.title"
+              v-text="this.menu.manage_doc.title"
             ></v-list-item-title>
           </v-list-item>
-          <v-list-item :to="this.menu.dms.to">
+          <!-- <v-list-item :to="this.menu.dms.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
 
             <v-list-item-title v-text="this.menu.dms.title"></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.moph.to">
+          </v-list-item> -->
+          <!-- <v-list-item :to="this.menu.moph.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
@@ -78,8 +78,8 @@
             <v-list-item-title
               v-text="this.menu.moph.title"
             ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.approved.to">
+          </v-list-item> -->
+          <!-- <v-list-item :to="this.menu.approved.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
@@ -87,8 +87,8 @@
             <v-list-item-title
               v-text="this.menu.approved.title"
             ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.rejected.to">
+          </v-list-item> -->
+          <!-- <v-list-item :to="this.menu.rejected.to">
             <v-list-item-icon>
               <v-icon></v-icon>
             </v-list-item-icon>
@@ -96,7 +96,7 @@
             <v-list-item-title
               v-text="this.menu.rejected.title"
             ></v-list-item-title>
-          </v-list-item>
+          </v-list-item> -->
         </v-list-group>
         <!-- <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.document.to">
@@ -230,14 +230,14 @@ export default {
           title: 'แบบรายงานการจัดซื้อ',
           to: '/document',
         },
-        all_doc: {
+        new_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'สร้างแบบคำขอฯ',
-          to: '/document',
+          title: 'แบบคำขอ ฯ ใหม่',
+          to: 'admin/newdoc',
         },
-        track_doc: {
+        manage_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'ติดตามแบบรายงานฯ',
+          title: 'จัดการแบบคำขอ ฯ',
           to: '/',
         },
 
@@ -246,26 +246,26 @@ export default {
           title: 'Create new user',
           to: '/admin/register',
         },
-        waiting: {
-          title: 'รอพิจารณา',
-          to: '/doc-list/waitingList',
-        },
-        dms: {
-          title: 'กรมฯ ลงนาม',
-          to: '/doc-list/dmsList',
-        },
-        moph: {
-          title: 'กระทรวงฯ ลงนาม',
-          to: '/doc-list/mophList',
-        },
-        approved: {
-          title: 'ส่งคืนแล้ว',
-          to: '/doc-list/approvedList',
-        },
-        rejected: {
-          title: 'มีข้อแก้ไข',
-          to: '/doc-list/rejectedList',
-        },
+        // waiting: {
+        //   title: 'รอพิจารณา',
+        //   to: '/doc-list/waitingList',
+        // },
+        // dms: {
+        //   title: 'กรมฯ ลงนาม',
+        //   to: '/doc-list/dmsList',
+        // },
+        // moph: {
+        //   title: 'กระทรวงฯ ลงนาม',
+        //   to: '/doc-list/mophList',
+        // },
+        // approved: {
+        //   title: 'ส่งคืนแล้ว',
+        //   to: '/doc-list/approvedList',
+        // },
+        // rejected: {
+        //   title: 'มีข้อแก้ไข',
+        //   to: '/doc-list/rejectedList',
+        // },
         logout: {
           icon: 'mdi-account-arrow-right',
           title: 'ออกจากระบบ',
@@ -325,16 +325,16 @@ export default {
         return 'Register'
       } else if (this.$route.path === '/admin/profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.path === '/admin/doc-list/waitingList') {
-        return 'แบบคำขอฯ รอการพิจารณา'
-      } else if (this.$route.path === '/admin/doc-list/dmsList') {
-        return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
-      } else if (this.$route.path === '/admin/doc-list/mophList') {
-        return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
-      } else if (this.$route.path === '/admin/doc-list/approvedList') {
-        return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
-      } else if (this.$route.path === '/admin/doc-list/rejectedList') {
-        return 'แบบคำขอฯ มีข้อแก้ไข'
+      } else if (this.$route.path === '/admin/newdoc') {
+        return 'แบบคำขอ ฯ ที่ยังไม่ได้รับเข้าดำเนินการ'
+        // } else if (this.$route.path === '/admin/doc-list/dmsList') {
+        //   return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
+        // } else if (this.$route.path === '/admin/doc-list/mophList') {
+        //   return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
+        // } else if (this.$route.path === '/admin/doc-list/approvedList') {
+        //   return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
+        // } else if (this.$route.path === '/admin/doc-list/rejectedList') {
+        //   return 'แบบคำขอฯ มีข้อแก้ไข'
       }
     },
   },

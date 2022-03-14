@@ -38,7 +38,7 @@
               </div>
               <v-list-item-title class="text-h3 mb-3"> 5 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
-                >โครงการได้รับการอนุมัติและส่งคืนแล้ว</v-list-item-subtitle
+                >โครงการได้รับการอนุมัติ ส่งคืนแล้ว</v-list-item-subtitle
               >
             </v-list-item-content>
 
@@ -294,6 +294,7 @@ export default {
           align: 'start',
           sortable: false,
         },
+        { text: 'หน่วยงาน', value: 'department_name' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
         { text: 'สถานะ', value: 'approval_status' },
       ],

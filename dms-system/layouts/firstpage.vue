@@ -17,6 +17,7 @@
       <v-menu bottom offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+            to="/login"
             color="secondary"
             depressed
             class="ma-2"
