@@ -3,7 +3,7 @@ export default async function ({ store, redirect }) {
   const auth = await store.dispatch('api/getLevel', { uid: user_uid })
   console.log('this is uid admin mid ', user_uid)
   console.log('this is level admin mid ', auth.level)
-  if (!(store.getters.isAuthenticated && auth.level == 'admin')) {
+  if (!(store.getters.isAuthenticated && auth.level === 'admin')) {
     return redirect('/login')
   }
 }
