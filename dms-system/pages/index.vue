@@ -2,7 +2,13 @@
   <v-container fluid>
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
@@ -30,7 +36,13 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
@@ -38,7 +50,7 @@
               </div>
               <v-list-item-title class="text-h3 mb-3"> 5 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
-                >โครงการได้รับการอนุมัติ ส่งคืนแล้ว</v-list-item-subtitle
+                >ส่งคืนไปยังหน่วยงานแล้ว</v-list-item-subtitle
               >
             </v-list-item-content>
 
@@ -53,7 +65,13 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
@@ -78,15 +96,20 @@
     </v-row>
     <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
-                รอกรมการแพทย์ลงนาม
+                กรมการแพทย์ลงนาม
               </div>
               <v-list-item-title class="text-h3 mb-3"> 7 </v-list-item-title>
-              <v-list-item-subtitle style="font-weight: bold"
-                >ที่ประชุมมีมติอนุมัติ
+              <v-list-item-subtitle style="font-weight: bold">
                 รอการลงนามโดยกรมการแพทย์</v-list-item-subtitle
               >
             </v-list-item-content>
@@ -102,7 +125,13 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
@@ -110,7 +139,7 @@
               </div>
               <v-list-item-title class="text-h3 mb-3"> 2 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold">
-                รอการลงนามโดยกระทรวงสาธารณสุข</v-list-item-subtitle
+                รอกระทรวงสาธารณสุข ลงนาม</v-list-item-subtitle
               >
             </v-list-item-content>
 
@@ -125,7 +154,13 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="mx-auto" max-width="auto" outlined elevation="1">
+        <v-card
+          class="mx-auto"
+          max-width="500"
+          max-height="180"
+          outlined
+          elevation="1"
+        >
           <v-list-item three-line>
             <v-list-item-content>
               <div class="text-overline mb-4" style="font-weight: bold">
@@ -133,7 +168,7 @@
               </div>
               <v-list-item-title class="text-h3 mb-3"> 0 </v-list-item-title>
               <v-list-item-subtitle style="font-weight: bold"
-                >คำขอจัดซื้อครุภัณฑ์ต้องแก้ไขแล้วจัดส่งใหม่</v-list-item-subtitle
+                >ที่ประชุมมีความเห็นแก้ไขเพิ่มเติม</v-list-item-subtitle
               >
             </v-list-item-content>
 

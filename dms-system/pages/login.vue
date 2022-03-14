@@ -50,8 +50,11 @@
                     <div class="white--text font-weight-bold">เข้าสู่ระบบ</div>
                   </v-btn>
                 </v-form>
-                <a href="register" class="float-right mt-5 font-weight-bold"
-                  >ลงทะเบียน</a
+                <a
+                  href="/"
+                  class="float-right mt-5 font-weight-bold"
+                  style="color: #f03932"
+                  >ย้อนกลับ</a
                 >
               </v-card-text>
             </v-col>
@@ -126,7 +129,9 @@ export default {
         await this.$store.dispatch('login', credential.user)
         const user_id = credential.user.uid
         console.log('this is creds', user_id)
-        const auth = await this.$store.dispatch('api/getLevel', { uid: user_id })
+        const auth = await this.$store.dispatch('api/getLevel', {
+          uid: user_id,
+        })
         console.log('this is level', auth.level)
         if (auth.level === 'user') {
           this.loading = false
@@ -135,10 +140,10 @@ export default {
           this.loading = false
           this.$router.push('/admin')
         }
-        
+
         // this.$router.push('/')
       } catch (error) {
-        console.log("this is error ",error)
+        console.log('this is error ', error)
         if ((error.code = 'auth/wrong-password')) {
           this.loading = false
           this.dialog = true
