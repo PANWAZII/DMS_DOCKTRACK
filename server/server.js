@@ -31,6 +31,10 @@ app.use(express.json());
 
 // const usersRouter = require("./routes/users");
 
+//Public API
+import alldocRouter from "./routes/Public/publicApi.js";
+app.use("/public", alldocRouter);
+
 //User API
 import usersRouter from "./routes/User/users.js";
 app.use("/users", usersRouter);
@@ -50,11 +54,11 @@ import budgetSourceRouter from "./routes/Dropdown/budgetSources.js";
 app.use("/budgetSources", budgetSourceRouter);
 
 
-//Admin api
+//Admin API
 import adminsRouter from "./routes/Admin/admins.js";
 app.use("/admins", adminsRouter);
 
-//Level checker
+//Level checker API
 import checkLevelRouter from "./routes/checkLevel.js"
 app.use("/auth",checkLevelRouter)
 
