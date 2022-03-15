@@ -171,16 +171,18 @@
 
     <v-dialog v-model="confirmDialog" max-width="290">
       <v-card>
-        <v-card-title class="text-h5"> r u sure </v-card-title>
-        <v-divider></v-divider><br />
+        <v-card-title class="text"
+          >คุณต้องการลงทะเบียนผู้ใช้งานใหม่ ?
+        </v-card-title>
+        <br />
 
         <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="register"> ok </v-btn>
-          <v-btn color="green darken-1" text @click="confirmDialog = false">
-            cancel
+          <v-btn color="green darken-1" text @click="register"> ตกลง </v-btn>
+          <v-btn color="error" text @click="confirmDialog = false">
+            ยกเลิก
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -189,14 +191,12 @@
     <v-dialog v-model="finishDialog" max-width="290">
       <v-card>
         <v-card-title class="text-h5"> ลงทะเบียนสำเร็จ </v-card-title>
-        <v-divider></v-divider><br />
+        <v-divider></v-divider>
 
         <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn color="green darken-1" text> ปิด </v-btn>
+        <v-card-actions class="justify-center">
+          <v-btn color="error" text @click="finishDialog = false"> ปิด </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -300,6 +300,7 @@ export default {
     async createUser() {
       try {
         console.log('start loading')
+        this.confirmDialog = false
         this.loadingDialog = true
         console.log('start posting')
         await axios
