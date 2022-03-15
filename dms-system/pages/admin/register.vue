@@ -1,131 +1,155 @@
 <template>
-  <!-- <v-app style="background: #056839"> -->
-    <v-app>
+  <v-app>
     <v-main>
-      <v-container class="fill-height justify-center">
-        <v-card elevation="2" height="1100" width="900">
-          <v-row align="center" justify="center" dense>
-            <v-col cols="12" sm="8" md="8" lg="6">
-              <!-- <v-img class="mt-15 mb-5" src="img/logo.png" contain height="150"> -->
-              <v-img
-                class="mt-15 mb-5"
-                :src="require('../../assets/logo.png')"
-                contain
-                height="150"
-              >
-              </v-img>
-              <!-- {{ form }} -->
-              <v-card-text>
-                <v-form ref="form" v-model="valid" lazy-validation>
-                  <v-text-field
-                    required
-                    label="ชื่อ"
-                    name="Name"
-                    class="rounded-1"
-                    outlined
-                    :rules="nameRules"
-                    v-model="form.firstname"
-                  >
-                  </v-text-field>
-                  <v-text-field
-                    required
-                    label="นามสกุล"
-                    name="Surname"
-                    class="rounded-1"
-                    outlined
-                    :rules="surnameRules"
-                    v-model="form.lastname"
-                  >
-                  </v-text-field>
-                  <v-select
-                    v-model="form.position_id"
-                    item-text="position_name"
-                    item-value="_id"
-                    :items="position"
-                    label="ตำแหน่ง"
-                    outlined
-                    required
-                    :rules="positionRules"
-                  ></v-select>
-                  <v-select
-                    v-model="form.department_id"
-                    item-text="department_name"
-                    item-value="_id"
-                    :items="department"
-                    label="หน่วยงานสังกัด"
-                    outlined
-                    :rules="departRules"
-                    required
-                  ></v-select>
+      <v-container>
+        <v-row class="text-center">
+          <!-- <v-col cols="12">
+            <v-img
+              :src="require('../../assets/logo.png')"
+              class="my-3"
+              contain
+              height="150"
+            />
+          </v-col> -->
+          <v-col class="mb-4">
+            <p class="topices">ลงทะเบียนผู้ใช้งานใหม่</p>
+          </v-col>
+        </v-row>
+        <v-row class="d-flex justify-center align-center">
+          <v-col cols="8">
+            <template>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      required
+                      label="ชื่อ"
+                      name="Name"
+                      class="rounded-1"
+                      outlined
+                      :rules="nameRules"
+                      v-model="form.firstname"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      required
+                      label="นามสกุล"
+                      name="Surname"
+                      class="rounded-1"
+                      outlined
+                      :rules="surnameRules"
+                      v-model="form.lastname"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-select
+                      v-model="form.position_id"
+                      item-text="position_name"
+                      item-value="_id"
+                      :items="position"
+                      label="ตำแหน่ง"
+                      outlined
+                      required
+                      :rules="positionRules"
+                    ></v-select>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      required
+                      label="อีเมล"
+                      name="Email"
+                      type="email"
+                      class="rounded-1"
+                      outlined
+                      :rules="emailRules"
+                      v-model="form.email"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="form.pass"
+                      :rules="passwordRules"
+                      @keyup.enter="login"
+                      label="รหัสผ่าน"
+                      name="password"
+                      prepend-inner-icon="mdi-lock"
+                      type="password"
+                      class="rounded-1"
+                      outlined
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-select
+                      v-model="form.department_id"
+                      item-text="department_name"
+                      item-value="_id"
+                      :items="department"
+                      label="หน่วยงานสังกัด"
+                      outlined
+                      :rules="departRules"
+                      required
+                    ></v-select>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      required
+                      label="เบอร์โทรศัพท์"
+                      name="Tel"
+                      class="rounded-1"
+                      outlined
+                      :rules="telRules"
+                      v-model="form.tel"
+                    >
+                    </v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      required
+                      label="โทรสาร"
+                      name="Fax"
+                      class="rounded-1"
+                      outlined
+                      :rules="faxRules"
+                      v-model="form.fax"
+                    >
+                    </v-text-field>
+                  </v-col>
+                </v-row>
 
-                  <v-text-field
-                    required
-                    label="เบอร์โทรศัพท์"
-                    name="Tel"
-                    class="rounded-1"
-                    outlined
-                    :rules="telRules"
-                    v-model="form.tel"
-                  >
-                  </v-text-field>
-                  <v-text-field
-                    required
-                    label="โทรสาร"
-                    name="Fax"
-                    class="rounded-1"
-                    outlined
-                    :rules="faxRules"
-                    v-model="form.fax"
-                  >
-                  </v-text-field>
-                  <v-text-field
-                    required
-                    label="อีเมล"
-                    name="Email"
-                    type="email"
-                    class="rounded-1"
-                    outlined
-                    :rules="emailRules"
-                    v-model="form.email"
-                  >
-                  </v-text-field>
-                  <!-- {{ rules.password }} -->
-                  <v-text-field
-                    v-model="form.pass"
-                    :rules="passwordRules"
-                    @keyup.enter="login"
-                    label="รหัสผ่าน"
-                    name="password"
-                    prepend-inner-icon="mdi-lock"
-                    type="password"
-                    class="rounded-1"
-                    outlined
-                  >
-                  </v-text-field>
-                  <v-btn
-                    @click="register"
-                    class="rounded-1"
-                    color="#056839"
-                    x-large
-                    block
-                  >
-                    <div class="white--text font-weight-bold">ลงทะเบียน</div>
-                  </v-btn>
-                </v-form>
-              </v-card-text>
-            </v-col>
-          </v-row>
-          <v-row align="center" class="ml-15" dense>
-            <v-col cols="12" sm="8" md="8" lg="6"
-              ><v-btn
-                class="rounded-1 float-left mt-5 font-weight-bold"
-                color="error"
-                href="login"
-                >ย้อนกลับ</v-btn
-              ></v-col
-            >
-          </v-row>
-        </v-card>
+                <v-btn
+                  @click="register"
+                  class="rounded-1"
+                  color="#056839"
+                  x-large
+                  block
+                >
+                  <div class="white--text font-weight-bold">ลงทะเบียน</div>
+                </v-btn>
+              </v-form>
+              <br />
+            </template>
+          </v-col>
+        </v-row>
+
+        <!-- <v-row align="center" class="ml-15" dense>
+          <v-col cols="12" sm="8" md="8" lg="6"
+            ><v-btn
+              class="rounded-1 float-left mt-5 font-weight-bold"
+              color="error"
+              href="login"
+              >ย้อนกลับ</v-btn
+            ></v-col
+          >
+        </v-row> -->
       </v-container>
     </v-main>
     <v-dialog v-model="registerDialog" max-width="290">
@@ -150,14 +174,12 @@
         <v-card-title class="text-h5"> ลงทะเบียนสำเร็จ </v-card-title>
         <v-divider></v-divider><br />
 
-        <v-card-text> โปรดเข้าสู่ระบบ</v-card-text>
+        <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
 
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn color="green darken-1" text @click="goToLogin()">
-            เข้าสู่ระบบ
-          </v-btn>
+          <v-btn color="green darken-1" text  > ปิด </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -254,9 +276,9 @@ export default {
         this.createUser()
       }
     },
-    goToLogin() {
-      this.$router.push('/login')
-    },
+    // goToLogin() {
+    //   this.$router.push('/login')
+    // },
     async createUser() {
       try {
         console.log('start loading')
@@ -293,3 +315,9 @@ export default {
   },
 }
 </script>
+<style>
+.topices {
+  font-size: 40px;
+  font-weight: bold;
+}
+</style>
