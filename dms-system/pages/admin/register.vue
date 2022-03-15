@@ -126,7 +126,7 @@
                 </v-row>
 
                 <v-btn
-                  @click="register"
+                  @click="confirmDialog = true"
                   class="rounded-1"
                   color="#056839"
                   x-large
@@ -152,7 +152,7 @@
         </v-row> -->
       </v-container>
     </v-main>
-    <v-dialog v-model="registerDialog" max-width="290">
+    <v-dialog v-model="errorDialog" max-width="290">
       <v-card>
         <v-card-title class="text-h5"> ข้อผิดพลาด </v-card-title
         ><v-divider></v-divider><br />
@@ -162,8 +162,25 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn color="error darken-1" text @click="registerDialog = false">
+          <v-btn color="error darken-1" text @click="errorDialog = false">
             ปิด
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="confirmDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text-h5"> r u sure </v-card-title>
+        <v-divider></v-divider><br />
+
+        <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="register"> ok </v-btn>
+          <v-btn color="green darken-1" text @click="confirmDialog = false">
+            cancel
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -179,7 +196,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn color="green darken-1" text  > ปิด </v-btn>
+          <v-btn color="green darken-1" text> ปิด </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -230,7 +247,8 @@ export default {
   },
   data() {
     return {
-      registerDialog: false,
+      errorDialog: false,
+      confirmDialog: false,
       finishDialog: false,
       valid: true,
       department: [],
@@ -304,7 +322,7 @@ export default {
               this.finishDialog = true
             } else if (res.data.message == 'auth/email-already-in-use') {
               this.loadingDialog = false
-              this.registerDialog = true
+              this.errorDialog = true
             }
           })
         // this.loading = false
