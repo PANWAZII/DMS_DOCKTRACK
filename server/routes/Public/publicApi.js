@@ -19,7 +19,7 @@ router.get("/getAllDocuments", async (req, res) => {
       container["name"] = item.project_name;
       container["department"] = item.department_name;
       container["date"] = item.created_date;
-      container["status"] = item.approval_status;
+      container["status"] = item.approval_status_th;
       return container;
     });
     res.status(200).json(Data);
