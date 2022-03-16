@@ -157,6 +157,10 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  approval_status_th: {
+    type: String,
+    require: false,
+  },
   approval_status: {
     type: String,
     require: false,
