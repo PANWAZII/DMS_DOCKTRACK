@@ -92,6 +92,7 @@
 </template>
 <script>
 export default {
+  layout: 'user',
   middleware: 'middleware-user-auth',
   name: 'profile',
   async fetch() {

@@ -1,8 +1,7 @@
-<template>
-    
-</template>
+<template></template>
 <script>
 export default {
-   middleware: 'middleware-user-auth',
+  layout: 'user',
+  middleware: 'middleware-user-auth',
 }
 </script>

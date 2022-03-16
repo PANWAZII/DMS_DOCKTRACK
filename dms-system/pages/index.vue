@@ -236,7 +236,6 @@
 </template>
 <script>
 export default {
-  layout: 'firstpage',
   middleware: 'login',
   //  async fetch() {
   //   const user_uid = await this.$cookies.get('uid_token')

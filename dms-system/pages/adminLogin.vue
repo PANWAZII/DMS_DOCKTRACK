@@ -14,7 +14,7 @@
               </v-img>
               <v-row class="text-center">
                 <v-col class="mb-4">
-                  <p class="topices">สำหรับผู้ใช้งานทั่วไป</p>
+                  <p class="topices">สำหรับผู้ดูแลระบบ</p>
                 </v-col>
               </v-row>
               <v-card-text>

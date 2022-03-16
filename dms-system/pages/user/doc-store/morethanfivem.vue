@@ -450,7 +450,7 @@ import axios from 'axios'
 export default {
   //   },
   name: 'lessthanfivem',
-  layout: 'userDefault',
+  layout: 'user',
   middleware: 'middleware-user-auth',
   name: 'Lessthanfivem',
 

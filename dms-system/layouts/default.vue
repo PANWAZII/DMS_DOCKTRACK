@@ -1,134 +1,14 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img :src="require('../assets/logo.png')"></v-img>
-          </v-list-item-avatar>
-          <h5>ระบบจัดหา<br />คอมพิวเตอร์ภาครัฐ</h5>
-        </v-list-item>
-      </v-list>
-      <v-divider></v-divider>
-      <v-list nav>
-        <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.home.to">
-            <v-list-item-icon>
-              <v-icon>{{ this.menu.home.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="this.menu.home.title"
-              ></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-        <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.profile.to">
-            <v-list-item-icon>
-              <v-icon>{{ this.menu.profile.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="this.menu.profile.title"
-              ></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-        <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
-          <template v-slot:activator>
-            <v-list-item-title to="/document">แบบคำขอฯ</v-list-item-title>
-          </template>
-          <v-list-item :to="this.menu.all_doc.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.all_doc.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.waiting.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.waiting.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.dms.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title v-text="this.menu.dms.title"></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.moph.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.moph.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.approved.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.approved.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.rejected.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.rejected.title"
-            ></v-list-item-title>
-          </v-list-item>
-        </v-list-group>
-        <!-- <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.document.to">
-            <v-list-item-icon>
-              <v-icon>{{ this.menu.document.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="this.menu.document.title"
-              ></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group> -->
-
-        <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.support.to">
-            <v-list-item-icon>
-              <v-icon>{{ this.menu.support.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="this.menu.support.title"
-              ></v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-img
+        :src="require('../assets/logo.png')"
+        max-height="50px"
+        max-width="50px"
+      ></v-img>
 
-      <v-toolbar-title v-text="currentRouteName" />
+      <h5 class="ml-5">ระบบจัดหาคอมพิวเตอร์ภาครัฐ</h5>
+
       <v-spacer />
       <!-- <v-btn>
         <v-icon>mdi-account-circle</v-icon>
@@ -136,34 +16,27 @@
 
       <v-menu bottom offset-y>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn depressed class="ma-2" v-bind="attrs" v-on="on"
+          <v-btn
+            to="/adminLogin"
+            color="secondary"
+            depressed
+            class="ma-2"
+            v-bind="attrs"
+            v-on="on"
+            ><v-icon>mdi-shield-account</v-icon>
+            <h5 class="ml-2">สำหรับผู้ดูแลระบบ</h5></v-btn
+          >
+          <v-btn
+            to="/login"
+            color="info"
+            depressed
+            class="ma-2"
+            v-bind="attrs"
+            v-on="on"
             ><v-icon>mdi-account-circle</v-icon>
-            <h5 class="ml-2">{{ userInfo.first_name }}</h5></v-btn
+            <h5 class="ml-2">เข้าสู่ระบบ</h5></v-btn
           >
         </template>
-        <v-list class="text-center font-weight-bold">
-          <!-- <v-divider></v-divider> -->
-          <!-- <v-list-item class="ma-0" height="200" width="100" to="/profile">
-            <v-list-item-title><h5>Profile</h5></v-list-item-title>
-          </v-list-item>
-          <v-divider></v-divider>
-          <v-list-item class="ma-0" height="200" width="100" to="/document">
-            <v-list-item-title><h5>dsdffdff</h5></v-list-item-title>
-          </v-list-item>
-          <v-divider></v-divider>
-          <v-list-item class="ma-0" height="200" width="100" to="/document">
-            <v-list-item-title><h5>Pfsdffile</h5></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-divider></v-divider> -->
-          <v-list-item @click="logout"
-            ><v-icon medium>{{ this.menu.logout.icon }}</v-icon>
-            <h5 class="ml-1">{{ this.menu.logout.title }}</h5></v-list-item
-          >
-          <!-- <v-btn color="red" @click="logout" class="mt-2 p-0 font-weight-bold">
-            <v-icon>{{ this.menu.logout.icon }}</v-icon
-            >Logout</v-btn
-          > -->
-        </v-list>
       </v-menu>
     </v-app-bar>
     <v-main>
@@ -272,7 +145,7 @@ export default {
         },
       },
       clipped: false,
-      drawer: false,
+
       fixed: false,
       miniVariant: false,
       right: true,

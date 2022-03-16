@@ -27,7 +27,7 @@
 <script>
 export default {
   middleware: 'middleware-user-auth',
-  layout: 'userDefault',
+  layout: 'user',
   //  async fetch() {
   //   const user_uid = await this.$cookies.get('uid_token')
   //   // const user_uid ="LCrJh2BQO7hcwzbd8CcAUcWRRPu1"
