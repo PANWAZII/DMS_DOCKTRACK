@@ -48,6 +48,7 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
     created_date: date,
     modified_date: date,
     approval_status: "new",
+    approval_status_th: "รอรับเข้าระบบ",
     available_status: 1,
   };
 
