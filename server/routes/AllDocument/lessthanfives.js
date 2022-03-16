@@ -47,7 +47,7 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   const more = {
     created_date: date,
     modified_date: date,
-    approval_status: "waiting",
+    approval_status: "new",
     available_status: 1,
   };
 
