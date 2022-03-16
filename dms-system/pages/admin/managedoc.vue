@@ -15,20 +15,23 @@
             ></v-text-field>
           </v-card-title>
 
-          <v-data-table
-            :headers="headers"
-            :items="doc_info"
-            :search="search"
-            show-expand
-          >
-            <template #expanded-item="headers">
-              <td :colspan="headers.lenght">
-                <v-btn dark color="info">สำหรับแสดงไฟล์ 1</v-btn>
-              </td>
-              <td :colspan="headers.lenght">
-                <v-btn dark color="info">สำหรับแสดงไฟล์ 2</v-btn>
-              </td>
-              <td><v-btn dark color="success">รับเข้าระบบ</v-btn></td>
+          <v-data-table :headers="headers" :items="doc_info" :search="search">
+            <template v-slot:item="row">
+              <tr>
+                <td>{{ row.item.order }}</td>
+                <td>{{ row.item.title }}</td>
+                <td>{{ row.item.dept }}</td>
+                <td>{{ row.item.created_date }}</td>
+                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
+                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
+                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
+                <td>
+                  <v-btn color="primary" dark>
+                    รับเข้าระบบ
+                    <!-- <v-icon dark right> mdi-checkbox-marked-circle </v-icon> -->
+                  </v-btn>
+                </td>
+              </tr>
             </template>
           </v-data-table>
         </v-card>
@@ -53,19 +56,25 @@ export default {
         { text: 'โครงการ', value: 'title' },
         { text: 'หน่วยงาน', value: 'dept' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
-        { text: 'สถานะ', value: 'approve_status' },
+        { text: 'แบบรายงานฯ', value: 'report_file' },
+        { text: 'ใบเสนอราคา', value: 'price' },
+        { text: 'ผังเครือข่าย', value: 'diagram' },
+        { text: 'การทำงาน', value: '' },
       ],
       doc_info: [
         {
           order: '1',
-          title: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
+          title: 'โครงการระบบลงนาม',
           dept: 'สำนักดิจิทัลการแพทย์',
           created_date: '2 / 3 / 2565',
           approve_status: 'รอที่ประชุมพิจารณา',
+          report_file: 'แบบรายงาน',
+          price: 'ใบเสนอราคา',
+          diagram: 'ผังเครือข่าย',
         },
         {
           order: '2',
-          title: 'โครงการระบบสแกนลายนิ้วมือเพื่อความปลอดภัย',
+          title: 'โครงการสแกนลายนิ้วมือ',
           dept: 'สำนักงานเลขานุการกรม',
           created_date: '5 / 3 / 2565',
           approve_status: 'กรมการแพทย์ลงนาม',

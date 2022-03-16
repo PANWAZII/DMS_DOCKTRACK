@@ -41,75 +41,30 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
-          <template v-slot:activator>
-            <v-list-item-title to="/document">แบบคำขอฯ</v-list-item-title>
-          </template>
-          <v-list-item :to="this.menu.new_doc.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.new_doc.title"
-            ></v-list-item-title>
-          </v-list-item>
+        <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.manage_doc.to">
             <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.manage_doc.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <!-- <v-list-item :to="this.menu.dms.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title v-text="this.menu.dms.title"></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.moph.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.moph.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.approved.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.approved.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.rejected.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.rejected.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-        </v-list-group>
-        <!-- <v-list-item-group color="primary" class="mb-1">
-          <v-list-item :to="this.menu.document.to">
-            <v-list-item-icon>
-              <v-icon>{{ this.menu.document.icon }}</v-icon>
+              <v-icon>{{ this.menu.manage_doc.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
               <v-list-item-title
-                v-text="this.menu.document.title"
+                v-text="this.menu.manage_doc.title"
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </v-list-item-group> -->
+        </v-list-item-group>
+        <v-list-item-group color="primary" class="mb-1">
+          <v-list-item :to="this.menu.manage_user.to">
+            <v-list-item-icon>
+              <v-icon>{{ this.menu.manage_user.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title
+                v-text="this.menu.manage_user.title"
+              ></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
 
         <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.register.to">
@@ -230,15 +185,15 @@ export default {
           title: 'แบบรายงานการจัดซื้อ',
           to: '/document',
         },
-        new_doc: {
-          icon: 'mdi-file-document-multiple',
-          title: 'แบบคำขอ ฯ ใหม่',
-          to: 'admin/newdoc',
-        },
         manage_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'จัดการแบบคำขอ ฯ',
-          to: '/',
+          title: 'จัดการแบบคำขอ',
+          to: '/admin/managedoc',
+        },
+        manage_user: {
+          icon: 'mdi-account-search-outline',
+          title: 'รายชื่อผู้ใช้งาน',
+          to: '/admin/manageUser',
         },
 
         register: {
@@ -325,16 +280,10 @@ export default {
         return 'Register'
       } else if (this.$route.path === '/admin/profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.path === '/admin/newdoc') {
-        return 'แบบคำขอ ฯ ที่ยังไม่ได้รับเข้าดำเนินการ'
-        // } else if (this.$route.path === '/admin/doc-list/dmsList') {
-        //   return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
-        // } else if (this.$route.path === '/admin/doc-list/mophList') {
-        //   return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
-        // } else if (this.$route.path === '/admin/doc-list/approvedList') {
-        //   return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
-        // } else if (this.$route.path === '/admin/doc-list/rejectedList') {
-        //   return 'แบบคำขอฯ มีข้อแก้ไข'
+      } else if (this.$route.path === '/admin/managedoc') {
+        return 'จัดการแบบคำขอ'
+      } else if (this.$route.path === '/admin/manageUser') {
+        return 'จัดการผู้ใช้งาน'
       }
     },
   },
