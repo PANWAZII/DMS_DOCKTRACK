@@ -15,6 +15,12 @@ export const actions = {
       .post('/auth/getLevel',data)
       .then((res) => res.data)
   },
+  //Public API
+  async getPublicDoc({ getters }, data) {
+    return await axios
+      .get('/public/getAllDocuments')
+      .then((res) => res.data)
+  },
   //Register
   async getAllDepartments({ getters }, data) {
     return await axios
