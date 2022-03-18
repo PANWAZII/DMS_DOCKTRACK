@@ -17,7 +17,6 @@ router.get("/getAllDocuments", async (req, res) => {
     const Data = allDocuments.map((item) => {
       const container = {};
       container["name"] = item.project_name;
-      container["department"] = item.department_name;
       container["date"] = item.created_date;
       container["status"] = item.approval_status_th;
       return container;
