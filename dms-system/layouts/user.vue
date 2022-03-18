@@ -12,7 +12,7 @@
           <v-list-item-avatar>
             <v-img :src="require('../assets/logo.png')"></v-img>
           </v-list-item-avatar>
-          <h5>ระบบจัดหา<br />คอมพิวเตอร์ภาครัฐ</h5>
+          <h5>ระบบบริหารการจัดหา<br />ระบบคอมพิวเตอร์</h5>
         </v-list-item>
       </v-list>
       <v-divider></v-divider>
