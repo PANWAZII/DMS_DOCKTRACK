@@ -9,6 +9,10 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  project_type:{
+    type: String,
+    required: false,
+  },
   department_name: {
     type: String,
     required: false,

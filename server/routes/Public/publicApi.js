@@ -27,4 +27,40 @@ router.get("/getAllDocuments", async (req, res) => {
   }
 });
 
+router.get("/getHardware", async (req, res) => {
+  try {
+    const hardware = await lessthanfivems.find({ project_type: "hardware" });
+    res.status(200).json({ count: hardware.length });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getSoftware", async (req, res) => {
+  try {
+    const software = await lessthanfivems.find({ project_type: "software" });
+    res.status(200).json({ count: software.length });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getNetwork", async (req, res) => {
+  try {
+    const network = await lessthanfivems.find({ project_type: "network" });
+    res.status(200).json({ count: network.length });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getCam", async (req, res) => {
+  try {
+    const cam = await lessthanfivems.find({ project_type: "cam" });
+    res.status(200).json({ count: cam.length });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;
