@@ -43,7 +43,9 @@
         </v-list-item-group>
         <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
           <template v-slot:activator>
-            <v-list-item-title to="/user/document">แบบคำขอฯ</v-list-item-title>
+            <v-list-item-title to="/user/document"
+              >แบบรายงานฯ</v-list-item-title
+            >
           </template>
           <v-list-item :to="this.menu.all_doc.to">
             <v-list-item-icon>
@@ -232,7 +234,7 @@ export default {
         // },
         all_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'อัปโหลดคำขอฯ',
+          title: 'ส่งแบบรายงานฯ',
           to: '/user/document',
         },
 
@@ -242,7 +244,7 @@ export default {
           to: '/support',
         },
         tracking: {
-          title: 'ติดตามสถานะคำขอฯ',
+          title: 'ติดตามแบบรายงานฯ',
           to: '../pages/doc-list/waitingList',
         },
         // dms: {

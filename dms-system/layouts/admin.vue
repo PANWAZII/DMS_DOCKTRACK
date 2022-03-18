@@ -41,7 +41,30 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
-        <v-list-item-group color="primary" class="mb-1">
+        <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
+          <template v-slot:activator>
+            <v-list-item-title to="/user/document">การจัดการ</v-list-item-title>
+          </template>
+          <v-list-item :to="this.menu.check_doc.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.check_doc.title"
+            ></v-list-item-title>
+          </v-list-item>
+          <v-list-item :to="this.menu.manage_doc.to">
+            <v-list-item-icon>
+              <v-icon></v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-title
+              v-text="this.menu.manage_doc.title"
+            ></v-list-item-title>
+          </v-list-item>
+        </v-list-group>
+        <!-- <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.manage_doc.to">
             <v-list-item-icon>
               <v-icon>{{ this.menu.manage_doc.icon }}</v-icon>
@@ -52,7 +75,7 @@
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </v-list-item-group>
+        </v-list-item-group> -->
         <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.manage_user.to">
             <v-list-item-icon>
@@ -185,9 +208,14 @@ export default {
           title: 'แบบรายงานการจัดซื้อ',
           to: '/document',
         },
+        check_doc: {
+          icon: 'mdi-file-document-multiple',
+          title: 'ตรวจสอบรายงาน',
+          to: '/admin/managedoc',
+        },
         manage_doc: {
           icon: 'mdi-file-document-multiple',
-          title: 'จัดการแบบคำขอ',
+          title: 'จัดการแบบรายงาน',
           to: '/admin/managedoc',
         },
         manage_user: {
