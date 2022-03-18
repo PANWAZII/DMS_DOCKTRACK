@@ -22,9 +22,7 @@
                 <td>{{ row.item.title }}</td>
                 <td>{{ row.item.dept }}</td>
                 <td>{{ row.item.created_date }}</td>
-                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
-                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
-                <td><v-btn text color="primary" dark> ชื่อไฟล์ </v-btn></td>
+
                 <td>
                   <v-btn color="primary" dark>
                     รับเข้าระบบ
@@ -56,9 +54,7 @@ export default {
         { text: 'โครงการ', value: 'title' },
         { text: 'หน่วยงาน', value: 'dept' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
-        { text: 'แบบรายงานฯ', value: 'report_file' },
-        { text: 'ใบเสนอราคา', value: 'price' },
-        { text: 'ผังเครือข่าย', value: 'diagram' },
+
         { text: 'การทำงาน', value: '' },
       ],
       doc_info: [
@@ -68,9 +64,6 @@ export default {
           dept: 'สำนักดิจิทัลการแพทย์',
           created_date: '2 / 3 / 2565',
           approve_status: 'รอที่ประชุมพิจารณา',
-          report_file: 'แบบรายงาน',
-          price: 'ใบเสนอราคา',
-          diagram: 'ผังเครือข่าย',
         },
         {
           order: '2',

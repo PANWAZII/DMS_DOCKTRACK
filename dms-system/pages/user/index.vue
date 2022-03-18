@@ -119,34 +119,39 @@ export default {
           sortable: false,
           value: 'order',
         },
-        { text: 'คำร้อง', value: 'title' },
-        { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
+        { text: 'โครงการ', value: 'title' },
+
         { text: 'สถานะ', value: 'approve_status' },
+        { text: 'วันที่ปรับปรุงล่าสุด', value: 'modified_date' },
       ],
       doc_info: [
         {
           order: '1',
           title: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
-          created_date: '2 / 3 / 2565',
+
           approve_status: 'รอที่ประชุมพิจารณา',
+          modified_date: '2 / 3 / 2565',
         },
         {
           order: '2',
           title: 'โครงการระบบสแกนลายนิ้วมือเพื่อความปลอดภัย',
-          created_date: '5 / 3 / 2565',
+
           approve_status: 'กรมการแพทย์ลงนาม',
+          modified_date: '5 / 3 / 2565',
         },
         {
           order: '3',
           title: 'โครงการ TeleMedicine',
-          created_date: '7 / 3 / 2565',
+
           approve_status: 'รอที่ประชุมพิจารณา',
+          modified_date: '7 / 3 / 2565',
         },
         {
           order: '4',
           title: 'โครงการ TeleMedicine',
-          created_date: '11 / 3 / 2565',
+
           approve_status: 'ส่งคืนแล้ว',
+          modified_date: '11 / 3 / 2565',
         },
       ],
     }

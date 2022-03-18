@@ -4,7 +4,7 @@
       <v-col cols="12">
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
-            แบบรายงานการจัดหา ฯ ยังไม่ได้รับเข้าระบบ
+            รายการผู้ใช้งาน
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
