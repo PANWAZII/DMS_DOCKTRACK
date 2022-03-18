@@ -289,10 +289,38 @@
 
           <v-data-table
             :headers="headers"
+            :items="doc_info"
             sort-by="created_date"
             :search="search"
             :items-per-page="5"
           ></v-data-table>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-card elevation="2">
+          <v-card-title class="font-weight-bold">
+            ดาวน์โหลดแบบรายงานฯ และเอกสารที่เกี่ยวข้อง
+          </v-card-title>
+          <v-card-text>
+            <v-list>
+              <v-list-item-text>
+                <v-btn text
+                  >แบบรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐที่มีมูลค่าไม่เกิน 5
+                  ล้านบาท
+                </v-btn>
+              </v-list-item-text>
+            </v-list>
+            <v-list>
+              <v-list-item-text>
+                <v-btn text
+                  >แบบรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐที่มีมูลค่าไม่เกิน 5
+                  ล้านบาท
+                </v-btn>
+              </v-list-item-text>
+            </v-list>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -392,9 +420,26 @@ export default {
           align: 'start',
           sortable: false,
         },
-        { text: 'หน่วยงาน', value: 'department_name' },
+
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
         { text: 'สถานะ', value: 'approval_status' },
+      ],
+      doc_info: [
+        {
+          project_name: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
+          created_date: '18 / 3 / 2565',
+          approval_status: 'รอที่ประชุมพิจารณา',
+        },
+        {
+          project_name: 'TeleMedicine',
+          created_date: '15 / 3 / 2565',
+          approval_status: 'รอที่ประชุมพิจารณา',
+        },
+        {
+          project_name: '5G Ambulance',
+          created_date: '12 / 3 / 2565',
+          approval_status: 'รอที่ประชุมพิจารณา',
+        },
       ],
     }
   },
