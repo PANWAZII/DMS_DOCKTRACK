@@ -1,6 +1,119 @@
 <template>
   <v-container fluid>
     <v-row align="center" justify="center" dense>
+      <v-col cols="12" sm="4" md="3">
+        <v-card class="mx-auto" width="400" height="470">
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title class="text-h5">
+                สรุปโครงการ
+              </v-list-item-title>
+              <v-list-item-subtitle>ประจำปีงบประมาณ 2565</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-avatar tile size="90" color="info"
+              ><v-icon color="#ffff" size="50"
+                >mdi-file-document-multiple</v-icon
+              ></v-list-item-avatar
+            >
+          </v-list-item>
+          <v-card-text>
+            <v-row align="center">
+              <v-col class="text-h3" cols="6">50</v-col>
+              <v-col class="text-h6 text-right" cols="6">โครงการ</v-col>
+            </v-row>
+          </v-card-text>
+          <v-list>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-desktop-classic</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Hardware</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >15&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-application-parentheses</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Software</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >20&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-access-point-network</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>ระบบเครือข่าย</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >10&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-webcam</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>กล้องวงจรปิด</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >5&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+              >
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="4" md="3">
+        <v-card class="mx-auto" width="400" height="470">
+          <v-list-item two-line>
+            <v-list-item-content>
+              <v-list-item-title class="text-h5">
+                สรุปงบประมาณ
+              </v-list-item-title>
+              <v-list-item-subtitle>ประจำปีงบประมาณ 2565</v-list-item-subtitle>
+            </v-list-item-content>
+            <v-list-item-avatar tile size="90" color="success"
+              ><v-icon color="#ffff" size="50"
+                >mdi-cash-multiple</v-icon
+              ></v-list-item-avatar
+            >
+          </v-list-item>
+          <v-card-text>
+            <v-row align="center">
+              <v-col class="text-h5" cols="6"> 1,300,000 </v-col>
+              <v-col class="text-h6 text-right" cols="6">บาท</v-col>
+            </v-row>
+          </v-card-text>
+          <v-list>
+            <v-list-item>
+              <v-list-item-title>เงินงบประมาณ</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >900,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>เงินบำรุง</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >100,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>เงินบริจาค</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >170,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>เงินมูลนิธิ</v-list-item-title>
+              <v-list-item-subtitle class="text-right"
+                >130,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+              >
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+    </v-row>
+    <br />
+    <!-- <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card
           class="mx-auto"
@@ -26,13 +139,6 @@
               ></v-list-item-avatar
             >
           </v-list-item>
-
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.waiting">
-              ดูทั้งหมด
-            </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
@@ -58,10 +164,6 @@
               ><v-icon color="#ffff" size="50">mdi-check-underline</v-icon>
             </v-list-item-avatar>
           </v-list-item>
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.dms"> ดูทั้งหมด </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
@@ -87,14 +189,10 @@
               ><v-icon color="#ffff" size="50">mdi-clock-edit-outline</v-icon>
             </v-list-item-avatar>
           </v-list-item>
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.moph"> ดูทั้งหมด </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
-    </v-row>
-    <v-row align="center" justify="center" dense>
+    </v-row> -->
+    <!-- <v-row align="center" justify="center" dense>
       <v-col cols="12" sm="4">
         <v-card
           class="mx-auto"
@@ -118,10 +216,6 @@
               ><v-icon color="#ffff" size="50">mdi-account-edit</v-icon>
             </v-list-item-avatar>
           </v-list-item>
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.dms"> ดูทั้งหมด </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
@@ -147,10 +241,6 @@
               ><v-icon color="#ffff" size="50">mdi-draw-pen</v-icon>
             </v-list-item-avatar>
           </v-list-item>
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.moph"> ดูทั้งหมด </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
@@ -178,15 +268,9 @@
               ></v-list-item-avatar
             >
           </v-list-item>
-          <!-- <v-divider class="mx-4"></v-divider>
-          <v-card-actions class="justify-center">
-            <v-btn text small :to="this.dashBoardRoute.rejected">
-              ดูทั้งหมด
-            </v-btn>
-          </v-card-actions> -->
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
 
     <v-row>
       <v-col cols="12">
@@ -202,24 +286,7 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <!-- <v-simple-table fixed-header elevation="2">
-            <template v-slot: default>
-              <thead>
-                <tr>
-                  <th>ชื่อโครงการ</th>
-                  <th>วันที่ยื่นคำร้อง</th>
-                  <th>สถานะ</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="allDoc in allDocs" v-bind:key="allDoc.project_name">
-                  <td>{{ allDoc.project_name }}</td>
-                  <td>{{ allDoc.created_date }}</td>
-                  <td>{{ allDoc.approval_status }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table> -->
+
           <v-data-table
             :headers="headers"
             sort-by="created_date"
@@ -229,9 +296,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col cols="12"> </v-col>
-    </v-row> -->
   </v-container>
 </template>
 <script>
