@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row align="center" justify="center" dense>
-      <v-col cols="12" sm="4" md="3">
-        <v-card class="mx-auto" width="400" height="470">
+      <v-col cols="12" sm="4" md="6">
+        <v-card class="mx-auto" max-width="700" height="470">
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5">
@@ -62,8 +62,8 @@
           </v-list>
         </v-card>
       </v-col>
-      <v-col cols="12" sm="4" md="3">
-        <v-card class="mx-auto" width="400" height="470">
+      <v-col cols="12" sm="4" md="6">
+        <v-card class="mx-auto" max-width="700" height="470">
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5">
