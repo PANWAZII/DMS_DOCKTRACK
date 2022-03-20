@@ -18,7 +18,7 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h3" cols="6">50</v-col>
+              <v-col class="text-h3" cols="6">{{allProject}}</v-col>
               <v-col class="text-h6 text-right" cols="6">โครงการ</v-col>
             </v-row>
           </v-card-text>
@@ -341,11 +341,13 @@ export default {
     let software = []
     let network = []
     let cam = []
+    let allProject = ""
     try {
       hardware = await store.dispatch('api/getPublicHardware')
       software = await store.dispatch('api/getPublicSoftware')
       network = await store.dispatch('api/getPublicNetwork')
       cam = await store.dispatch('api/getPublicCam')
+      allProject = hardware.count + software.count + network.count + cam.count
     } catch (err) {
       console.log(err)
     }
@@ -354,6 +356,7 @@ export default {
       software,
       network,
       cam,
+      allProject
     }
   },
   data() {
@@ -362,6 +365,7 @@ export default {
       software: [],
       network: [],
       cam: [],
+      allProject: "",
       allDoc: [],
       dashBoardRoute: {
         waiting: 'doc-list/waitingList',
