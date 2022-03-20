@@ -63,7 +63,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'DefaultLayout',
+  // name: 'DefaultLayout',
   // async asyncData({ store }) {
   //   let userInfo = []
   //   try {
@@ -78,12 +78,12 @@ export default {
   //   }
   //   return { userInfo }
   // },
-  async fetch() {
-    const user_uid = await this.$cookies.get('uid_token')
-    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
-      params: { uid: user_uid },
-    })
-  },
+  // async fetch() {
+  //   const user_uid = await this.$cookies.get('uid_token')
+  //   this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+  //     params: { uid: user_uid },
+  //   })
+  // },
   data() {
     return {
       userInfo: [],
@@ -153,41 +153,41 @@ export default {
       title: 'Vuetify.js',
     }
   },
-  methods: {
-    logout() {
-      this.$fire.auth
-        .signOut()
-        // .signInWithEmailAndPassword(this.form.email, this.form.pass)
-        .then((user) => {
-          return this.$store.dispatch('logout')
-        })
-        .then(() => {
-          this.$router.push('/login')
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
-    async getUserInfo() {
-      try {
-        // const user_uid = await this.$cookies.get('uid_token')
-        const user_uid = this.$store.getters.uid
-        console.log('this is user uid from cookie', user_uid)
-        const response = await axios.get('/users/userInfo', {
-          data: { uid: user_uid },
-          // uid: "ttPQcL9dCTUPcealHLZtqGHNAuW2"
-        })
-        const userDetail = await response.data
-        // if (userDetail == undefined) {
-        //   window.location.reload(true)
-        // }
-        console.log('this is res', response.data)
-        return userDetail
-      } catch (err) {
-        console.log(err)
-      }
-    },
-  },
+  // methods: {
+  //   logout() {
+  //     this.$fire.auth
+  //       .signOut()
+  //       // .signInWithEmailAndPassword(this.form.email, this.form.pass)
+  //       .then((user) => {
+  //         return this.$store.dispatch('logout')
+  //       })
+  //       .then(() => {
+  //         this.$router.push('/login')
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   },
+  //   async getUserInfo() {
+  //     try {
+  //       // const user_uid = await this.$cookies.get('uid_token')
+  //       const user_uid = this.$store.getters.uid
+  //       console.log('this is user uid from cookie', user_uid)
+  //       const response = await axios.get('/users/userInfo', {
+  //         data: { uid: user_uid },
+  //         // uid: "ttPQcL9dCTUPcealHLZtqGHNAuW2"
+  //       })
+  //       const userDetail = await response.data
+  //       // if (userDetail == undefined) {
+  //       //   window.location.reload(true)
+  //       // }
+  //       console.log('this is res', response.data)
+  //       return userDetail
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   },
+  // },
   computed: {
     currentRouteName() {
       if (this.$route.path === '/') {
