@@ -29,7 +29,8 @@
               </v-list-item-icon>
               <v-list-item-title>Hardware</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >15&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+                >{{ hardware.count }}&nbsp; &nbsp; &nbsp;
+                &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -38,7 +39,8 @@
               </v-list-item-icon>
               <v-list-item-title>Software</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >20&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+                >{{ software.count }}&nbsp; &nbsp; &nbsp;
+                &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -47,7 +49,8 @@
               </v-list-item-icon>
               <v-list-item-title>ระบบเครือข่าย</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >10&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+                >{{ network.count }}&nbsp; &nbsp; &nbsp;
+                &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -56,7 +59,8 @@
               </v-list-item-icon>
               <v-list-item-title>กล้องวงจรปิด</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >5&nbsp; &nbsp; &nbsp; &nbsp;โครงการ</v-list-item-subtitle
+                >{{ cam.count }}&nbsp; &nbsp; &nbsp;
+                &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
           </v-list>
@@ -330,80 +334,34 @@
 export default {
   middleware: 'login',
   //  async fetch() {
-  //   const user_uid = await this.$cookies.get('uid_token')
-  //   // const user_uid ="LCrJh2BQO7hcwzbd8CcAUcWRRPu1"
-  //   this.approvedDoc = await this.$store.dispatch('api/getApprovedDoc',{uid:user_uid})
+  //   this.hardware = await this.$store.dispatch('api/getPublicHardware')
   // },
-  // async asyncData({ store }) {
-  //   let waitingDoc = []
-  //   let waitingDocCount = ''
-  //   let dmsDoc = []
-  //   let dmsDocCount = ''
-  //   let mophDoc = []
-  //   let mophDocCount = ''
-  //   let approvedDoc = []
-  //   let approvedDocCount = ''
-  //   let rejectedDoc = []
-  //   let rejectedDocCount = ''
-  //   let allDocs = []
-  //   let allDocCount = ''
-  //   try {
-  //     // const user_uid = await $cookies.get('uid_token')
-  //     const user_uid = store.getters.uid
-  //     waitingDoc = await store.dispatch('api/getWaitingDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     dmsDoc = await store.dispatch('api/getDmsDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     mophDoc = await store.dispatch('api/getMophDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     approvedDoc = await store.dispatch('api/getApprovedDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     rejectedDoc = await store.dispatch('api/getRejectedDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     allDocs = await store.dispatch('api/getAllDocByUid', {
-  //       params: { uid: user_uid },
-  //     })
-  //     waitingDocCount = waitingDoc.length
-  //     dmsDocCount = dmsDoc.length
-  //     mophDocCount = mophDoc.length
-  //     approvedDocCount = approvedDoc.length
-  //     rejectedDocCount = rejectedDoc.length
-  //     allDocCount = allDocs.length
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  //   return {
-  //     waitingDoc,
-  //     waitingDocCount,
-  //     dmsDoc,
-  //     dmsDocCount,
-  //     mophDoc,
-  //     mophDocCount,
-  //     approvedDoc,
-  //     approvedDocCount,
-  //     rejectedDoc,
-  //     rejectedDocCount,
-  //     allDocs,
-  //     allDocCount,
-  //   }
-  // },
+  async asyncData({ store }) {
+    let hardware = []
+    let software = []
+    let network = []
+    let cam = []
+    try {
+      hardware = await store.dispatch('api/getPublicHardware')
+      software = await store.dispatch('api/getPublicSoftware')
+      network = await store.dispatch('api/getPublicNetwork')
+      cam = await store.dispatch('api/getPublicCam')
+    } catch (err) {
+      console.log(err)
+    }
+    return {
+      hardware,
+      software,
+      network,
+      cam,
+    }
+  },
   data() {
     return {
-      waitingDoc: [],
-      waitingDocCount: '',
-      dmsDoc: [],
-      dmsDocCount: '',
-      mophDoc: [],
-      mophDocCount: '',
-      approvedDoc: [],
-      approvedDocCount: '',
-      rejectedDoc: [],
-      rejectedDocCount: '',
+      hardware: [],
+      software: [],
+      network: [],
+      cam: [],
       allDoc: [],
       dashBoardRoute: {
         waiting: 'doc-list/waitingList',
