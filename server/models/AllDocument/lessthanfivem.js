@@ -85,7 +85,7 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  resource: {
+  budget_resource: {
     type: String,
     required: false,
   },
