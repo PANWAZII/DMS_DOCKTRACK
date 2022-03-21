@@ -54,9 +54,9 @@ router.get("/getNetwork", async (req, res) => {
   }
 });
 
-router.get("/getCam", async (req, res) => {
+router.get("/getCamera", async (req, res) => {
   try {
-    const cam = await lessthanfivems.find({ project_type: "cam" });
+    const cam = await lessthanfivems.find({ project_type: "camera" });
     res.status(200).json({ count: cam.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
