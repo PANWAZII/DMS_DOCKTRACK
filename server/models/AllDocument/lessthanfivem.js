@@ -9,7 +9,11 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  project_type:{
+  project_type: {
+    type: String,
+    required: false,
+  },
+  budget_year: {
     type: String,
     required: false,
   },
