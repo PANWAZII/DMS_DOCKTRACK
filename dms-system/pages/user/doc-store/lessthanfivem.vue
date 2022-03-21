@@ -31,6 +31,13 @@
               required
             ></v-text-field>
             <br />
+            <p class="topices">ประเภทโครงการ</p>
+            <v-radio-group v-model="form.project_type" row required>
+              <v-radio label="Hardware" value="Hardware"></v-radio>
+              <v-radio label="Software" value="Software"></v-radio>
+              <v-radio label="ระบบเครือข่าย" value="Network"></v-radio>
+              <v-radio label="ระบบกล้องวงจรปิด" value="Cam"></v-radio>
+            </v-radio-group>
             <!-- <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p> -->
             <!-- <p class="subtop">2.1 ชื่อส่วนราชการ</p> -->
             <!-- <v-text-field
@@ -145,13 +152,13 @@
                 </v-text-field>
               </v-col>
             </v-row> -->
-            <!-- <br /> -->
+            <br />
             <p class="topices">งบประมาณ</p>
             <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="int_baht"
+                  v-model="form.int_baht"
                   dense
                   label="จำนวนเงิน (บาท)"
                   required
@@ -184,7 +191,7 @@
                 </v-select>
               </v-col>
             </v-row>
-            <!-- <br /> -->
+            <br />
             <!-- <p class="topices">4. รายละเอียดของอุปกรณ์</p> -->
 
             <!-- <p class="subtop">
@@ -237,8 +244,8 @@
                 </div>
               </v-col>
             </v-row> -->
-            <br />
-            <p class="topices">วิธีการจัดหา</p>
+            <!-- <br /> -->
+            <!-- <p class="topices">วิธีการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group
@@ -252,8 +259,8 @@
                   <v-radio label="การเช่า" color="red" value="third"></v-radio>
                 </v-radio-group>
               </v-col>
-            </v-row>
-            <br />
+            </v-row> -->
+            <!-- <br /> -->
             <!-- <p class="topices">6. สถานที่ติดตั้งอุปกรณ์</p> -->
             <!-- <v-row>
               <v-col cols="12" md="6">
@@ -370,7 +377,7 @@
               </v-col>
             </v-row> -->
 
-            <p class="topices">ประเภทการจัดหา</p>
+            <!-- <p class="topices">ประเภทการจัดหา</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-radio-group v-model="form.specific_info" row required>
@@ -392,21 +399,25 @@
                 </v-radio-group>
               </v-col>
             </v-row>
-            <br />
-            <p class="topices">กรณีไม่ตรงเกณฑ์ราคากลางฯ โปรดแนบใบเสนอราคา</p>
+            <br /> -->
+            <p class="topices">
+              กรณีไม่ตรงเกณฑ์ราคากลางฯ โปรดแนบใบเสนอราคา 3 ใบ
+            </p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-file-input label="แนบใบเสนอราคา"></v-file-input>
+                <v-file-input label="แนบใบเสนอราคา 1"></v-file-input>
+                <v-file-input label="แนบใบเสนอราคา 2"></v-file-input>
+                <v-file-input label="แนบใบเสนอราคา 3"></v-file-input>
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
             <br />
             <p class="topices">
-              กรณี Software โปรดแนบบัญชีราคากลางและแผนพัฒนา software
+              กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
             </p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-file-input label="บัญชีราคากลาง"></v-file-input>
+                <v-file-input label="แบบบัญชีราคากลาง"></v-file-input>
                 <v-file-input label="แผนพัฒนาซอฟต์แวร์"></v-file-input>
               </v-col>
             </v-row>
@@ -506,6 +517,8 @@ export default {
     valid: true,
     form: {
       project_name: '',
+      project_type: '',
+      int_baht: '',
       // department_name: '',
       // boss_name: '',
       // boss_position: '',
