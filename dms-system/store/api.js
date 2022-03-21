@@ -27,7 +27,7 @@ export const actions = {
     return await axios.get('/public/getNetwork').then((res) => res.data)
   },
   async getPublicCam({ getters }, data) {
-    return await axios.get('/public/getCam').then((res) => res.data)
+    return await axios.get('/public/getCamera').then((res) => res.data)
   },
   //Register
   async getAllDepartments({ getters }, data) {
