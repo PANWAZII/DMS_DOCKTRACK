@@ -33,10 +33,10 @@
             <br />
             <p class="topices">ประเภทโครงการ</p>
             <v-radio-group v-model="form.project_type" row required>
-              <v-radio label="Hardware" value="Hardware"></v-radio>
-              <v-radio label="Software" value="Software"></v-radio>
-              <v-radio label="ระบบเครือข่าย" value="Network"></v-radio>
-              <v-radio label="ระบบกล้องวงจรปิด" value="Cam"></v-radio>
+              <v-radio label="Hardware" value="hardware"></v-radio>
+              <v-radio label="Software" value="software"></v-radio>
+              <v-radio label="ระบบเครือข่าย" value="network"></v-radio>
+              <v-radio label="ระบบกล้องวงจรปิด" value="camera"></v-radio>
             </v-radio-group>
             <!-- <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p> -->
             <!-- <p class="subtop">2.1 ชื่อส่วนราชการ</p> -->
@@ -172,8 +172,8 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="form.int_baht"
-                  :rules="int_bahtRules"
+                  v-model="form.sum"
+                  :rules="sumRules"
                   dense
                   label="จำนวนเงิน (บาท)"
                   required
@@ -195,7 +195,7 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
-                  v-model="form.resource"
+                  v-model="form.budget_resource"
                   :items="budget"
                   item-text="budget_sources"
                   item-value="budget_sources"
@@ -533,8 +533,8 @@ export default {
     form: {
       project_name: '',
       project_type: '',
-      cost_year: '',
-      int_baht: '',
+      budget_year: '',
+
       // department_name: '',
       // boss_name: '',
       // boss_position: '',
@@ -558,13 +558,13 @@ export default {
       // user3_email: '',
 
       baht_text: '',
-      resource: null,
+      budget_resource: null,
       // detail_notstd: '',
       // quantity: 0,
       // unit: null,
       // price_unit: 0,
       sum: '',
-      method: '',
+
       // destination: '',
       // cert: '',
       // list_old: '',
@@ -575,8 +575,7 @@ export default {
       // compare: '',
       // major: '',
       // quantity_major: '',
-      specific_info: '',
-      iunit: ['ระบบ', 'เครื่อง'],
+
       // items: [
       //   'งบประมาณประจำปี 2565',
       //   'เงินรายได้',
@@ -590,12 +589,12 @@ export default {
       (v) => !!v || 'โปรดระบุชื่อโครงการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    cost_yearRules: [
+    budget_yearRules: [
       (v) => !!v || 'โปรดระบุปีงบประมาณ',
       (v) => /\d/.test(v) || 'โปรดระบุเป็นตัวเลขเท่านั้น',
       (v) => v.length <= 4 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
     ],
-    int_bahtRules: [
+    sumRules: [
       (v) => !!v || 'โปรดระบุยอดงบประมาณรวม',
       (v) => /\d/.test(v) || 'โปรดระบุเป็นตัวเลขเท่านั้น',
     ],
@@ -746,6 +745,8 @@ export default {
         await this.$store.dispatch('api/lessThanCreatDoc', {
           uid: user_id,
           project_name: this.form.project_name,
+          project_type: this.form.project_type,
+          budget_year: this.form.budget_year,
           department_name: this.form.department_name,
           boss_name: this.form.boss_name,
           boss_position: this.form.boss_position,
@@ -763,7 +764,7 @@ export default {
           user3_fax: this.form.user3_fax,
           user3_email: this.form.user3_email,
           baht_text: this.form.baht_text,
-          resource: this.form.resource,
+          budget_resource: this.form.budget_resource,
           detail_notstd: this.form.detail_notstd,
           quantity: this.form.quantity,
           unit: this.form.unit,
