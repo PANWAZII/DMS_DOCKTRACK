@@ -153,12 +153,27 @@
               </v-col>
             </v-row> -->
             <br />
+            <p class="topices">ปีงบประมาณ</p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="form.cost_year"
+                  :rules="cost_yearRules"
+                  :counter="4"
+                  label="ปีงบประมาณ (เช่น 2565)"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+
+            <br />
             <p class="topices">งบประมาณ</p>
             <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
                   v-model="form.int_baht"
+                  :rules="int_bahtRules"
                   dense
                   label="จำนวนเงิน (บาท)"
                   required
@@ -518,6 +533,7 @@ export default {
     form: {
       project_name: '',
       project_type: '',
+      cost_year: '',
       int_baht: '',
       // department_name: '',
       // boss_name: '',
@@ -573,6 +589,15 @@ export default {
     projnRules: [
       (v) => !!v || 'โปรดระบุชื่อโครงการ',
       (v) => v.length <= 255 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    ],
+    cost_yearRules: [
+      (v) => !!v || 'โปรดระบุปีงบประมาณ',
+      (v) => /\d/.test(v) || 'โปรดระบุเป็นตัวเลขเท่านั้น',
+      (v) => v.length <= 4 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
+    ],
+    int_bahtRules: [
+      (v) => !!v || 'โปรดระบุยอดงบประมาณรวม',
+      (v) => /\d/.test(v) || 'โปรดระบุเป็นตัวเลขเท่านั้น',
     ],
 
     // deptnRules: [
