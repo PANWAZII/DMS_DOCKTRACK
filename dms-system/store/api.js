@@ -29,6 +29,23 @@ export const actions = {
   async getPublicCam({ getters }, data) {
     return await axios.get('/public/getCamera').then((res) => res.data)
   },
+
+  async getPublicNormalBudget({ getters }, data) {
+    return await axios.get('/public/getNormalBudget').then((res) => res.data)
+  },
+  async getPublicMaintenanceBudget({ getters }, data) {
+    return await axios
+      .get('/public/getMaintenanceBudget')
+      .then((res) => res.data)
+  },
+  async getPublicDonationBudget({ getters }, data) {
+    return await axios.get('/public/getDonationBudget').then((res) => res.data)
+  },
+  async getPublicFoundationBudget({ getters }, data) {
+    return await axios
+      .get('/public/getFoundationBudget')
+      .then((res) => res.data)
+  },
   //Register
   async getAllDepartments({ getters }, data) {
     return await axios
@@ -98,6 +115,11 @@ export const actions = {
   async getAllSources({ getters }, data) {
     return await axios
       .get('/budgetSources/getAllSources')
+      .then((res) => res.data)
+  },
+  async getBudgetYear({ getters }, data) {
+    return await axios
+      .get('/lessthanfives/getBudgetYear')
       .then((res) => res.data)
   },
 }
