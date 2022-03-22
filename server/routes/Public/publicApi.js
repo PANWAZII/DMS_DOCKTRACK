@@ -1,5 +1,7 @@
 import express from "express";
 import lessthanfivems from "../../models/AllDocument/lessthanfivem.js";
+import getGovYear from "../../library/govYear.js";
+
 const router = express.Router();
 // Getting all
 router.get("/getAllDocNum", async (req, res) => {
@@ -64,9 +66,11 @@ router.get("/getCamera", async (req, res) => {
 });
 
 router.get("/getNormalBudget", async (req, res) => {
+  const govYear = getGovYear();
+  console.log(govYear);
   try {
     const normalBudget = await lessthanfivems.find({
-      budget_resource: "normal_budget",
+      $and: [{ budget_year: govYear }, { budget_resource: "normal_budget" }],
     });
     if (!normalBudget[0]) {
       res.status(200).json({ sum: 0 });
@@ -82,9 +86,14 @@ router.get("/getNormalBudget", async (req, res) => {
 });
 
 router.get("/getMaintenanceBudget", async (req, res) => {
+  const govYear = getGovYear();
+  console.log(govYear);
   try {
     const maintenanceBudget = await lessthanfivems.find({
-      budget_resource: "maintenance_budget",
+      $and: [
+        { budget_year: govYear },
+        { budget_resource: "maintenance_budget" },
+      ],
     });
     if (!maintenanceBudget[0]) {
       res.status(200).json({ sum: 0 });
@@ -100,9 +109,11 @@ router.get("/getMaintenanceBudget", async (req, res) => {
 });
 
 router.get("/getDonationBudget", async (req, res) => {
+  const govYear = getGovYear();
+  console.log(govYear);
   try {
     const donationBudget = await lessthanfivems.find({
-      budget_resource: "donation_budget",
+      $and: [{ budget_year: govYear }, { budget_resource: "donation_budget" }],
     });
     if (!donationBudget[0]) {
       res.status(200).json({ sum: 0 });
@@ -118,9 +129,14 @@ router.get("/getDonationBudget", async (req, res) => {
 });
 
 router.get("/getFoundationBudget", async (req, res) => {
+  const govYear = getGovYear();
+  console.log(govYear);
   try {
     const foundationBudget = await lessthanfivems.find({
-      budget_resource: "foundation_budget",
+      $and: [
+        { budget_year: govYear },
+        { budget_resource: "foundation_budget" },
+      ],
     });
     if (!foundationBudget[0]) {
       res.status(200).json({ sum: 0 });
