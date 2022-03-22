@@ -157,8 +157,8 @@
             <v-row>
               <v-col cols="12" md="6">
                 <v-text-field
-                  v-model="form.cost_year"
-                  :rules="cost_yearRules"
+                  v-model="form.budget_year"
+                  :rules="budget_yearRules"
                   :counter="4"
                   label="ปีงบประมาณ (เช่น 2565)"
                   required
@@ -204,6 +204,13 @@
                   required
                 >
                 </v-select>
+              </v-col>
+            </v-row>
+            <br />
+            <p class="topices">แนบไฟล์แบบรายงานการจัดหาฯ</p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="แบบรายงานการจัดหาฯ"></v-file-input>
               </v-col>
             </v-row>
             <br />
