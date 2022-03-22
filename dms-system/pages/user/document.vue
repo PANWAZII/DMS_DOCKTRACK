@@ -9,8 +9,8 @@
           color="primary"
           class="ma-2 pa-4 rounded-pill"
           @click.stop="createform = true"
-          ><v-icon class="mr-1">mdi-plus-circle</v-icon
-          >อัปโหลดแบบคำขอใหม่</v-btn
+          ><v-icon class="mr-1">mdi-plus-circle</v-icon>อัปโหลดแบบรายงานฯ
+          ใหม่</v-btn
         >
       </div>
       <v-dialog v-model="createform" max-width="300" max-height="300">

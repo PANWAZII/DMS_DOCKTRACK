@@ -197,8 +197,8 @@
                 <v-select
                   v-model="form.budget_resource"
                   :items="budget"
-                  item-text="budget_sources"
-                  item-value="budget_sources"
+                  item-text="name"
+                  item-value="value"
                   :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
                   label="โปรดระบุแหล่งเงิน"
                   required
@@ -524,18 +524,24 @@ export default {
   middleware: 'middleware-user-auth',
   layout: 'user',
   name: 'lessthanfivem',
-  async asyncData({ store }) {
-    let budget = []
-    try {
-      budget = await store.dispatch('api/getAllSources')
-    } catch (err) {
-      console.log(err)
-    }
-    return { budget }
-  },
+  // async asyncData({ store }) {
+  //   let budget = []
+  //   try {
+  //     budget = await store.dispatch('api/getAllSources')
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  //   return { budget }
+  // },
   data: () => ({
     warningdialog: false,
-    buget: [],
+    budget: [
+      { name: 'เงินงบประมาณ', value: 'normal_budget' },
+      { name: 'เงินบำรุง', value: 'maintenance_budget' },
+      { name: 'เงินบริจาค', value: 'donation_budget' },
+      { name: 'เงินมูลนิธิ', value: 'foundation' },
+    ],
+
     valid: true,
     form: {
       project_name: '',
