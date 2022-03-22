@@ -5,8 +5,9 @@ import getGovYear from "../../library/govYear.js";
 const router = express.Router();
 // Getting all
 router.get("/getAllDocNum", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const allDocuments = await lessthanfivems.find();
+    const allDocuments = await lessthanfivems.find({ budget_year: govYear });
     res.status(200).json({ count: allDocuments.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -14,8 +15,9 @@ router.get("/getAllDocNum", async (req, res) => {
 });
 
 router.get("/getAllDocuments", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const allDocuments = await lessthanfivems.find();
+    const allDocuments = await lessthanfivems.find({ budget_year: govYear });
     const Data = allDocuments.map((item) => {
       const container = {};
       container["name"] = item.project_name;
@@ -30,8 +32,11 @@ router.get("/getAllDocuments", async (req, res) => {
 });
 
 router.get("/getHardware", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const hardware = await lessthanfivems.find({ project_type: "hardware" });
+    const hardware = await lessthanfivems.find({
+      $and: [{ budget_year: govYear }, { project_type: "hardware" }],
+    });
     res.status(200).json({ count: hardware.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -39,8 +44,11 @@ router.get("/getHardware", async (req, res) => {
 });
 
 router.get("/getSoftware", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const software = await lessthanfivems.find({ project_type: "software" });
+    const software = await lessthanfivems.find({
+      $and: [{ budget_year: govYear }, { project_type: "software" }],
+    });
     res.status(200).json({ count: software.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -48,8 +56,11 @@ router.get("/getSoftware", async (req, res) => {
 });
 
 router.get("/getNetwork", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const network = await lessthanfivems.find({ project_type: "network" });
+    const network = await lessthanfivems.find({
+      $and: [{ budget_year: govYear }, { project_type: "network" }],
+    });
     res.status(200).json({ count: network.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -57,8 +68,11 @@ router.get("/getNetwork", async (req, res) => {
 });
 
 router.get("/getCamera", async (req, res) => {
+  const govYear = getGovYear();
   try {
-    const cam = await lessthanfivems.find({ project_type: "camera" });
+    const cam = await lessthanfivems.find({
+      $and: [{ budget_year: govYear }, { project_type: "camera" }],
+    });
     res.status(200).json({ count: cam.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -67,7 +81,6 @@ router.get("/getCamera", async (req, res) => {
 
 router.get("/getNormalBudget", async (req, res) => {
   const govYear = getGovYear();
-  console.log(govYear);
   try {
     const normalBudget = await lessthanfivems.find({
       $and: [{ budget_year: govYear }, { budget_resource: "normal_budget" }],
@@ -87,7 +100,6 @@ router.get("/getNormalBudget", async (req, res) => {
 
 router.get("/getMaintenanceBudget", async (req, res) => {
   const govYear = getGovYear();
-  console.log(govYear);
   try {
     const maintenanceBudget = await lessthanfivems.find({
       $and: [
@@ -110,7 +122,6 @@ router.get("/getMaintenanceBudget", async (req, res) => {
 
 router.get("/getDonationBudget", async (req, res) => {
   const govYear = getGovYear();
-  console.log(govYear);
   try {
     const donationBudget = await lessthanfivems.find({
       $and: [{ budget_year: govYear }, { budget_resource: "donation_budget" }],
