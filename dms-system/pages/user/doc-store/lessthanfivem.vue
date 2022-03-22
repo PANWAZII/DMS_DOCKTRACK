@@ -156,13 +156,13 @@
             <p class="topices">ปีงบประมาณ</p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-text-field
+                <v-select
                   v-model="form.budget_year"
-                  :rules="budget_yearRules"
-                  :counter="4"
-                  label="ปีงบประมาณ (เช่น 2565)"
+                  :items="budget_year"
+                  :rules="[(v) => !!v || 'โปรดระบุปีงบประมาณ']"
+                  label="ระบุปีงบประมาณ"
                   required
-                ></v-text-field>
+                ></v-select>
               </v-col>
             </v-row>
 
@@ -546,7 +546,7 @@ export default {
     form: {
       project_name: '',
       project_type: '',
-      budget_year: '',
+      budget_year: [],
 
       // department_name: '',
       // boss_name: '',
