@@ -159,6 +159,8 @@
                 <v-select
                   v-model="form.budget_year"
                   :items="budget_year"
+                  item-text="year"
+                  item-value="year"
                   :rules="[(v) => !!v || 'โปรดระบุปีงบประมาณ']"
                   label="ระบุปีงบประมาณ"
                   required
@@ -524,15 +526,15 @@ export default {
   middleware: 'middleware-user-auth',
   layout: 'user',
   name: 'lessthanfivem',
-  // async asyncData({ store }) {
-  //   let budget = []
-  //   try {
-  //     budget = await store.dispatch('api/getAllSources')
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  //   return { budget }
-  // },
+  async asyncData({ store }) {
+    let budget_year = []
+    try {
+      budget_year = await store.dispatch('api/getBudgetYear')
+    } catch (err) {
+      console.log(err)
+    }
+    return { budget_year }
+  },
   data: () => ({
     warningdialog: false,
     budget: [
@@ -543,10 +545,11 @@ export default {
     ],
 
     valid: true,
+    budget_year: [],
     form: {
       project_name: '',
       project_type: '',
-      budget_year: [],
+      budget_year: '',
 
       // department_name: '',
       // boss_name: '',
