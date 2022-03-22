@@ -28,7 +28,7 @@
                   <v-checkbox
                     row
                     label="ครบ"
-                    color="info"
+                    color="success"
                     value=""
                     hide-details
                   ></v-checkbox>
@@ -44,7 +44,7 @@
                   <v-checkbox
                     row
                     label="ผ่าน"
-                    color="info"
+                    color="success"
                     value=""
                     hide-details
                   ></v-checkbox>
