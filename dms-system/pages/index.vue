@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <v-row align="center" justify="center" dense>
+    <v-row align="center" dense>
       <v-col cols="12" sm="4" md="6">
-        <v-card class="mx-auto" max-width="700" height="470">
+        <v-card class="mx-auto" max-width="auto" height="470">
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5">
@@ -18,8 +18,8 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h3" cols="6">{{allProject}}</v-col>
-              <v-col class="text-h6 text-right" cols="6">โครงการ</v-col>
+              <v-col class="text-h4" cols="6">{{ allProject }}</v-col>
+              <v-col class="text-h4 text-right" cols="6">โครงการ</v-col>
             </v-row>
           </v-card-text>
           <v-list>
@@ -27,7 +27,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-desktop-classic</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Hardware</v-list-item-title>
+              <v-list-item-title>ฮาร์ดแวร์</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >{{ hardware.count }}&nbsp; &nbsp; &nbsp;
                 &nbsp;โครงการ</v-list-item-subtitle
@@ -37,7 +37,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-application-parentheses</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Software</v-list-item-title>
+              <v-list-item-title>ซอฟต์แวร์</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >{{ software.count }}&nbsp; &nbsp; &nbsp;
                 &nbsp;โครงการ</v-list-item-subtitle
@@ -67,7 +67,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4" md="6">
-        <v-card class="mx-auto" max-width="700" height="470">
+        <v-card class="mx-auto" max-width="auto" height="470">
           <v-list-item two-line>
             <v-list-item-content>
               <v-list-item-title class="text-h5">
@@ -83,30 +83,42 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h5" cols="6"> 1,300,000 </v-col>
-              <v-col class="text-h6 text-right" cols="6">บาท</v-col>
+              <v-col class="text-h4" cols="6"> 1,300,000 </v-col>
+              <v-col class="text-h4 text-right" cols="6">บาท</v-col>
             </v-row>
           </v-card-text>
           <v-list>
             <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-checkbox-blank-circle</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>เงินงบประมาณ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >900,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-checkbox-blank-circle</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>เงินบำรุง</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >100,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-checkbox-blank-circle</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>เงินบริจาค</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >170,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-checkbox-blank-circle</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>เงินมูลนิธิ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >130,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
@@ -302,28 +314,47 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12">
-        <v-card elevation="2">
+      <v-col cols="12" sm="4" md="6">
+        <v-card elevation="2" height="350">
           <v-card-title class="font-weight-bold">
             ดาวน์โหลดแบบรายงานฯ และเอกสารที่เกี่ยวข้อง
           </v-card-title>
           <v-card-text>
             <v-list>
-              <v-list-item-text>
-                <v-btn text
+              <v-list-item-title class="ml-7"
+                ><v-icon x-small class="mr-3">mdi-checkbox-blank-circle</v-icon>
+                <a href="/" class="text-decoration-underline"
                   >แบบรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐที่มีมูลค่าไม่เกิน 5
-                  ล้านบาท
-                </v-btn>
-              </v-list-item-text>
+                  ล้านบาท</a
+                >
+              </v-list-item-title>
             </v-list>
             <v-list>
-              <v-list-item-text>
-                <v-btn text
+              <v-list-item-title class="ml-7">
+                <v-icon x-small class="mr-3">mdi-checkbox-blank-circle</v-icon>
+                <a href="/" class="text-decoration-underline"
                   >แบบรายงานการจัดหาระบบคอมพิวเตอร์ภาครัฐที่มีมูลค่าเกิน 5
-                  ล้านบาท
-                </v-btn>
-              </v-list-item-text>
+                  ล้านบาท</a
+                >
+              </v-list-item-title>
             </v-list>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="4" md="6">
+        <v-card elevation="2" height="350">
+          <v-card-title class="font-weight-bold">
+            ติดต่อสำนักดิจิทัลการแพทย์
+          </v-card-title>
+          <v-card-text>
+            <p class="subtitle-1 font-weight-bold">
+              กรมการแพทย์ กระทรวงสาธารณสุข 88/23 ถ.ติวานนท์ ต.ตลาดขวัญ อ.เมือง
+              จ.นนทบุรี 11000 อาคาร 3 ชั้น5 ถนนติวานนท์ ต.ตลาดขวัญ อ.เมือง
+              จ.นนทบุรี 11000
+            </p>
+            <p class="subtitle-1 font-weight-bold">โทร. 02-5258566</p>
+            <p class="subtitle-1 font-weight-bold">แฟกซ์. 02-5258566</p>
+            <p class="subtitle-1 font-weight-bold">อีเมล. dms@moph.go.th</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -341,7 +372,7 @@ export default {
     let software = []
     let network = []
     let cam = []
-    let allProject = ""
+    let allProject = ''
     try {
       hardware = await store.dispatch('api/getPublicHardware')
       software = await store.dispatch('api/getPublicSoftware')
@@ -356,7 +387,7 @@ export default {
       software,
       network,
       cam,
-      allProject
+      allProject,
     }
   },
   data() {
@@ -365,7 +396,7 @@ export default {
       software: [],
       network: [],
       cam: [],
-      allProject: "",
+      allProject: '',
       allDoc: [],
       dashBoardRoute: {
         waiting: 'doc-list/waitingList',
