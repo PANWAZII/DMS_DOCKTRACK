@@ -63,4 +63,76 @@ router.get("/getCamera", async (req, res) => {
   }
 });
 
+router.get("/getNormalBudget", async (req, res) => {
+  try {
+    const normalBudget = await lessthanfivems.find({
+      budget_resource: "normal_budget",
+    });
+    if (!normalBudget[0]) {
+      res.status(200).json({ sum: 0 });
+    } else {
+      const data = normalBudget
+        .map((item) => item.sum)
+        .reduce((prev, next) => prev + next);
+      res.status(200).json({ sum: data });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getMaintenanceBudget", async (req, res) => {
+  try {
+    const maintenanceBudget = await lessthanfivems.find({
+      budget_resource: "maintenance_budget",
+    });
+    if (!maintenanceBudget[0]) {
+      res.status(200).json({ sum: 0 });
+    } else {
+      const data = maintenanceBudget
+        .map((item) => item.sum)
+        .reduce((prev, next) => prev + next);
+      res.status(200).json({ sum: data });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getDonationBudget", async (req, res) => {
+  try {
+    const donationBudget = await lessthanfivems.find({
+      budget_resource: "donation_budget",
+    });
+    if (!donationBudget[0]) {
+      res.status(200).json({ sum: 0 });
+    } else {
+      const data = donationBudget
+        .map((item) => item.sum)
+        .reduce((prev, next) => prev + next);
+      res.status(200).json({ sum: data });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getFoundationBudget", async (req, res) => {
+  try {
+    const foundationBudget = await lessthanfivems.find({
+      budget_resource: "foundation_budget",
+    });
+    if (!foundationBudget[0]) {
+      res.status(200).json({ sum: 0 });
+    } else {
+      const data = foundationBudget
+        .map((item) => item.sum)
+        .reduce((prev, next) => prev + next);
+      res.status(200).json({ sum: data });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 export default router;
