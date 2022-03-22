@@ -539,7 +539,7 @@ export default {
       { name: 'เงินงบประมาณ', value: 'normal_budget' },
       { name: 'เงินบำรุง', value: 'maintenance_budget' },
       { name: 'เงินบริจาค', value: 'donation_budget' },
-      { name: 'เงินมูลนิธิ', value: 'foundation' },
+      { name: 'เงินมูลนิธิ', value: 'foundation_budget' },
     ],
 
     valid: true,
