@@ -83,7 +83,7 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h4" cols="6"> 1,300,000 </v-col>
+              <v-col class="text-h4" cols="6"> {{allBudget}} </v-col>
               <v-col class="text-h4 text-right" cols="6">บาท</v-col>
             </v-row>
           </v-card-text>
@@ -94,7 +94,7 @@
               </v-list-item-icon>
               <v-list-item-title>เงินงบประมาณ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >900,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{normalBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -103,7 +103,7 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบำรุง</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >100,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{maintenanceBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -112,7 +112,7 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบริจาค</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >170,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{donationBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -121,7 +121,7 @@
               </v-list-item-icon>
               <v-list-item-title>เงินมูลนิธิ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >130,000&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{foundationBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
           </v-list>
@@ -372,13 +372,28 @@ export default {
     let software = []
     let network = []
     let cam = []
+    let normalBudget = []
+    let maintenanceBudget = []
+    let donationBudget = []
+    let foundationBudget = []
     let allProject = ''
+    let allBudget = ''
     try {
       hardware = await store.dispatch('api/getPublicHardware')
       software = await store.dispatch('api/getPublicSoftware')
       network = await store.dispatch('api/getPublicNetwork')
       cam = await store.dispatch('api/getPublicCam')
+
+      normalBudget = await store.dispatch('api/getPublicNormalBudget')
+      maintenanceBudget = await store.dispatch('api/getPublicMaintenanceBudget')
+      donationBudget = await store.dispatch('api/getPublicDonationBudget')
+      foundationBudget = await store.dispatch('api/getPublicFoundationBudget')
       allProject = hardware.count + software.count + network.count + cam.count
+      allBudget =
+        normalBudget.sum +
+        maintenanceBudget.sum +
+        donationBudget.sum +
+        foundationBudget.sum
     } catch (err) {
       console.log(err)
     }
@@ -387,7 +402,12 @@ export default {
       software,
       network,
       cam,
+      normalBudget,
+      maintenanceBudget,
+      donationBudget,
+      foundationBudget,
       allProject,
+      allBudget,
     }
   },
   data() {
@@ -396,6 +416,11 @@ export default {
       software: [],
       network: [],
       cam: [],
+      normalBudget: [],
+      maintenanceBudget: [],
+      donationBudget: [],
+      foundationBudget: [],
+      allBudget: '',
       allProject: '',
       allDoc: [],
       dashBoardRoute: {
