@@ -15,7 +15,7 @@ router.get("/getAllDocuments", async (req, res) => {
 router.get("/getMyDoc", async (req, res) => {
   const uid = req.query.uid;
   if (!uid) {
-    res.status(400)
+    res.status(400);
     return;
   }
   try {
@@ -51,52 +51,6 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
     approval_status_th: "รอรับเข้าระบบ",
     available_status: 1,
   };
-
-  // const data =
-  // console.log("this is Header : ",req.headers)
-  // console.log("this is req data",req.body)
-  // const lessthanfivem = new lessthanfivems({
-  //   uid:data.uid,
-  //   project_name:data.project_name,
-  //   department_name:data.department_name,
-  //   boss_name:data.boss_name,
-  //   boss_position:data.boss_position,
-  //   boss_tel:data.boss_tel,
-  //   boss_fax:data.boss_fax,
-  //   boss_email:data.boss_email,
-  //   user2_name:data.user2_name,
-  //   user2_position:data.user2_position,
-  //   user2_tel:data.user2_tel,
-  //   user2_fax:data.user2_fax,
-  //   user2_email:data.user2_email,
-  //   user3_name:data.user3_name,
-  //   user3_position:data.user3_position,
-  //   user3_tel:data.user3_tel,
-  //   user3_fax:data.user3_fax,
-  //   user3_email:data.user3_email,
-  //   baht_text:data.baht_text,
-  //   resource:data.resource,
-  //   detail_notstd:data.detail_notstd,
-  //   quantity:data.quantity,
-  //   unit:data.unit,
-  //   price_unit:data.price_unit,
-  //   sum:data.sum,
-  //   method:data.method,
-  //   destination:data.destination,
-  //   cert:data.cert,
-  //   list_old:data.list_old,
-  //   locate_old:data.locate_old,
-  //   year_old:data.year_old,
-  //   obstacle:data.obstacle,
-  //   purpose_of_use:data.purpose_of_use,
-  //   compare:data.compare,
-  //   major:data.major,
-  //   quantity_major:data.quantity_major,
-  //   specific_info:data.specific_info,
-  //   created_date: date,
-  //   modified_date: date,
-  //   available_status: 1,
-  // });
   try {
     console.log("start creating doc ");
     const lessthanfivem = new lessthanfivems({ ...data, ...more });
@@ -105,6 +59,24 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
     res.status(201).json(newLessthanfivem);
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+});
+
+router.get("/getBudgetYear", async (req, res) => {
+  let date = new Date();
+  const currentYear = date.getFullYear();
+  const currentThaiYear = currentYear + 543;
+  let data = [];
+  for (let index = 0; index < 3; index++) {
+    const year = currentThaiYear + index;
+    data.push({
+      year: year
+  });
+  }
+  try {
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
