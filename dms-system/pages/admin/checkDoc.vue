@@ -25,36 +25,16 @@
                 <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
                 <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
                 <td>
-                  <v-checkbox
-                    row
-                    label="ครบ"
-                    color="success"
-                    value=""
-                    hide-details
-                  ></v-checkbox>
-                  <v-checkbox
-                    row
-                    label="ไม่ครบ"
-                    color="red"
-                    value=""
-                    hide-details
-                  ></v-checkbox>
+                  <v-checkbox label="ครบ" color="success" value=""></v-checkbox>
+                  <v-checkbox label="ไม่ครบ" color="red" value=""></v-checkbox>
                 </td>
                 <td>
                   <v-checkbox
-                    row
                     label="ผ่าน"
                     color="success"
                     value=""
-                    hide-details
                   ></v-checkbox>
-                  <v-checkbox
-                    row
-                    label="ไม่ผ่าน"
-                    color="red"
-                    value=""
-                    hide-details
-                  ></v-checkbox>
+                  <v-checkbox label="ไม่ผ่าน" color="red" value=""></v-checkbox>
                 </td>
                 <td>
                   <v-text-field label="ความคิดเห็น" required></v-text-field>
