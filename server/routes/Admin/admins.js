@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import admins from "../../models/Admin/admin.js";
 import users from "../../models/User/user.js";
+import lessthanfivems from "../../models/AllDocument/lessthanfivem.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import checkAuth from "../../middleware/auth.js";
@@ -19,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Getting all
-router.post("/getAllUsers",checkAuth, async (req, res) => {
+router.post("/getAllUsers", checkAuth, async (req, res) => {
   try {
     const allUsers = await users.find();
     res.json(allUsers);
@@ -29,8 +30,8 @@ router.post("/getAllUsers",checkAuth, async (req, res) => {
 });
 
 // Getting One
-router.get("/userInfo", async (req, res) => {
-  const user_uid = req.query.uid;
+router.post("/userInfo", checkAuth, async (req, res) => {
+  const user_uid = req.body.uid;
   try {
     // const user = await users.find({ uid: user_uid });
     if (user_uid == null) {
@@ -71,7 +72,7 @@ router.post("/createNewAdmin", async (req, res) => {
         email: email,
         tel: telephone,
         available_status: 1,
-        level:level,
+        level: level,
         created_date: date,
         modified_date: date,
       });
@@ -94,21 +95,41 @@ router.post("/createNewAdmin", async (req, res) => {
   // }
 });
 
-// Updating One
-// router.patch("/:id", getSubscriber, async (req, res) => {
-//   if (req.body.name != null) {
-//     res.subscriber.name = req.body.name;
-//   }
-//   if (req.body.subscribedToChannel != null) {
-//     res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
-//   }
-//   try {
-//     const updatedSubscriber = await res.subscriber.save();
-//     res.json(updatedSubscriber);
-//   } catch (err) {
-//     res.status(400).json({ message: err.message });
-//   }
-// });
+//getAllNewDoc
+router.post("/getAllNewDoc", checkAuth, async (req, res) => {
+  try {
+    const documents = await lessthanfivems.find();
+    console.log("this is doc ", documents);
+    res.status(200).json(documents);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Updating Doc Status
+router.patch("/updateDocStatus", checkAuth, async (req, res) => {
+  document = await document.findById(req.body.id);
+  console.log("this is doc ", document);
+  if (req.body.approval_status == "waiting") {
+    res.document.approval_status = "waiting";
+  } else if (req.body.approval_status == "dms") {
+    res.document.approval_status = "dms";
+  } else if (req.body.approval_status == "moph") {
+    res.document.approval_status = "moph";
+  } else if (req.body.approval_status == "approved") {
+    res.document.approval_status = "approved";
+  } else if (req.body.approval_status == "rejected") {
+    res.document.approval_status = "rejected";
+  } else {
+    res.status(400).json({ message: "bad req" });
+  }
+  try {
+    const updatedWaiting = await res.document.save();
+    res.json(updatedWaiting);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 
 // // Deleting One
 // router.delete("/:id", getSubscriber, async (req, res) => {
@@ -120,18 +141,17 @@ router.post("/createNewAdmin", async (req, res) => {
 //   }
 // });
 
-// async function getUser(req, res, next) {
-//   let user;
+// async function getDocument(req, res, next) {
+//   let document;
 //   try {
-//     user = await user.findById(req.params.id);
-//     if (user == null) {
-//       return res.status(404).json({ message: "Cannot find subscriber" });
+//     document = await document.findById(req.body.id);
+//     if (document == null) {
+//       return res.status(404).json({ message: "Cannot find this document" });
 //     }
 //   } catch (err) {
 //     return res.status(500).json({ message: err.message });
 //   }
-
-//   res.subscriber = subscriber;
+//   res.document = document;
 //   next();
 // }
 
