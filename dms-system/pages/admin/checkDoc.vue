@@ -37,10 +37,14 @@
                   <v-checkbox label="ไม่ผ่าน" color="red" value=""></v-checkbox>
                 </td>
                 <td>
-                  <v-text-field label="ความคิดเห็น" required></v-text-field>
+                  <v-btn @click="commentDialog = true" color="primary">
+                    ความคิดเห็น
+                  </v-btn>
                 </td>
                 <td>
-                  <v-btn color="info" dark> บันทึก </v-btn>
+                  <v-btn color="success " @click="confirmDialog = true">
+                    บันทึก
+                  </v-btn>
                 </td>
               </tr>
             </template>
@@ -48,16 +52,57 @@
         </v-card>
       </v-col>
     </v-row>
+    <template>
+      <v-row justify="center">
+        <v-dialog v-model="commentDialog" persistent max-width="600px">
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">ความคิดเห็น</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-textarea name="input-7-1" value=""></v-textarea>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+              <v-btn color="error " @click="commentDialog = false"> ปิด </v-btn>
+              <v-btn color="success" @click="commentDialog = false">
+                บันทึก
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+    </template>
+    <v-dialog v-model="confirmDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text">คุณต้องการบันทึก ? </v-card-title>
+        <br />
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="error" @click="confirmDialog = false"> ยกเลิก </v-btn>
+          <v-btn color="success" @click="confirmDialog = false"> ตกลง </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 <script>
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+
   data() {
     return {
       search: '',
-
+      commentDialog: false,
+      confirmDialog: false,
       headers: [
         {
           text: 'ที่',
@@ -73,7 +118,7 @@ export default {
         { text: 'ผังเครือข่าย', value: 'diagram' },
         { text: 'ตรวจเอกสาร', value: '' },
         { text: 'ตรวจเนื้อหา', value: '' },
-        { text: 'ความเห็น', value: '' },
+        { text: 'ความคิดเห็น', value: '' },
         { text: 'บันทึก', value: '' },
       ],
       doc_info: [
