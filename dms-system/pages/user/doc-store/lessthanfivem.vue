@@ -528,12 +528,20 @@ export default {
   name: 'lessthanfivem',
   async asyncData({ store }) {
     let budget_year = []
+    let department = []
     try {
+      department = await store.dispatch('api/getAllDepartments')
       budget_year = await store.dispatch('api/getBudgetYear')
     } catch (err) {
       console.log(err)
     }
-    return { budget_year }
+    return { budget_year, department }
+  },
+  async fetch() {
+    const user_uid = await this.$cookies.get('uid_token')
+    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+      params: { uid: user_uid },
+    })
   },
   data: () => ({
     warningdialog: false,
@@ -546,12 +554,13 @@ export default {
 
     valid: true,
     budget_year: [],
+    department: [],
+    userInfo: [],
     form: {
       project_name: '',
       project_type: '',
       budget_year: '',
-
-      // department_name: '',
+      department_name: '',
       // boss_name: '',
       // boss_position: '',
       // boss_tel: '',
@@ -758,28 +767,17 @@ export default {
       try {
         // const user_id = await this.$cookies.get('uid_token')
         const user_id = this.$store.getters.uid
+        for (let index = 0; index < this.department.length; index++) {
+          if (this.userInfo.department_id === this.department[index]._id) {
+            this.department_name = this.department[index].department_name
+          }
+        }
         await this.$store.dispatch('api/lessThanCreatDoc', {
           uid: user_id,
           project_name: this.form.project_name,
           project_type: this.form.project_type,
           budget_year: this.form.budget_year,
           department_name: this.form.department_name,
-          boss_name: this.form.boss_name,
-          boss_position: this.form.boss_position,
-          boss_tel: this.form.boss_tel,
-          boss_fax: this.form.boss_fax,
-          boss_email: this.form.boss_email,
-          user2_name: this.form.user2_name,
-          user2_position: this.form.user2_position,
-          user2_tel: this.form.user2_tel,
-          user2_fax: this.form.user2_fax,
-          user2_email: this.form.user2_email,
-          user3_name: this.form.user3_name,
-          user3_position: this.form.user3_position,
-          user3_tel: this.form.user3_tel,
-          user3_fax: this.form.user3_fax,
-          user3_email: this.form.user3_email,
-          baht_text: this.form.baht_text,
           budget_resource: this.form.budget_resource,
           detail_notstd: this.form.detail_notstd,
           quantity: this.form.quantity,
