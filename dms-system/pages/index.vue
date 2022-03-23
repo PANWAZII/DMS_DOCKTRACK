@@ -8,7 +8,9 @@
               <v-list-item-title class="text-h5">
                 สรุปโครงการ
               </v-list-item-title>
-              <v-list-item-subtitle>ประจำปีงบประมาณ {{getCurrentGovYear()}}</v-list-item-subtitle>
+              <v-list-item-subtitle
+                >ประจำปีงบประมาณ {{ getCurrentGovYear() }}</v-list-item-subtitle
+              >
             </v-list-item-content>
             <v-list-item-avatar tile size="90" color="info"
               ><v-icon color="#ffff" size="50"
@@ -73,7 +75,9 @@
               <v-list-item-title class="text-h5">
                 สรุปงบประมาณ
               </v-list-item-title>
-              <v-list-item-subtitle>ประจำปีงบประมาณ {{getCurrentGovYear()}}</v-list-item-subtitle>
+              <v-list-item-subtitle
+                >ประจำปีงบประมาณ {{ getCurrentGovYear() }}</v-list-item-subtitle
+              >
             </v-list-item-content>
             <v-list-item-avatar tile size="90" color="success"
               ><v-icon color="#ffff" size="50"
@@ -309,11 +313,15 @@
 
           <v-data-table
             :headers="headers"
-            :items="doc_info"
+            :items="allDoc"
             sort-by="created_date"
             :search="search"
             :items-per-page="5"
-          ></v-data-table>
+          >
+            <template v-slot:[`item.date`]="{ item }">
+              <span>{{ new Date(item.date).toLocaleString() }}</span>
+            </template></v-data-table
+          >
         </v-card>
       </v-col>
     </v-row>
@@ -382,6 +390,7 @@ export default {
     let foundationBudget = []
     let allProject = ''
     let allBudget = ''
+    let allDoc = []
     try {
       hardware = await store.dispatch('api/getPublicHardware')
       software = await store.dispatch('api/getPublicSoftware')
@@ -392,6 +401,8 @@ export default {
       maintenanceBudget = await store.dispatch('api/getPublicMaintenanceBudget')
       donationBudget = await store.dispatch('api/getPublicDonationBudget')
       foundationBudget = await store.dispatch('api/getPublicFoundationBudget')
+
+      allDoc = await store.dispatch('api/getPublicDoc')
       allProject = hardware.count + software.count + network.count + cam.count
       allBudget =
         normalBudget.sum +
@@ -412,6 +423,7 @@ export default {
       foundationBudget,
       allProject,
       allBudget,
+      allDoc,
     }
   },
   data() {
@@ -438,30 +450,13 @@ export default {
       headers: [
         {
           text: 'ชื่อโครงการ',
-          value: 'project_name',
+          value: 'name',
           align: 'start',
           sortable: false,
         },
 
-        { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
-        { text: 'สถานะ', value: 'approval_status' },
-      ],
-      doc_info: [
-        {
-          project_name: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
-          created_date: '18 / 3 / 2565',
-          approval_status: 'รอที่ประชุมพิจารณา',
-        },
-        {
-          project_name: 'TeleMedicine',
-          created_date: '15 / 3 / 2565',
-          approval_status: 'รอที่ประชุมพิจารณา',
-        },
-        {
-          project_name: '5G Ambulance',
-          created_date: '12 / 3 / 2565',
-          approval_status: 'รอที่ประชุมพิจารณา',
-        },
+        { text: 'วันที่ยื่นคำร้อง', value: 'date' },
+        { text: 'สถานะ', value: 'status' },
       ],
     }
   },
