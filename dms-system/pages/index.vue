@@ -20,7 +20,9 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h4" cols="6">{{ allProject }}</v-col>
+              <v-col class="text-h4" cols="6">{{
+                allProject.toLocaleString('en-US')
+              }}</v-col>
               <v-col class="text-h4 text-right" cols="6">โครงการ</v-col>
             </v-row>
           </v-card-text>
@@ -31,8 +33,8 @@
               </v-list-item-icon>
               <v-list-item-title>ฮาร์ดแวร์</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ hardware.count }}&nbsp; &nbsp; &nbsp;
-                &nbsp;โครงการ</v-list-item-subtitle
+                >{{ hardware.count.toLocaleString('en-US') }}&nbsp; &nbsp;
+                &nbsp; &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -41,8 +43,8 @@
               </v-list-item-icon>
               <v-list-item-title>ซอฟต์แวร์</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ software.count }}&nbsp; &nbsp; &nbsp;
-                &nbsp;โครงการ</v-list-item-subtitle
+                >{{ software.count.toLocaleString('en-US') }}&nbsp; &nbsp;
+                &nbsp; &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -51,7 +53,7 @@
               </v-list-item-icon>
               <v-list-item-title>ระบบเครือข่าย</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ network.count }}&nbsp; &nbsp; &nbsp;
+                >{{ network.count.toLocaleString('en-US') }}&nbsp; &nbsp; &nbsp;
                 &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
@@ -61,7 +63,7 @@
               </v-list-item-icon>
               <v-list-item-title>กล้องวงจรปิด</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ cam.count }}&nbsp; &nbsp; &nbsp;
+                >{{ cam.count.toLocaleString('en-US') }}&nbsp; &nbsp; &nbsp;
                 &nbsp;โครงการ</v-list-item-subtitle
               >
             </v-list-item>
@@ -87,7 +89,9 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h4" cols="6"> {{ allBudget }} </v-col>
+              <v-col class="text-h4" cols="6">
+                {{ allBudget.toLocaleString('en-US') }}
+              </v-col>
               <v-col class="text-h4 text-right" cols="6">บาท</v-col>
             </v-row>
           </v-card-text>
@@ -98,8 +102,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินงบประมาณ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ normalBudget.sum }}&nbsp; &nbsp; &nbsp;
-                &nbsp;บาท</v-list-item-subtitle
+                >{{ normalBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
+                &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -108,8 +112,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบำรุง</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ maintenanceBudget.sum }}&nbsp; &nbsp; &nbsp;
-                &nbsp;บาท</v-list-item-subtitle
+                >{{ maintenanceBudget.sum.toLocaleString('en-US') }}&nbsp;
+                &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -118,8 +122,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบริจาค</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ donationBudget.sum }}&nbsp; &nbsp; &nbsp;
-                &nbsp;บาท</v-list-item-subtitle
+                >{{ donationBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
+                &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -128,8 +132,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินมูลนิธิ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ foundationBudget.sum }}&nbsp; &nbsp; &nbsp;
-                &nbsp;บาท</v-list-item-subtitle
+                >{{ foundationBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
+                &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
           </v-list>
@@ -404,6 +408,7 @@ export default {
 
       allDoc = await store.dispatch('api/getPublicDoc')
       allProject = hardware.count + software.count + network.count + cam.count
+
       allBudget =
         normalBudget.sum +
         maintenanceBudget.sum +
