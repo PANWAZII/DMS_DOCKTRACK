@@ -66,7 +66,7 @@ export const actions = {
   async getAdminInfo({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
     return await axios
-      .get('/admins/userInfo', data, { headers })
+      .post('/admins/userInfo', data, { headers })
       .then((res) => res.data)
   },
   //Lessthanfivem

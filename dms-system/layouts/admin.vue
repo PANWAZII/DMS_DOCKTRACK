@@ -186,7 +186,7 @@ export default {
   async fetch() {
     const user_uid = await this.$cookies.get('uid_token')
     this.userInfo = await this.$store.dispatch('api/getAdminInfo', {
-      params: { uid: user_uid },
+      uid: user_uid,
     })
   },
   data() {
