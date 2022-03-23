@@ -115,7 +115,7 @@
       <v-menu bottom offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn depressed class="ma-2" v-bind="attrs" v-on="on"
-            ><v-icon>mdi-account-circle</v-icon>
+            ><v-icon>mdi-shield-account</v-icon>
             <h5 class="ml-2">{{ userInfo.first_name }}</h5></v-btn
           >
         </template>
