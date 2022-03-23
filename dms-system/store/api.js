@@ -69,6 +69,18 @@ export const actions = {
       .post('/admins/userInfo', data, { headers })
       .then((res) => res.data)
   },
+  async setDocApprovalStatus({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/updateDocStatus', data, { headers })
+      .then((res) => res.data)
+  },
+  async getAllNewDoc({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/getAllNewDoc', data, { headers })
+      .then((res) => res.data)
+  },
   //Lessthanfivem
   async lessThanCreatDoc({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
