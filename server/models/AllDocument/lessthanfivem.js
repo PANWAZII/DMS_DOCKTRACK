@@ -21,75 +21,7 @@ const lessthanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  boss_name: {
-    type: String,
-    required: false,
-  },
-  boss_position: {
-    type: String,
-    required: false,
-  },
-  boss_tel: {
-    type: String,
-    required: false,
-  },
-  boss_fax: {
-    type: String,
-    required: false,
-  },
-  boss_email: {
-    type: String,
-    required: false,
-  },
-  user2_name: {
-    type: String,
-    required: false,
-  },
-  user2_position: {
-    type: String,
-    required: false,
-  },
-  user2_tel: {
-    type: String,
-    required: false,
-  },
-  user2_fax: {
-    type: String,
-    required: false,
-  },
-  user2_email: {
-    type: String,
-    required: false,
-  },
-  user3_name: {
-    type: String,
-    required: false,
-  },
-  user3_position: {
-    type: String,
-    required: false,
-  },
-  user3_tel: {
-    type: String,
-    required: false,
-  },
-  user3_fax: {
-    type: String,
-    required: false,
-  },
-  user3_email: {
-    type: String,
-    required: false,
-  },
-  baht_text: {
-    type: String,
-    required: false,
-  },
   budget_resource: {
-    type: String,
-    required: false,
-  },
-  detail_notstd: {
     type: String,
     required: false,
   },
