@@ -8,7 +8,7 @@
               <v-list-item-title class="text-h5">
                 สรุปโครงการ
               </v-list-item-title>
-              <v-list-item-subtitle>ประจำปีงบประมาณ 2565</v-list-item-subtitle>
+              <v-list-item-subtitle>ประจำปีงบประมาณ {{getCurrentGovYear()}}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="90" color="info"
               ><v-icon color="#ffff" size="50"
@@ -73,7 +73,7 @@
               <v-list-item-title class="text-h5">
                 สรุปงบประมาณ
               </v-list-item-title>
-              <v-list-item-subtitle>ประจำปีงบประมาณ 2565</v-list-item-subtitle>
+              <v-list-item-subtitle>ประจำปีงบประมาณ {{getCurrentGovYear()}}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-avatar tile size="90" color="success"
               ><v-icon color="#ffff" size="50"
@@ -83,7 +83,7 @@
           </v-list-item>
           <v-card-text>
             <v-row align="center">
-              <v-col class="text-h4" cols="6"> {{allBudget}} </v-col>
+              <v-col class="text-h4" cols="6"> {{ allBudget }} </v-col>
               <v-col class="text-h4 text-right" cols="6">บาท</v-col>
             </v-row>
           </v-card-text>
@@ -94,7 +94,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินงบประมาณ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{normalBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{ normalBudget.sum }}&nbsp; &nbsp; &nbsp;
+                &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -103,7 +104,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบำรุง</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{maintenanceBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{ maintenanceBudget.sum }}&nbsp; &nbsp; &nbsp;
+                &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -112,7 +114,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินบริจาค</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{donationBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{ donationBudget.sum }}&nbsp; &nbsp; &nbsp;
+                &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <v-list-item>
@@ -121,7 +124,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินมูลนิธิ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{foundationBudget.sum}}&nbsp; &nbsp; &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{ foundationBudget.sum }}&nbsp; &nbsp; &nbsp;
+                &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
           </v-list>
@@ -461,6 +465,21 @@ export default {
       ],
     }
   },
-  computed: {},
+  methods: {
+    getCurrentGovYear() {
+      let date = new Date()
+      const currentYear = date.getFullYear()
+      const currentThaiYear = currentYear + 543
+      const currentMonth = date.getMonth() + 1
+      //   console.log("currentThaiYear ", currentThaiYear);
+      //   console.log("currentMonth ", currentMonth);
+      let govYear = ''
+      if (currentMonth < 10) {
+        return currentThaiYear
+      } else {
+        return currentThaiYear + 1
+      }
+    },
+  },
 }
 </script>
