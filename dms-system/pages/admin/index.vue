@@ -2,6 +2,7 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
+        {{ allNewDoc }}
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
             แบบรายงานการจัดหา ฯ ยังไม่ได้รับเข้าระบบ
@@ -15,12 +16,12 @@
             ></v-text-field>
           </v-card-title>
 
-          <v-data-table :headers="headers" :items="doc_info" :search="search">
+          <v-data-table :headers="headers" :items="allNewDoc" :search="search">
             <template v-slot:item="row">
               <tr>
-                <td>{{ row.item.order }}</td>
-                <td>{{ row.item.title }}</td>
-                <td>{{ row.item.dept }}</td>
+                <td>{{ row.index+1 }}</td>
+                <td>{{ row.item.project_name }}</td>
+                <td>{{ row.item.department_name }}</td>
                 <td>{{ row.item.created_date }}</td>
 
                 <td>
@@ -41,6 +42,19 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  async asyncData({ store }) {
+    let allNewDoc = []
+    try {
+      allNewDoc = await store.dispatch('api/getAllNewDoc')
+    } catch (err) {
+      console.log(err)
+    }
+    return { allNewDoc }
+  },
+  // async fetch() {
+  //   this.allNewDoc = await this.$store.dispatch('api/getAllNewDoc')
+  //   console.log(this.allNewDoc);
+  // },
   data() {
     return {
       search: '',
@@ -49,45 +63,24 @@ export default {
           text: 'ที่',
           align: 'start',
           sortable: false,
-          value: 'order',
+          value: 'row',
         },
-        { text: 'โครงการ', value: 'title' },
+        { text: 'โครงการ', value: 'project_name' },
         { text: 'หน่วยงาน', value: 'dept' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
 
         { text: 'การทำงาน', value: '' },
       ],
-      doc_info: [
-        {
-          order: '1',
-          title: 'โครงการระบบลงนาม',
-          dept: 'สำนักดิจิทัลการแพทย์',
-          created_date: '2 / 3 / 2565',
-          approve_status: 'รอที่ประชุมพิจารณา',
-        },
-        {
-          order: '2',
-          title: 'โครงการสแกนลายนิ้วมือ',
-          dept: 'สำนักงานเลขานุการกรม',
-          created_date: '5 / 3 / 2565',
-          approve_status: 'กรมการแพทย์ลงนาม',
-        },
-        {
-          order: '3',
-          title: 'โครงการ TeleMedicine',
-          dept: 'สำนักดิจิทัลการแพทย์',
-          created_date: '7 / 3 / 2565',
-          approve_status: 'รอที่ประชุมพิจารณา',
-        },
-        {
-          order: '4',
-          title: 'โครงการ TeleMedicine',
-          dept: 'กองยุทธศาสตร์และแผนงาน',
-          created_date: '11 / 3 / 2565',
-          approve_status: 'ส่งคืนแล้ว',
-        },
-      ],
+      allNewDoc: [],
     }
+  },
+  methods: {
+    async acceptDoc(docId) {
+      await this.$store.dispatch('api/setDocApprovalStatus', {
+        id: docId,
+        approval_status: 'waiting',
+      })
+    },
   },
 }
 </script>
