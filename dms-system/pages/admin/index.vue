@@ -2,7 +2,6 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        {{ allNewDoc }}
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
             แบบรายงานการจัดหา ฯ ยังไม่ได้รับเข้าระบบ
@@ -19,7 +18,7 @@
           <v-data-table :headers="headers" :items="allNewDoc" :search="search">
             <template v-slot:item="row">
               <tr>
-                <td>{{ row.index+1 }}</td>
+                <td>{{ row.index + 1 }}</td>
                 <td>{{ row.item.project_name }}</td>
                 <td>{{ row.item.department_name }}</td>
                 <td>{{ row.item.created_date }}</td>
