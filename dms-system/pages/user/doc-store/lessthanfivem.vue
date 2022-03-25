@@ -1,5 +1,7 @@
 <template>
   <v-container>
+    {{department}}
+    {{userDept}}
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -539,9 +541,10 @@ export default {
   },
   async fetch() {
     const user_uid = await this.$cookies.get('uid_token')
-    this.userInfo = await this.$store.dispatch('api/getUserInfo', {
+    const userInfo = await this.$store.dispatch('api/getUserInfo', {
       params: { uid: user_uid },
     })
+    this.userDept = userInfo.department_id
   },
   data: () => ({
     warningdialog: false,
@@ -555,7 +558,7 @@ export default {
     valid: true,
     budget_year: [],
     department: [],
-    userInfo: [],
+    userDept: [],
     form: {
       project_name: '',
       project_type: '',
@@ -768,8 +771,8 @@ export default {
         // const user_id = await this.$cookies.get('uid_token')
         const user_id = this.$store.getters.uid
         for (let index = 0; index < this.department.length; index++) {
-          if (this.userInfo.department_id === this.department[index]._id) {
-            this.department_name = this.department[index].department_name
+          if (this.userDept === this.department[index]._id) {
+            this.form.department_name = this.department[index].department_name
           }
         }
         await this.$store.dispatch('api/lessThanCreatDoc', {
