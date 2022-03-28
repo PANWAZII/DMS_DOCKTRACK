@@ -12,7 +12,7 @@
             />
           </v-col> -->
           <v-col class="mb-4">
-            <p class="topices">ลงทะเบียนผู้ใช้งานใหม่</p>
+            <p class="topic">ลงทะเบียนผู้ใช้งานใหม่</p>
           </v-col>
         </v-row>
         <v-row class="d-flex justify-center align-center">
@@ -320,10 +320,7 @@ export default {
             department_id: this.form.department_id,
           })
           .then((res) => {
-            console.log('start response')
-            console.log('this is res: ', res)
             if (res.status == 201) {
-              console.log('stop loading')
               this.loadingDialog = false
               this.finishDialog = true
             } else if (res.data.message == 'auth/email-already-in-use') {
@@ -340,7 +337,7 @@ export default {
 }
 </script>
 <style>
-.topices {
+.topic {
   font-size: 40px;
   font-weight: bold;
 }
