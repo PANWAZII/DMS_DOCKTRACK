@@ -21,10 +21,13 @@
                 <td>{{ row.index + 1 }}</td>
                 <td>{{ row.item.project_name }}</td>
                 <td>{{ row.item.department_name }}</td>
-                <td>{{ row.item.created_date }}</td>
-
+                <td>{{ new Date(row.item.created_date).toLocaleString() }}</td>
                 <td>
-                  <v-btn color="primary" dark>
+                  <v-btn
+                    color="primary"
+                    dark
+                    @click="confirm(row.item._id, row.item.project_name)"
+                  >
                     รับเข้าระบบ
                     <!-- <v-icon dark right> mdi-checkbox-marked-circle </v-icon> -->
                   </v-btn>
@@ -35,25 +38,75 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog v-model="confirmDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text"
+          >Do you wanna accept this doc ?
+        </v-card-title>
+        <br />
+        <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="acceptDoc(currentDocId, currentDocName)"
+          >
+            ตกลง
+          </v-btn>
+          <v-btn color="error" text @click="confirmDialog = false">
+            ยกเลิก
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="completeDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text">Accept document complete ? </v-card-title>
+        <!-- <br /> -->
+        <v-card-text>accept{{ currentDocName }}complete</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="confirmDialog = false">
+            close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-overlay :value="loadingDialog"></v-overlay>
+    <div class="text-center">
+      <v-dialog v-model="loadingDialog" hide-overlay persistent width="300">
+        <v-card color="#056839" dark>
+          <v-card-text>
+            loading
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-container>
 </template>
 <script>
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
-  async asyncData({ store }) {
-    let allNewDoc = []
-    try {
-      allNewDoc = await store.dispatch('api/getAllNewDoc')
-    } catch (err) {
-      console.log(err)
-    }
-    return { allNewDoc }
-  },
-  // async fetch() {
-  //   this.allNewDoc = await this.$store.dispatch('api/getAllNewDoc')
-  //   console.log(this.allNewDoc);
+  // async asyncData({ store }) {
+  //   let allNewDoc = []
+  //   try {
+  //     allNewDoc = await store.dispatch('api/getAllNewDoc')
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  //   return { allNewDoc }
   // },
+  async fetch() {
+    this.allNewDoc = await this.$store.dispatch('api/getAllNewDoc')
+    console.log(this.allNewDoc)
+  },
   data() {
     return {
       search: '',
@@ -67,18 +120,44 @@ export default {
         { text: 'โครงการ', value: 'project_name' },
         { text: 'หน่วยงาน', value: 'dept' },
         { text: 'วันที่ยื่นคำร้อง', value: 'created_date' },
-
         { text: 'การทำงาน', value: '' },
       ],
       allNewDoc: [],
+      currentDocId: '',
+      currentDocName: '',
+      confirmDialog: false,
+      completeDialog: false,
+      loadingDialog: false,
     }
   },
   methods: {
+    confirm(docId, docName) {
+      this.confirmDialog = true
+      this.currentDocId = docId
+      this.currentDocName = docName
+    },
     async acceptDoc(docId) {
-      await this.$store.dispatch('api/setDocApprovalStatus', {
-        id: docId,
-        approval_status: 'waiting',
-      })
+      this.confirmDialog = false
+      this.loadingDialog = true
+      console.log(docId)
+      await this.$store
+        .dispatch('api/setDocApprovalStatus', {
+          id: docId,
+          approval_status: 'waiting',
+        })
+        .then((res) => {
+          console.log("pass here");
+          console.log('this is res', res.status)
+          if (res.status == 201) {
+            console.log('stop loading')
+            this.loadingDialog = false
+            this.completeDialog = true
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      await this.$nuxt.refresh()
     },
   },
 }
