@@ -33,7 +33,6 @@ router.post("/getAllUsers", checkAuth, async (req, res) => {
 router.post("/userInfo", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   try {
-    // const user = await users.find({ uid: user_uid });
     if (user_uid == null) {
       return res.status(400).json({ message: "Bad req" });
     }
@@ -98,8 +97,7 @@ router.post("/createNewAdmin", async (req, res) => {
 //getAllNewDoc
 router.post("/getAllNewDoc", checkAuth, async (req, res) => {
   try {
-    const documents = await lessthanfivems.find();
-    console.log("this is doc ", documents);
+    const documents = await lessthanfivems.find({ approval_status: "new" });
     res.status(200).json(documents);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -107,25 +105,29 @@ router.post("/getAllNewDoc", checkAuth, async (req, res) => {
 });
 
 // Updating Doc Status
-router.patch("/updateDocStatus", checkAuth, async (req, res) => {
-  document = await document.findById(req.body.id);
-  console.log("this is doc ", document);
-  if (req.body.approval_status == "waiting") {
-    res.document.approval_status = "waiting";
-  } else if (req.body.approval_status == "dms") {
-    res.document.approval_status = "dms";
-  } else if (req.body.approval_status == "moph") {
-    res.document.approval_status = "moph";
-  } else if (req.body.approval_status == "approved") {
-    res.document.approval_status = "approved";
-  } else if (req.body.approval_status == "rejected") {
-    res.document.approval_status = "rejected";
+router.put("/updateDocStatus", async (req, res) => {
+  let Status = "";
+  const reqStatus = req.body.approval_status;
+  const docId = req.body.id;
+  if (reqStatus === "waiting") {
+    Status = "waiting";
+  } else if (reqStatus === "dms") {
+    Status = "dms";
+  } else if (reqStatus === "moph") {
+    Status = "moph";
+  } else if (reqStatus === "approved") {
+    Status = "approved";
+  } else if (reqStatus === "rejected") {
+    Status = "rejected";
   } else {
-    res.status(400).json({ message: "bad req" });
+    return res.status(400).json({ message: "bad req" });
   }
   try {
-    const updatedWaiting = await res.document.save();
-    res.json(updatedWaiting);
+    let updatedWaiting = await lessthanfivems.updateOne(
+      { _id: docId },
+      { $set: { approval_status: Status } }
+    );
+    res.status(201).json({updatedWaiting})
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
