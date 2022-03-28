@@ -146,10 +146,7 @@ export default {
           approval_status: 'waiting',
         })
         .then((res) => {
-          console.log("pass here");
-          console.log('this is res', res.status)
-          if (res.status == 201) {
-            console.log('stop loading')
+          if (res.status == 200) {
             this.loadingDialog = false
             this.completeDialog = true
           }

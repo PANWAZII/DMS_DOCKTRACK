@@ -73,7 +73,7 @@ export const actions = {
     const headers = getAuthToken(this.$cookies)
     return await axios
       .put('/admins/updateDocStatus', data, { headers })
-      .then((res) => res.data)
+      .then((res) => res)
   },
   async getAllNewDoc({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
