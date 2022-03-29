@@ -434,9 +434,7 @@
             </v-row>
             <v-spacer></v-spacer>
             <br />
-            <p class="topices">
-              กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
-            </p>
+            <p class="topices">โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software</p>
             <v-row>
               <v-col cols="12" md="6">
                 <v-file-input label="แบบบัญชีราคากลาง"></v-file-input>
@@ -445,14 +443,7 @@
             </v-row>
             <v-spacer></v-spacer>
             <br />
-            <p class="topices">
-              กรณีระบบเครือข่ายหรือกล้อง CCTV โปรดแนบผังเครือข่าย
-            </p>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-file-input label="ผังเครือข่าย"></v-file-input>
-              </v-col>
-            </v-row>
+
             <v-spacer></v-spacer>
             <br />
 
