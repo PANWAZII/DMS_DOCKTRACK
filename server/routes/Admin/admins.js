@@ -127,7 +127,7 @@ router.put("/updateDocStatus", async (req, res) => {
       { _id: docId },
       { $set: { approval_status: Status } }
     );
-    res.status(201).json({updatedWaiting})
+    res.status(200).json({updatedWaiting})
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
