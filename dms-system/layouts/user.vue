@@ -268,7 +268,7 @@ export default {
         profile: {
           icon: 'mdi-account',
           title: 'โปรไฟล์',
-          to: '/profile',
+          to: '/user/profile',
         },
         // document: {
         //   icon: 'mdi-file-document-multiple',
