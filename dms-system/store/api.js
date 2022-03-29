@@ -62,18 +62,6 @@ export const actions = {
       .get('/users/userInfo', data, { headers })
       .then((res) => res.data)
   },
-  async getDepartmentById({ getters }, data) {
-    const headers = getAuthToken(this.$cookies)
-    return await axios
-      .post('/departments/getDepartmentById', data, { headers })
-      .then((res) => res.data)
-  },
-  async getPositionById({ getters }, data) {
-    const headers = getAuthToken(this.$cookies)
-    return await axios
-      .post('/positions/getPositionById', data, { headers })
-      .then((res) => res.data)
-  },
   //admin
   async getAdminInfo({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
@@ -91,6 +79,19 @@ export const actions = {
     const headers = getAuthToken(this.$cookies)
     return await axios
       .post('/admins/getAllNewDoc', data, { headers })
+      .then((res) => res.data)
+  },
+  //User & Admin
+  async getDepartmentById({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/departments/getDepartmentById', data, { headers })
+      .then((res) => res.data)
+  },
+  async getPositionById({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/positions/getPositionById', data, { headers })
       .then((res) => res.data)
   },
   //Lessthanfivem
