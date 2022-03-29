@@ -40,66 +40,109 @@
               ></v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-divider></v-divider>
+          <h5 class="text-center mt-3">แบบรายงานไม่เกิน 5 ล้านบาท</h5>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.lessthan_Hardware.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.lessthan_Hardware.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.lessthan_Hardware.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.lessthan_Software.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.lessthan_Software.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.lessthan_Software.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.lessthan_Network.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.lessthan_Network.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.lessthan_Network.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.lessthan_Camera.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.lessthan_Camera.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.lessthan_Camera.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-divider></v-divider>
+          <h5 class="text-center mt-3">แบบรายงานเกิน 5 ล้านบาท</h5>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.morethan_Hardware.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.morethan_Hardware.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.morethan_Hardware.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.morethan_Software.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.morethan_Software.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.morethan_Software.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.morethan_Network.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.morethan_Network.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.morethan_Network.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-list-item-group color="primary" class="mb-1">
+            <v-list-item :to="this.menu.morethan_Camera.to">
+              <v-list-item-icon>
+                <v-icon>{{ this.menu.morethan_Camera.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title
+                  v-text="this.menu.morethan_Camera.title"
+                ></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+          <v-divider></v-divider>
         </v-list-item-group>
-        <v-list-group :value="false" prepend-icon="mdi-file-document-multiple">
-          <template v-slot:activator>
-            <v-list-item-title to="/user/document"
-              >แบบรายงานฯ</v-list-item-title
-            >
-          </template>
-          <v-list-item :to="this.menu.all_doc.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
 
-            <v-list-item-title
-              v-text="this.menu.all_doc.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <v-list-item :to="this.menu.tracking.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.tracking.title"
-            ></v-list-item-title>
-          </v-list-item>
-          <!-- <v-list-item :to="this.menu.dms.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title v-text="this.menu.dms.title"></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.moph.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.moph.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.approved.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.approved.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-          <!-- <v-list-item :to="this.menu.rejected.to">
-            <v-list-item-icon>
-              <v-icon></v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-title
-              v-text="this.menu.rejected.title"
-            ></v-list-item-title>
-          </v-list-item> -->
-        </v-list-group>
         <!-- <v-list-item-group color="primary" class="mb-1">
           <v-list-item :to="this.menu.document.to">
             <v-list-item-icon>
@@ -237,6 +280,46 @@ export default {
           title: 'ส่งแบบรายงานฯ',
           to: '/user/document',
         },
+        lessthan_Hardware: {
+          icon: 'mdi-desktop-classic',
+          title: 'ฮาร์ดแวร์',
+          to: '/user/doc-store/lessthan/hardware',
+        },
+        lessthan_Software: {
+          icon: 'mdi-application-parentheses',
+          title: 'ซอฟต์แวร์',
+          to: '/user/doc-store/lessthan/software',
+        },
+        lessthan_Network: {
+          icon: 'mdi-access-point-network',
+          title: 'ระบบเครือข่าย',
+          to: '/user/doc-store/lessthan/network',
+        },
+        lessthan_Camera: {
+          icon: 'mdi-webcam',
+          title: 'ระบบกล้องวงจรปิด',
+          to: '/user/doc-store/lessthan/camera',
+        },
+        morethan_Hardware: {
+          icon: 'mdi-desktop-classic',
+          title: 'ฮาร์ดแวร์',
+          to: '/user/doc-store/morethan/hardware',
+        },
+        morethan_Software: {
+          icon: 'mdi-application-parentheses',
+          title: 'ซอฟต์แวร์',
+          to: '/user/doc-store/morethan/software',
+        },
+        morethan_Network: {
+          icon: 'mdi-access-point-network',
+          title: 'ระบบเครือข่าย',
+          to: '/user/doc-store/morethan/network',
+        },
+        morethan_Camera: {
+          icon: 'mdi-webcam',
+          title: 'ระบบกล้องวงจรปิด',
+          to: '/user/doc-store/morethan/camera',
+        },
 
         support: {
           icon: 'mdi-face-agent',
@@ -322,16 +405,22 @@ export default {
         return 'Support'
       } else if (this.$route.path === '/profile') {
         return 'โปรไฟล์'
-      } else if (this.$route.path === '/doc-list/waitingList') {
-        return 'ติดตามสถานะแบบคำขอ ฯ'
-      } else if (this.$route.path === '/doc-list/dmsList') {
-        return 'แบบคำขอฯ รอกรมการแพทย์ลงนาม'
-      } else if (this.$route.path === '/doc-list/mophList') {
-        return 'แบบคำขอฯ รอกระทรวงสาธารณสุขลงนาม'
-      } else if (this.$route.path === '/doc-list/approvedList') {
-        return 'แบบคำขอฯ อนุมัติและส่งคืนแล้ว'
-      } else if (this.$route.path === '/doc-list/rejectedList') {
-        return 'แบบคำขอฯ มีข้อแก้ไข'
+      } else if (this.$route.path === '/user/doc-store/lessthan/hardware') {
+        return 'โครงการไม่เกิน 5 ล้านบาท / ฮาร์ดแวร์'
+      } else if (this.$route.path === '/user/doc-store/lessthan/software') {
+        return 'โครงการไม่เกิน 5 ล้านบาท / ซอฟต์แวร์'
+      } else if (this.$route.path === '/user/doc-store/lessthan/network') {
+        return 'โครงการไม่เกิน 5 ล้านบาท / ระบบเครือข่าย'
+      } else if (this.$route.path === '/user/doc-store/lessthan/camera') {
+        return 'โครงการไม่เกิน 5 ล้านบาท / ระบบกล้องวงจรปิด'
+      } else if (this.$route.path === '/user/doc-store/morethan/hardware') {
+        return 'โครงการเกิน 5 ล้านบาท / ฮาร์ดแวร์'
+      } else if (this.$route.path === '/user/doc-store/morethan/software') {
+        return 'โครงการเกิน 5 ล้านบาท / ซอฟต์แวร์'
+      } else if (this.$route.path === '/user/doc-store/morethan/network') {
+        return 'โครงการเกิน 5 ล้านบาท / ระบบเครือข่าย'
+      } else if (this.$route.path === '/user/doc-store/morethan/camera') {
+        return 'โครงการเกิน 5 ล้านบาท / ระบบกล้องวงจรปิด'
       }
     },
   },
