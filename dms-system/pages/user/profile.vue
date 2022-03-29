@@ -15,12 +15,12 @@
               <v-row class="mt-3">
                 <v-col cols="12" sm="6" md="4"
                   ><div style="font-size: 15px">หน่วยงาน</div>
-                  <h4>สำนักดิจิทัลการแพทย์</h4>
+                  <h4>{{userDepartment.department}}</h4>
                 </v-col>
 
                 <v-col cols="12" sm="6" md="4"
                   ><div style="font-size: 15px">ตำแหน่ง</div>
-                  <h4>นักวิชาการคอมพิวเตอร์</h4>
+                  <h4>{{userPosition.position}}</h4>
                 </v-col>
               </v-row>
             </v-container>
@@ -68,54 +68,21 @@ export default {
     this.userInfo = await this.$store.dispatch('api/getUserInfo', {
       params: { uid: user_uid },
     })
-  },
-  async asyncData({ store }) {
-    let department = []
-    let position = []
-    try {
-      department = await store.dispatch('api/getAllDepartments')
-      position = await store.dispatch('api/getAllPositions')
-    } catch (err) {
-      console.log(err)
-    }
-    return { department, position }
+    const department = this.userInfo.department_id
+    this.userDepartment = await this.$store.dispatch('api/getDepartmentById', {
+      id: department,
+    })
+    const position = this.userInfo.position_id
+    this.userPosition = await this.$store.dispatch('api/getPositionById', {
+      id: position,
+    })
   },
   data() {
     return {
       userInfo: [],
-      position: [],
-      department: [],
+      userDepartment: '',
+      userPosition: '',
       valid: true,
-      form: {
-        user_firstname: '',
-        user_lastname: '',
-        position: '',
-        department: '',
-        user_position: '',
-        user_department: '',
-        user_tel: '',
-        user_fax: '',
-        user_email: '',
-        dept: [
-          'สำนักดิจิทัลการแพทย์',
-          'กองยุทธศาสตร์และแผนงาน',
-          'กองกฎหมายและจริยธรรม',
-        ],
-        position_choice: ['นักวิชาการคอมพิวเตอร์', 'นักวิเคราะห์นโยบายและแผน'],
-      },
-      // telRules: [
-      //   (v) => !!v || 'โปรดระบุเบอร์โทรศัพท์',
-      //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      // ],
-      // faxRules: [
-      //   (v) => !!v || 'โปรดระบุเบอร์โทรสาร',
-      //   (v) => v.length <= 10 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      // ],
-      // emailRules: [
-      //   (v) => !!v || 'โปรดระบุอีเมลหัวหน้าส่วนราชการ',
-      //   (v) => /.+@.+/.test(v) || 'อีเมลไม่ถูกต้องตามรูปแบบ',
-      //   (v) => v.length <= 100 || 'จำนวนตัวอักษรเกินขนาดที่สามารถรับได้',
-      // ],
     }
   },
   methods: {
