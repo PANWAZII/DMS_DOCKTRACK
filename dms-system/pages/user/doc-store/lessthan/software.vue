@@ -11,7 +11,7 @@
       </v-col>
 
       <v-col class="mb-4">
-        <p class="topices">Software</p>
+        <p class="topices">แบบรายงานการจัดหาฯ<br />ประภท ซอฟต์แวร์</p>
       </v-col>
     </v-row>
     <v-row class="d-flex justify-center align-center">
@@ -28,14 +28,14 @@
               label="ชื่อโครงการ (ระบุทั้งภาษาไทยและภาษาอังกฤษ)"
               required
             ></v-text-field>
-            <br />
+            <!-- <br />
             <p class="topices">ประเภทโครงการ</p>
             <v-radio-group v-model="form.project_type" row required>
               <v-radio label="Hardware" value="hardware"></v-radio>
               <v-radio label="Software" value="software"></v-radio>
               <v-radio label="ระบบเครือข่าย" value="network"></v-radio>
               <v-radio label="ระบบกล้องวงจรปิด" value="camera"></v-radio>
-            </v-radio-group>
+            </v-radio-group> -->
             <!-- <p class="topices">2. ส่วนราชการ / รัฐวิสาหกิจ</p> -->
             <!-- <p class="subtop">2.1 ชื่อส่วนราชการ</p> -->
             <!-- <v-text-field
@@ -765,7 +765,7 @@ export default {
         await this.$store.dispatch('api/lessThanCreatDoc', {
           uid: user_id,
           project_name: this.form.project_name,
-          project_type: this.form.project_type,
+          project_type: 'software',
           budget_year: this.form.budget_year,
           department_name: this.form.department_name,
           budget_resource: this.form.budget_resource,
