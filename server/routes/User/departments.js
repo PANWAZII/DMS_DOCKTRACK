@@ -14,7 +14,7 @@ router.get("/getAllDepartments", async (req, res) => {
 
 router.post("/getDepartmentById", checkAuth, async (req, res) => {
   try {
-    const department = await departments.find({ _id: req.id });
+    const department = await departments.findOne({ _id: req.body.id });
     res.status(200).json({ department: department.department_name });
   } catch (err) {
     res.status(500).json({ message: err.message });
