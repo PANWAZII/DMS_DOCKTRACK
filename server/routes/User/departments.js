@@ -3,7 +3,7 @@ import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
 import departments from "../../models/User/department.js";
 // Getting all
-router.get("/getAllDepartments" ,async (req, res) => {
+router.get("/getAllDepartments", async (req, res) => {
   try {
     const allDepartments = await departments.find();
     res.status(200).json(allDepartments);
@@ -12,10 +12,14 @@ router.get("/getAllDepartments" ,async (req, res) => {
   }
 });
 
-// Getting One
-// router.get("/:id", getSubscriber, (req, res) => {
-//   res.json(res.subscriber);
-// });
+router.post("/getDepartmentById", checkAuth, async (req, res) => {
+  try {
+    const department = await departments.find({ _id: req.id });
+    res.status(200).json({ department: department.department_name });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // Creating new User
 router.post("/createNewDepartment", async (req, res) => {
