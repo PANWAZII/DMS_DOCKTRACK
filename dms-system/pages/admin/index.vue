@@ -61,12 +61,12 @@
     </v-dialog>
     <v-dialog v-model="completeDialog" max-width="290">
       <v-card>
-        <v-card-title class="text">รับเข้าระบบเรียบร้อย ? </v-card-title>
+        <v-card-title class="text">รับเข้าระบบเรียบร้อย</v-card-title>
         <!-- <br /> -->
-        <v-card-text>{{ currentDocName }}เข้าระบบแล้ว</v-card-text>
+        <v-card-text>{{ currentDocName }} เข้าระบบแล้ว</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="confirmDialog = false">
+          <v-btn color="error darken-1" text @click="completeDialog = false">
             ปิด
           </v-btn>
         </v-card-actions>
