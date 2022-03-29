@@ -40,13 +40,15 @@
     </v-row>
     <v-dialog v-model="confirmDialog" max-width="290">
       <v-card>
-        <v-card-title class="text"
-          >Do you wanna accept this doc ?
-        </v-card-title>
+        <v-card-title class="text">รับเอกสารเข้าระบบ ? </v-card-title>
         <br />
         <!-- <v-card-text>สามารถเข้าใช้งานด้วยอีเมลแลรหัสผ่านได้ทันที</v-card-text> -->
         <v-card-actions>
           <v-spacer></v-spacer>
+
+          <v-btn color="error" text @click="confirmDialog = false">
+            ยกเลิก
+          </v-btn>
           <v-btn
             color="green darken-1"
             text
@@ -54,21 +56,18 @@
           >
             ตกลง
           </v-btn>
-          <v-btn color="error" text @click="confirmDialog = false">
-            ยกเลิก
-          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-dialog v-model="completeDialog" max-width="290">
       <v-card>
-        <v-card-title class="text">Accept document complete ? </v-card-title>
+        <v-card-title class="text">รับเข้าระบบเรียบร้อย ? </v-card-title>
         <!-- <br /> -->
-        <v-card-text>accept{{ currentDocName }}complete</v-card-text>
+        <v-card-text>{{ currentDocName }}เข้าระบบแล้ว</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="confirmDialog = false">
-            close
+            ปิด
           </v-btn>
         </v-card-actions>
       </v-card>
