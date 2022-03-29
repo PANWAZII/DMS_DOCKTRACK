@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import positions from "../../models/User/position.js";
+import checkAuth from "../../middleware/auth.js";
 // Getting all
 router.get("/getAllPositions", async (req, res) => {
   try {
@@ -11,10 +12,14 @@ router.get("/getAllPositions", async (req, res) => {
   }
 });
 
-// Getting One
-// router.get("/:id", getSubscriber, (req, res) => {
-//   res.json(res.subscriber);
-// });
+router.post("/getPositionById", checkAuth, async (req, res) => {
+  try {
+    const position = await positions.findOne({ _id: req.body.id });
+    res.status(200).json({ position: position.position_name });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 // Creating new User
 router.post("/createNewPosition", async (req, res) => {
