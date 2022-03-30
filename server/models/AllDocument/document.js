@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const morethanfivemSchema = new mongoose.Schema({
+const documentSchema = new mongoose.Schema({
   uid: {
     type: String,
     required: false,
@@ -9,79 +9,19 @@ const morethanfivemSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  project_type: {
+    type: String,
+    required: false,
+  },
+  budget_year: {
+    type: String,
+    required: false,
+  },
   department_name: {
     type: String,
     required: false,
   },
-  boss_name: {
-    type: String,
-    required: false,
-  },
-  boss_position: {
-    type: String,
-    required: false,
-  },
-  boss_tel: {
-    type: String,
-    required: false,
-  },
-  boss_fax: {
-    type: String,
-    required: false,
-  },
-  boss_email: {
-    type: String,
-    required: false,
-  },
-  user2_name: {
-    type: String,
-    required: false,
-  },
-  user2_position: {
-    type: String,
-    required: false,
-  },
-  user2_tel: {
-    type: String,
-    required: false,
-  },
-  user2_fax: {
-    type: String,
-    required: false,
-  },
-  user2_email: {
-    type: String,
-    required: false,
-  },
-  user3_name: {
-    type: String,
-    required: false,
-  },
-  user3_position: {
-    type: String,
-    required: false,
-  },
-  user3_tel: {
-    type: String,
-    required: false,
-  },
-  user3_fax: {
-    type: String,
-    required: false,
-  },
-  user3_email: {
-    type: String,
-    required: false,
-  },
-  baht_text: {
-    type: String,
-    required: false,
-  },
-  resource: {
-    type: String,
-    required: false,
-  },
-  detail_notstd: {
+  budget_resource: {
     type: String,
     required: false,
   },
@@ -157,15 +97,23 @@ const morethanfivemSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  approval_status_th: {
+    type: String,
+    require: false,
+  },
   approval_status: {
+    type: String,
+    require: false,
+  },
+  document_type: {
     type: String,
     require: false,
   },
   available_status: {
     type: Number,
-    requiredP: false,
+    required: false,
   },
 });
 
 //this is type name
-export default mongoose.model("morethanfivems", morethanfivemSchema);
+export default mongoose.model("documents", documentSchema);
