@@ -62,6 +62,12 @@ export const actions = {
       .get('/users/userInfo', data, { headers })
       .then((res) => res.data)
   },
+  async getUserDocuments({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/users/getAllDocuments', data, { headers })
+      .then((res) => res.data)
+  },
   //admin
   async getAdminInfo({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
