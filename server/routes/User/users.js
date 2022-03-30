@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import users from "../../models/User/user.js";
+import documents from "../../models/AllDocument/document.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import checkAuth from "../../middleware/auth.js";
@@ -75,7 +76,7 @@ router.post("/createNewUser", async (req, res) => {
         department_id: department_id,
         tel: telephone,
         fax: fax,
-        level:level,
+        level: level,
         available_status: 1,
         created_date: date,
         modified_date: date,
@@ -97,6 +98,15 @@ router.post("/createNewUser", async (req, res) => {
   // } catch (err) {
   //   res.status(400).json({ message: err.message });
   // }
+});
+
+router.post("/getAllDocuments", checkAuth, async (req, res) => {
+  try {
+    const allDocuments = await documents.find({ uid: req.body.uid });
+    res.status(200).json(allDocuments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Updating One

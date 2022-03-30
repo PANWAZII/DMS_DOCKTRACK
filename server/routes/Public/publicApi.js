@@ -1,5 +1,5 @@
 import express from "express";
-import lessthanfivems from "../../models/AllDocument/lessthanfivem.js";
+import documents from "../../models/AllDocument/document.js";
 import getGovYear from "../../library/govYear.js";
 
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/getAllDocNum", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const allDocuments = await lessthanfivems.find({ budget_year: govYear });
+    const allDocuments = await documents.find({ budget_year: govYear });
     res.status(200).json({ count: allDocuments.length });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -17,7 +17,7 @@ router.get("/getAllDocNum", async (req, res) => {
 router.get("/getAllDocuments", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const allDocuments = await lessthanfivems.find({ budget_year: govYear });
+    const allDocuments = await documents.find({ budget_year: govYear });
     const Data = allDocuments.map((item) => {
       const container = {};
       container["name"] = item.project_name;
@@ -34,7 +34,7 @@ router.get("/getAllDocuments", async (req, res) => {
 router.get("/getHardware", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const hardware = await lessthanfivems.find({
+    const hardware = await documents.find({
       $and: [{ budget_year: govYear }, { project_type: "hardware" }],
     });
     res.status(200).json({ count: hardware.length });
@@ -46,7 +46,7 @@ router.get("/getHardware", async (req, res) => {
 router.get("/getSoftware", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const software = await lessthanfivems.find({
+    const software = await documents.find({
       $and: [{ budget_year: govYear }, { project_type: "software" }],
     });
     res.status(200).json({ count: software.length });
@@ -58,7 +58,7 @@ router.get("/getSoftware", async (req, res) => {
 router.get("/getNetwork", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const network = await lessthanfivems.find({
+    const network = await documents.find({
       $and: [{ budget_year: govYear }, { project_type: "network" }],
     });
     res.status(200).json({ count: network.length });
@@ -70,7 +70,7 @@ router.get("/getNetwork", async (req, res) => {
 router.get("/getCamera", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const cam = await lessthanfivems.find({
+    const cam = await documents.find({
       $and: [{ budget_year: govYear }, { project_type: "camera" }],
     });
     res.status(200).json({ count: cam.length });
@@ -82,7 +82,7 @@ router.get("/getCamera", async (req, res) => {
 router.get("/getNormalBudget", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const normalBudget = await lessthanfivems.find({
+    const normalBudget = await documents.find({
       $and: [{ budget_year: govYear }, { budget_resource: "normal_budget" }],
     });
     if (!normalBudget[0]) {
@@ -101,7 +101,7 @@ router.get("/getNormalBudget", async (req, res) => {
 router.get("/getMaintenanceBudget", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const maintenanceBudget = await lessthanfivems.find({
+    const maintenanceBudget = await documents.find({
       $and: [
         { budget_year: govYear },
         { budget_resource: "maintenance_budget" },
@@ -123,7 +123,7 @@ router.get("/getMaintenanceBudget", async (req, res) => {
 router.get("/getDonationBudget", async (req, res) => {
   const govYear = getGovYear();
   try {
-    const donationBudget = await lessthanfivems.find({
+    const donationBudget = await documents.find({
       $and: [{ budget_year: govYear }, { budget_resource: "donation_budget" }],
     });
     if (!donationBudget[0]) {
@@ -143,7 +143,7 @@ router.get("/getFoundationBudget", async (req, res) => {
   const govYear = getGovYear();
   console.log(govYear);
   try {
-    const foundationBudget = await lessthanfivems.find({
+    const foundationBudget = await documents.find({
       $and: [
         { budget_year: govYear },
         { budget_resource: "foundation_budget" },

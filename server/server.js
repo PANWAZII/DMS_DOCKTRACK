@@ -44,10 +44,8 @@ import positionsRouter from "./routes/User/positions.js";
 app.use("/positions", positionsRouter);
 
 //Documents API
-import lessthanfivesRouter from "./routes/AllDocument/lessthanfives.js";
-app.use("/lessthanfives", lessthanfivesRouter);
-import morethanfivesRouter from "./routes/AllDocument/morethanfives.js";
-app.use("/morethanfives", morethanfivesRouter);
+import documentsRouter from "./routes/AllDocument/documents.js";
+app.use("/documents", documentsRouter);
 
 //Dropdown Api
 import budgetSourceRouter from "./routes/Dropdown/budgetSources.js";

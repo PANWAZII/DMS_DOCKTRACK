@@ -1,12 +1,30 @@
 import express from "express";
-import morethanfivems from "../../models/AllDocument/morethanfivem.js";
+import documents from "../../models/AllDocument/document.js";
 import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
 // Getting all
 router.get("/getAllDocuments", async (req, res) => {
   try {
-    const allDocuments = await morethanfivems.find();
+    const allDocuments = await documents.find();
     res.status(200).json(allDocuments);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getMyDoc", async (req, res) => {
+  const uid = req.query.uid;
+  if (!uid) {
+    res.status(400);
+    return;
+  }
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const myDoc = await documents.find({ uid: uid });
+    if (myDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(myDoc);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -16,25 +34,6 @@ router.get("/getAllDocuments", async (req, res) => {
 // router.get("/:id", getSubscriber, (req, res) => {
 //   res.json(res.subscriber);
 // });
-
-// Creating new User
-router.get("/getMyDoc", async (req, res) => {
-  const uid = req.query.uid;
-  if (!uid) {
-    res.status(400);
-    return;
-  }
-  try {
-    // const user = await users.find({ uid: user_uid });
-    const myDoc = await morethanfivems.find({ uid: uid });
-    if (myDoc[0] == null) {
-      return res.status(200).json();
-    }
-    res.status(200).json(myDoc);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
 
 // Creating new User
 router.post("/createNewDocument", checkAuth, async (req, res) => {
@@ -54,7 +53,7 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   };
   try {
     console.log("start creating doc ");
-    const lessthanfivem = new morethanfivems({ ...data, ...more });
+    const lessthanfivem = new documents({ ...data, ...more });
     const newLessthanfivem = await lessthanfivem.save();
     console.log("finish creating doc ");
     res.status(201).json(newLessthanfivem);
@@ -86,7 +85,7 @@ router.get("/getRejected", async (req, res) => {
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const rejectedDoc = await morethanfivems.find({
+    const rejectedDoc = await documents.find({
       $and: [{ uid: user_uid }, { approval_status: "rejected" }],
     });
     if (rejectedDoc[0] == null) {
@@ -103,7 +102,7 @@ router.get("/getWaiting", async (req, res) => {
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const waitingDoc = await morethanfivems.find({
+    const waitingDoc = await documents.find({
       $and: [{ uid: user_uid }, { approval_status: "waiting" }],
     });
     if (waitingDoc[0] == null) {
@@ -120,7 +119,7 @@ router.get("/getDms", async (req, res) => {
   console.log("req user : ", user_uid);
   try {
     // const user = await users.find({ uid: user_uid });
-    const dmsDoc = await morethanfivems.find({
+    const dmsDoc = await documents.find({
       $and: [{ uid: user_uid }, { approval_status: "dms" }],
     });
     if (dmsDoc[0] == null) {
@@ -136,7 +135,7 @@ router.get("/getMoph", async (req, res) => {
   const user_uid = req.query.uid;
   try {
     // const user = await users.find({ uid: user_uid });
-    const mophDoc = await morethanfivems.find({
+    const mophDoc = await documents.find({
       $and: [{ uid: user_uid }, { approval_status: "moph" }],
     });
     if (mophDoc[0] == null) {
@@ -153,7 +152,7 @@ router.get("/getApproved", async (req, res) => {
   console.log("req query : ", req.query);
   try {
     // const user = await users.find({ uid: user_uid });
-    const approvedDoc = await morethanfivems.find({
+    const approvedDoc = await documents.find({
       $and: [{ uid: user_uid }, { approval_status: "approved" }],
     });
     if (approvedDoc[0] == null) {

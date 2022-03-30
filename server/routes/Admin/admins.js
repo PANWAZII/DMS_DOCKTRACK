@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import admins from "../../models/Admin/admin.js";
 import users from "../../models/User/user.js";
-import lessthanfivems from "../../models/AllDocument/lessthanfivem.js";
+import documents from "../../models/AllDocument/document.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import checkAuth from "../../middleware/auth.js";
@@ -97,7 +97,7 @@ router.post("/createNewAdmin", async (req, res) => {
 //getAllNewDoc
 router.post("/getAllNewDoc", checkAuth, async (req, res) => {
   try {
-    const documents = await lessthanfivems.find({ approval_status: "new" });
+    const documents = await documents.find({ approval_status: "new" });
     res.status(200).json(documents);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -123,7 +123,7 @@ router.put("/updateDocStatus", async (req, res) => {
     return res.status(400).json({ message: "bad req" });
   }
   try {
-    let updatedWaiting = await lessthanfivems.updateOne(
+    let updatedWaiting = await documents.updateOne(
       { _id: docId },
       { $set: { approval_status: Status } }
     );
