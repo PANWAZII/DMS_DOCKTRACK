@@ -1,5 +1,6 @@
 import express from "express";
 import morethanfivems from "../../models/AllDocument/morethanfivem.js";
+import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
 // Getting all
 router.get("/getAllDocuments", async (req, res) => {
@@ -17,71 +18,150 @@ router.get("/getAllDocuments", async (req, res) => {
 // });
 
 // Creating new User
-router.post("/createNewDocument", async (req, res) => {
+router.get("/getMyDoc", async (req, res) => {
+  const uid = req.query.uid;
+  if (!uid) {
+    res.status(400);
+    return;
+  }
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const myDoc = await morethanfivems.find({ uid: uid });
+    if (myDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(myDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Creating new User
+router.post("/createNewDocument", checkAuth, async (req, res) => {
+  const { data } = req.body;
+  if (!data) {
+    res.status(400).send("Data not ....");
+    return;
+  }
   const date = Date.now();
-  const morethanfivem = new morethanfivems({
-    uid: req.body.uid,
-    project_name: req.body.project_name,
-    department_name: req.body.department_name,
-    boss_name: req.body.boss_name,
-    boss_position: req.body.boss_position,
-    boss_tel: req.body.boss_tel,
-    boss_fax: req.body.boss_fax,
-    boss_email: req.body.boss_email,
-    user2_name: req.body.user2_name,
-    user2_position: req.body.user2_position,
-    user2_tel: req.body.user2_tel,
-    user2_fax: req.body.user2_fax,
-    user2_email: req.body.user2_email,
-    user3_name: req.body.user3_name,
-    user3_position: req.body.user3_position,
-    user3_tel: req.body.user3_tel,
-    user3_fax: req.body.user3_fax,
-    user3_email: req.body.user3_email,
-    baht_text: req.body.baht_text,
-    resource: req.body.resource,
-    detail_notstd: req.body.detail_notstd,
-    quantity: req.body.quantity,
-    unit: req.body.unit,
-    price_unit: req.body.price_unit,
-    sum: req.body.sum,
-    method: req.body.method,
-    destination: req.body.destination,
-    cert: req.body.cert,
-    list_old: req.body.list_old,
-    locate_old: req.body.locate_old,
-    year_old: req.body.year_old,
-    obstacle: req.body.obstacle,
-    purpose_of_use: req.body.purpose_of_use,
-    compare: req.body.compare,
-    major: req.body.major,
-    quantity_major: req.body.quantity_major,
-    specific_info: req.body.specific_info,
+
+  const more = {
     created_date: date,
     modified_date: date,
+    approval_status: "new",
+    approval_status_th: "รอรับเข้าระบบ",
     available_status: 1,
-  });
+  };
   try {
-    const newMorethanfivem = await morethanfivem.save();
-    res.status(201).json(newMorethanfivem);
+    console.log("start creating doc ");
+    const lessthanfivem = new morethanfivems({ ...data, ...more });
+    const newLessthanfivem = await lessthanfivem.save();
+    console.log("finish creating doc ");
+    res.status(201).json(newLessthanfivem);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
 
-// Updating One
-router.patch("/:id", getSubscriber, async (req, res) => {
-  if (req.body.name != null) {
-    res.subscriber.name = req.body.name;
-  }
-  if (req.body.subscribedToChannel != null) {
-    res.subscriber.subscribedToChannel = req.body.subscribedToChannel;
+router.get("/getBudgetYear", async (req, res) => {
+  let date = new Date();
+  const currentYear = date.getFullYear();
+  const currentThaiYear = currentYear + 543;
+  let data = [];
+  for (let index = 0; index < 3; index++) {
+    const year = currentThaiYear + index;
+    data.push({
+      year: year
+  });
   }
   try {
-    const updatedSubscriber = await res.subscriber.save();
-    res.json(updatedSubscriber);
+    res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getRejected", async (req, res) => {
+  const user_uid = req.query.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const rejectedDoc = await morethanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "rejected" }],
+    });
+    if (rejectedDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(rejectedDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getWaiting", async (req, res) => {
+  const user_uid = req.query.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const waitingDoc = await morethanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "waiting" }],
+    });
+    if (waitingDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(waitingDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getDms", async (req, res) => {
+  const user_uid = req.query.uid;
+  console.log("req user : ", user_uid);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const dmsDoc = await morethanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "dms" }],
+    });
+    if (dmsDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(dmsDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getMoph", async (req, res) => {
+  const user_uid = req.query.uid;
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const mophDoc = await morethanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "moph" }],
+    });
+    if (mophDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(mophDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/getApproved", async (req, res) => {
+  const user_uid = req.query.uid;
+  console.log("req query : ", req.query);
+  try {
+    // const user = await users.find({ uid: user_uid });
+    const approvedDoc = await morethanfivems.find({
+      $and: [{ uid: user_uid }, { approval_status: "approved" }],
+    });
+    if (approvedDoc[0] == null) {
+      return res.status(200).json();
+    }
+    res.status(200).json(approvedDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
