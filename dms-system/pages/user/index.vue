@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    {{ documents }}
     <v-row>
       <v-col cols="12">
         <v-card elevation="2">
@@ -16,7 +17,7 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="doc_info"
+            :items="documents"
             :search="search"
           ></v-data-table>
         </v-card>
@@ -28,89 +29,16 @@
 export default {
   middleware: 'middleware-user-auth',
   layout: 'user',
-  //  async fetch() {
-  //   const user_uid = await this.$cookies.get('uid_token')
-  //   // const user_uid ="LCrJh2BQO7hcwzbd8CcAUcWRRPu1"
-  //   this.approvedDoc = await this.$store.dispatch('api/getApprovedDoc',{uid:user_uid})
-  // },
-  // async asyncData({ store }) {
-  //   let waitingDoc = []
-  //   let waitingDocCount = ''
-  //   let dmsDoc = []
-  //   let dmsDocCount = ''
-  //   let mophDoc = []
-  //   let mophDocCount = ''
-  //   let approvedDoc = []
-  //   let approvedDocCount = ''
-  //   let rejectedDoc = []
-  //   let rejectedDocCount = ''
-  //   let allDocs = []
-  //   let allDocCount = ''
-  //   try {
-  //     // const user_uid = await $cookies.get('uid_token')
-  //     const user_uid = store.getters.uid
-  //     waitingDoc = await store.dispatch('api/getWaitingDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     dmsDoc = await store.dispatch('api/getDmsDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     mophDoc = await store.dispatch('api/getMophDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     approvedDoc = await store.dispatch('api/getApprovedDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     rejectedDoc = await store.dispatch('api/getRejectedDoc', {
-  //       params: { uid: user_uid },
-  //     })
-  //     allDocs = await store.dispatch('api/getAllDocByUid', {
-  //       params: { uid: user_uid },
-  //     })
-  //     waitingDocCount = waitingDoc.length
-  //     dmsDocCount = dmsDoc.length
-  //     mophDocCount = mophDoc.length
-  //     approvedDocCount = approvedDoc.length
-  //     rejectedDocCount = rejectedDoc.length
-  //     allDocCount = allDocs.length
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  //   return {
-  //     waitingDoc,
-  //     waitingDocCount,
-  //     dmsDoc,
-  //     dmsDocCount,
-  //     mophDoc,
-  //     mophDocCount,
-  //     approvedDoc,
-  //     approvedDocCount,
-  //     rejectedDoc,
-  //     rejectedDocCount,
-  //     allDocs,
-  //     allDocCount,
-  //   }
-  // },
+  async fetch() {
+    const uid = await this.$cookies.get('uid_token')
+    this.documents = await this.$store.dispatch('api/getUserDocuments', {
+      uid: uid,
+    })
+    console.log(this.documents)
+  },
   data() {
     return {
-      //     waitingDoc: [],
-      //     waitingDocCount: '',
-      //     dmsDoc: [],
-      //     dmsDocCount: '',
-      //     mophDoc: [],
-      //     mophDocCount: '',
-      //     approvedDoc: [],
-      //     approvedDocCount: '',
-      //     rejectedDoc: [],
-      //     rejectedDocCount: '',
-      //     allDoc: [],
-      //     dashBoardRoute: {
-      //       waiting: 'doc-list/waitingList',
-      //       dms: 'doc-list/dmsList',
-      //       moph: 'doc-list/mophList',
-      //       approved: 'doc-list/approvedList',
-      //       rejected: 'doc-list/rejectedList',
-      //     },
+      documents: [],
       search: '',
       headers: [
         {
@@ -119,40 +47,10 @@ export default {
           sortable: false,
           value: 'order',
         },
-        { text: 'โครงการ', value: 'title' },
+        { text: 'โครงการ', value: 'project_name' },
 
-        { text: 'สถานะ', value: 'approve_status' },
+        { text: 'สถานะ', value: 'approval_status_th' },
         { text: 'วันที่ปรับปรุงล่าสุด', value: 'modified_date' },
-      ],
-      doc_info: [
-        {
-          order: '1',
-          title: 'โครงการระบบลงนามอิเล็กทรอนิกส์',
-
-          approve_status: 'รอที่ประชุมพิจารณา',
-          modified_date: '2 / 3 / 2565',
-        },
-        {
-          order: '2',
-          title: 'โครงการระบบสแกนลายนิ้วมือเพื่อความปลอดภัย',
-
-          approve_status: 'กรมการแพทย์ลงนาม',
-          modified_date: '5 / 3 / 2565',
-        },
-        {
-          order: '3',
-          title: 'โครงการ TeleMedicine',
-
-          approve_status: 'รอที่ประชุมพิจารณา',
-          modified_date: '7 / 3 / 2565',
-        },
-        {
-          order: '4',
-          title: 'โครงการ TeleMedicine',
-
-          approve_status: 'ส่งคืนแล้ว',
-          modified_date: '11 / 3 / 2565',
-        },
       ],
     }
   },
