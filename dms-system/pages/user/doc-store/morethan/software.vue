@@ -766,6 +766,7 @@ export default {
           uid: user_id,
           project_name: this.form.project_name,
           project_type: 'software',
+          document_type: 'more',
           budget_year: this.form.budget_year,
           department_name: this.form.department_name,
           budget_resource: this.form.budget_resource,
