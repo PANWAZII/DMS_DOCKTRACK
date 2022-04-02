@@ -63,7 +63,7 @@ app.use("/auth",checkLevelRouter)
 
 
 //File Api
-import fileRouter from "./routes/File/pdf.js"
+import fileRouter from "./routes/File/files.js"
 app.use("/files",fileRouter)
 
 app.listen(port, () => console.log("Server Started at port: ", port));
