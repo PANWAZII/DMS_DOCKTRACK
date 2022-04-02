@@ -36,7 +36,7 @@ router.get("/getMyDoc", async (req, res) => {
 // });
 
 // Creating new User
-router.post("/createNewDocument", checkAuth, async (req, res) => {
+router.post("/createNewDocument", async (req, res) => {
   const { data } = req.body;
   if (!data) {
     res.status(400).send("Data not ....");
@@ -53,10 +53,14 @@ router.post("/createNewDocument", checkAuth, async (req, res) => {
   };
   try {
     console.log("start creating doc ");
-    const lessthanfivem = new documents({ ...data, ...more });
-    const newLessthanfivem = await lessthanfivem.save();
-    console.log("finish creating doc ");
-    res.status(201).json(newLessthanfivem);
+    const Documents = new documents({ ...data, ...more });
+    const newDocuments = await Documents.save(function (err, documents) {
+      console.log("this is returned id ",documents.id);
+      console.log("finish creating doc ");
+      res.status(201).json({ newDocuments, _id: documents.id });
+    });
+    // console.log("finish creating doc ");
+    // res.status(201).json(newLessthanfivem,_id:);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -70,8 +74,8 @@ router.get("/getBudgetYear", async (req, res) => {
   for (let index = 0; index < 3; index++) {
     const year = currentThaiYear + index;
     data.push({
-      year: year
-  });
+      year: year,
+    });
   }
   try {
     res.status(200).json(data);
