@@ -97,8 +97,8 @@ router.post("/createNewAdmin", async (req, res) => {
 //getAllNewDoc
 router.post("/getAllNewDoc", checkAuth, async (req, res) => {
   try {
-    const documents = await documents.find({ approval_status: "new" });
-    res.status(200).json(documents);
+    const Documents = await documents.find({ approval_status: "new" });
+    res.status(200).json(Documents);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
