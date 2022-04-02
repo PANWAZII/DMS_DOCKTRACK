@@ -100,7 +100,7 @@ export const actions = {
       .post('/positions/getPositionById', data, { headers })
       .then((res) => res.data)
   },
-  //Lessthanfivem
+  //Documents
   async lessThanCreatDoc({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
     return await axios
@@ -149,8 +149,13 @@ export const actions = {
       .then((res) => res.data)
   },
   async getBudgetYear({ getters }, data) {
+    return await axios.get('/documents/getBudgetYear').then((res) => res.data)
+  },
+  //Files
+  async uploadFile({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
     return await axios
-      .get('/documents/getBudgetYear')
+      .post('/files/uploadFile', data, { headers })
       .then((res) => res.data)
   },
 }

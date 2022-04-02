@@ -433,6 +433,15 @@
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
+            <label
+              >File
+              <input
+                type="file"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
+              />
+            </label>
             <br />
             <!-- <p class="topices">
               กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
@@ -548,6 +557,7 @@ export default {
       { name: 'เงินบริจาค', value: 'donation_budget' },
       { name: 'เงินมูลนิธิ', value: 'foundation_budget' },
     ],
+    file: '',
 
     valid: true,
     budget_year: [],
@@ -760,41 +770,62 @@ export default {
         this.saveAct()
       }
     },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0]
+    },
     async saveAct() {
       try {
         // const user_id = await this.$cookies.get('uid_token')
+        let formData = new FormData()
         const user_id = this.$store.getters.uid
         for (let index = 0; index < this.department.length; index++) {
           if (this.userDept === this.department[index]._id) {
             this.form.department_name = this.department[index].department_name
           }
         }
-        await this.$store.dispatch('api/lessThanCreatDoc', {
-          uid: user_id,
-          project_name: this.form.project_name,
-          project_type: 'camera',
-          document_type: 'less',
-          budget_year: this.form.budget_year,
-          department_name: this.form.department_name,
-          budget_resource: this.form.budget_resource,
-          detail_notstd: this.form.detail_notstd,
-          quantity: this.form.quantity,
-          unit: this.form.unit,
-          price_unit: this.form.price_unit,
-          sum: this.form.sum,
-          method: this.form.method,
-          destination: this.form.destination,
-          cert: this.form.cert,
-          list_old: this.form.list_old,
-          locate_old: this.form.locate_old,
-          year_old: this.form.year_old,
-          obstacle: this.form.obstacle,
-          purpose_of_use: this.form.purpose_of_use,
-          compare: this.form.compare,
-          major: this.form.major,
-          quantity_major: this.form.quantity_major,
-          specific_info: this.form.specific_info,
-        })
+        formData.append('file', this.file)
+        // formData.append(this.file)
+        console.log('this is file ', this.file)
+        await this.$store
+          .dispatch('api/lessThanCreatDoc', {
+            uid: user_id,
+            project_name: this.form.project_name,
+            project_type: 'camera',
+            document_type: 'less',
+            budget_year: this.form.budget_year,
+            department_name: this.form.department_name,
+            budget_resource: this.form.budget_resource,
+            detail_notstd: this.form.detail_notstd,
+            quantity: this.form.quantity,
+            unit: this.form.unit,
+            price_unit: this.form.price_unit,
+            sum: this.form.sum,
+            method: this.form.method,
+            destination: this.form.destination,
+            cert: this.form.cert,
+            list_old: this.form.list_old,
+            locate_old: this.form.locate_old,
+            year_old: this.form.year_old,
+            obstacle: this.form.obstacle,
+            purpose_of_use: this.form.purpose_of_use,
+            compare: this.form.compare,
+            major: this.form.major,
+            quantity_major: this.form.quantity_major,
+            specific_info: this.form.specific_info,
+          })
+          .then(async (res) => {
+            console.log('this is res obj id ', res)
+            if (res._id) {
+              formData.append('id', res._id)
+              await this.$store.dispatch('api/uploadFile', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              })
+            } else {
+              console.log('err')
+            }
+          })
 
         alert('Add Completed')
       } catch (err) {
