@@ -21,9 +21,10 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(
   bodyParser.urlencoded({
+    limit: '50mb',
     extended: true,
   })
 );
@@ -59,5 +60,10 @@ app.use("/admins", adminsRouter);
 //Level checker API
 import checkLevelRouter from "./routes/checkLevel.js"
 app.use("/auth",checkLevelRouter)
+
+
+//File Api
+import fileRouter from "./routes/File/pdf.js"
+app.use("/files",fileRouter)
 
 app.listen(port, () => console.log("Server Started at port: ", port));
