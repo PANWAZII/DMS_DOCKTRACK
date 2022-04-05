@@ -201,7 +201,7 @@ export default {
         profile: {
           icon: 'mdi-account',
           title: 'โปรไฟล์',
-          to: '/profile',
+          to: '/admin/profile',
         },
         document: {
           icon: 'mdi-file-document-multiple',
