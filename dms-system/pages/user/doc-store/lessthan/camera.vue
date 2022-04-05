@@ -151,9 +151,10 @@
               </v-col>
             </v-row> -->
             <br />
-            <p class="topices">ปีงบประมาณ</p>
+
             <v-row>
-              <v-col cols="12" md="6">
+              <v-col cols="12" sm="6" md="4">
+                <p class="topices">ปีงบประมาณ</p>
                 <v-select
                   v-model="form.budget_year"
                   :items="budget_year"
@@ -164,13 +165,26 @@
                   required
                 ></v-select>
               </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <p class="subtop">แหล่งเงิน</p>
+                <v-select
+                  v-model="form.budget_resource"
+                  :items="budget"
+                  item-text="name"
+                  item-value="value"
+                  :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
+                  label="โปรดระบุแหล่งเงิน"
+                  required
+                >
+                </v-select>
+              </v-col>
             </v-row>
 
             <br />
             <p class="topices">งบประมาณ</p>
-            <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
             <v-row>
               <v-col cols="12" md="6">
+                <p class="subtop">งบประมาณรวมทั้งสิ้น</p>
                 <v-text-field
                   v-model="form.sum"
                   :rules="sumRules"
@@ -180,6 +194,20 @@
                 >
                 </v-text-field>
               </v-col>
+              <v-col cols="12" sm="6" md="4"> </v-col>
+            </v-row>
+            <!-- <p class="subtop">งบประมาณรวมทั้งสิ้น</p> -->
+            <v-row>
+              <!-- <v-col cols="12" md="6">
+                <v-text-field
+                  v-model="form.sum"
+                  :rules="sumRules"
+                  dense
+                  label="จำนวนเงิน (บาท)"
+                  required
+                >
+                </v-text-field>
+              </v-col> -->
               <!-- <v-col cols="12" md="6">
                 <v-text-field
                   v-model="form.baht_text"
@@ -191,7 +219,7 @@
               </v-col> -->
             </v-row>
             <br />
-            <p class="subtop">แหล่งเงิน</p>
+            <!-- <p class="subtop">แหล่งเงิน</p>
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
@@ -205,7 +233,7 @@
                 >
                 </v-select>
               </v-col>
-            </v-row>
+            </v-row> -->
             <br />
             <p class="topices">แนบไฟล์แบบรายงานการจัดหาฯ</p>
             <v-row>
@@ -427,7 +455,11 @@
             </p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-file-input show-size v-model="file" label="แนบใบเสนอราคา 1"></v-file-input>
+                <v-file-input
+                  show-size
+                  v-model="file"
+                  label="แนบใบเสนอราคา 1"
+                ></v-file-input>
                 <v-file-input label="แนบใบเสนอราคา 2"></v-file-input>
                 <v-file-input label="แนบใบเสนอราคา 3"></v-file-input>
               </v-col>

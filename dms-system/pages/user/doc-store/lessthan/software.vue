@@ -151,9 +151,9 @@
               </v-col>
             </v-row> -->
             <br />
-            <p class="topices">ปีงบประมาณ</p>
             <v-row>
-              <v-col cols="12" md="6">
+              <v-col cols="12" sm="6" md="4">
+                <p class="topices">ปีงบประมาณ</p>
                 <v-select
                   v-model="form.budget_year"
                   :items="budget_year"
@@ -163,6 +163,19 @@
                   label="ระบุปีงบประมาณ"
                   required
                 ></v-select>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <p class="subtop">แหล่งเงิน</p>
+                <v-select
+                  v-model="form.budget_resource"
+                  :items="budget"
+                  item-text="name"
+                  item-value="value"
+                  :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
+                  label="โปรดระบุแหล่งเงิน"
+                  required
+                >
+                </v-select>
               </v-col>
             </v-row>
 
@@ -191,22 +204,7 @@
               </v-col> -->
             </v-row>
             <br />
-            <p class="subtop">แหล่งเงิน</p>
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-select
-                  v-model="form.budget_resource"
-                  :items="budget"
-                  item-text="name"
-                  item-value="value"
-                  :rules="[(v) => !!v || 'โปรดระบุแหล่งเงิน']"
-                  label="โปรดระบุแหล่งเงิน"
-                  required
-                >
-                </v-select>
-              </v-col>
-            </v-row>
-            <br />
+
             <p class="topices">แนบไฟล์แบบรายงานการจัดหาฯ</p>
             <v-row>
               <v-col cols="12" md="6">
