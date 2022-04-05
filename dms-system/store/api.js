@@ -152,10 +152,34 @@ export const actions = {
     return await axios.get('/documents/getBudgetYear').then((res) => res.data)
   },
   //Files
-  async uploadFile({ getters }, data) {
+  async uploadReport({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
     return await axios
-      .post('/files/uploadFile', data, { headers })
+      .post('/files/uploadReport', data, { headers })
+      .then((res) => res.data)
+  },
+  async uploadBlueprint({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/files/uploadBlueprint', data, { headers })
+      .then((res) => res.data)
+  },
+  async uploadQuotation_1({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/files/uploadQuotation_1', data, { headers })
+      .then((res) => res.data)
+  },
+  async uploadQuotation_2({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/files/uploadQuotation_2', data, { headers })
+      .then((res) => res.data)
+  },
+  async uploadQuotation_3({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/files/uploadQuotation_3', data, { headers })
       .then((res) => res.data)
   },
 }
