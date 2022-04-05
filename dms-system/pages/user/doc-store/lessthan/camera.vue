@@ -427,13 +427,13 @@
             </p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-file-input label="แนบใบเสนอราคา 1"></v-file-input>
+                <v-file-input show-size v-model="file" label="แนบใบเสนอราคา 1"></v-file-input>
                 <v-file-input label="แนบใบเสนอราคา 2"></v-file-input>
                 <v-file-input label="แนบใบเสนอราคา 3"></v-file-input>
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
-            <label
+            <!-- <label
               >File
               <input
                 type="file"
@@ -441,7 +441,7 @@
                 ref="file"
                 v-on:change="handleFileUpload()"
               />
-            </label>
+            </label> -->
             <br />
             <!-- <p class="topices">
               กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
@@ -770,9 +770,9 @@ export default {
         this.saveAct()
       }
     },
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0]
-    },
+    // handleFileUpload() {
+    //   this.file = this.$refs.file.files[0]
+    // },
     async saveAct() {
       try {
         // const user_id = await this.$cookies.get('uid_token')
