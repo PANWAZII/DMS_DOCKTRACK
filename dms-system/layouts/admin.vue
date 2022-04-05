@@ -305,13 +305,13 @@ export default {
       } else if (this.$route.path === '/admin/document') {
         return 'แบบคำขอจัดหาระบบคอมพิวเตอร์ภาครัฐ'
       } else if (this.$route.path === '/admin/register') {
-        return 'Register'
+        return 'ลงทะเบียนผู้ใช้งานใหม่'
       } else if (this.$route.path === '/admin/profile') {
         return 'โปรไฟล์'
       } else if (this.$route.path === '/admin/managedoc') {
         return 'จัดการแบบรายงานฯ'
       } else if (this.$route.path === '/admin/manageUser') {
-        return 'จัดการผู้ใช้งาน'
+        return 'รายชื่อผู้ใช้งาน'
       } else if (this.$route.path === '/admin/checkDoc') {
         return 'ตรวจสอบแบบรายงานฯ'
       }

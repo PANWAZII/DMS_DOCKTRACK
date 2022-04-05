@@ -15,7 +15,7 @@
             <p class="topic">ลงทะเบียนผู้ใช้งานใหม่</p>
           </v-col>
         </v-row>
-        <v-row class="d-flex justify-center align-center">
+        <v-row class="d-flex justify-center">
           <v-col cols="8">
             <template>
               <v-form ref="form" v-model="valid" lazy-validation>
@@ -26,7 +26,6 @@
                       label="ชื่อ"
                       name="Name"
                       class="rounded-1"
-                      outlined
                       :rules="nameRules"
                       v-model="form.firstname"
                     >
@@ -38,7 +37,6 @@
                       label="นามสกุล"
                       name="Surname"
                       class="rounded-1"
-                      outlined
                       :rules="surnameRules"
                       v-model="form.lastname"
                     >
@@ -51,7 +49,6 @@
                       item-value="_id"
                       :items="position"
                       label="ตำแหน่ง"
-                      outlined
                       required
                       :rules="positionRules"
                     ></v-select>
@@ -65,7 +62,6 @@
                       name="Email"
                       type="email"
                       class="rounded-1"
-                      outlined
                       :rules="emailRules"
                       v-model="form.email"
                     >
@@ -81,7 +77,6 @@
                       prepend-inner-icon="mdi-lock"
                       type="password"
                       class="rounded-1"
-                      outlined
                     >
                     </v-text-field>
                   </v-col>
@@ -92,7 +87,6 @@
                       item-value="_id"
                       :items="department"
                       label="หน่วยงานสังกัด"
-                      outlined
                       :rules="departRules"
                       required
                     ></v-select>
@@ -105,7 +99,6 @@
                       label="เบอร์โทรศัพท์"
                       name="Tel"
                       class="rounded-1"
-                      outlined
                       :rules="telRules"
                       v-model="form.tel"
                     >
@@ -117,7 +110,6 @@
                       label="โทรสาร"
                       name="Fax"
                       class="rounded-1"
-                      outlined
                       :rules="faxRules"
                       v-model="form.fax"
                     >
@@ -127,7 +119,7 @@
 
                 <v-btn
                   @click="confirmDialog = true"
-                  class="rounded-1"
+                  class="rounded-1 mt-5"
                   color="#056839"
                   x-large
                   block
