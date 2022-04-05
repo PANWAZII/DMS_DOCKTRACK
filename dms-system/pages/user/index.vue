@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-    {{ documents }}
     <v-row>
       <v-col cols="12">
         <v-card elevation="2">
