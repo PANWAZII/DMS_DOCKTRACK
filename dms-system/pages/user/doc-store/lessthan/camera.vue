@@ -111,9 +111,27 @@
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
-
+            <!-- <label
+              >File
+              <input
+                type="file"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
+              />
+            </label> -->
             <br />
-
+            <!-- <p class="topices">
+              กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
+            </p>
+            <v-row>
+              <v-col cols="12" md="6">
+                <v-file-input label="แบบบัญชีราคากลาง"></v-file-input>
+                <v-file-input label="แผนพัฒนาซอฟต์แวร์"></v-file-input>
+              </v-col>
+            </v-row>
+            <v-spacer></v-spacer>
+            <br /> -->
             <p class="topices">โปรดแนบผังเครือข่าย</p>
             <v-row>
               <v-col cols="12" md="6">
@@ -153,9 +171,38 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <v-col cols="12" class="d-flex justify-center align-center"> </v-col>
-    </v-row>
+    <v-overlay :value="loading"></v-overlay>
+    <div class="text-center">
+      <v-dialog v-model="loading" hide-overlay persistent width="400">
+        <v-card color="info" dark>
+          <v-card-text>
+            กำลังอัปโหลด :{{ loadingStatus }}
+            <v-progress-linear
+              indeterminate
+              color="white"
+              class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
+    </div>
+
+    <v-dialog v-model="completeDialog" max-width="290">
+      <v-card>
+        <v-card-title class="text">Send complete</v-card-title>
+        <!-- <br /> -->
+        <v-card-text
+          >upload project {{ currentProject }} เข้าระบบแล้ว</v-card-text
+        >
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="error darken-1" text @click="submitComplete()">
+            ปิด
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-row justify="center">
       <v-dialog v-model="warningdialog" max-width="300" max-height="300">
         <v-card>
@@ -214,7 +261,11 @@ export default {
     this.userDept = userInfo.department_id
   },
   data: () => ({
+    loading: false,
+    loadingStatus: '',
+    completeDialog: false,
     warningdialog: false,
+    currentProject:'',
     budget: [
       { name: 'เงินงบประมาณ', value: 'normal_budget' },
       { name: 'เงินบำรุง', value: 'maintenance_budget' },
@@ -239,7 +290,6 @@ export default {
       department_name: '',
       baht_text: '',
       budget_resource: null,
-
       sum: '',
     },
 
@@ -258,6 +308,9 @@ export default {
     ],
   }),
   methods: {
+    submitComplete() {
+      this.completeDialog = false
+    },
     submit() {
       this.saveAct()
       // this.$refs.form.validate()
@@ -281,15 +334,15 @@ export default {
     async saveAct() {
       try {
         // const user_id = await this.$cookies.get('uid_token')
-
+        this.loading = true
+        this.loadingStatus = 'แบบฟอร์ม'
         const user_id = this.$store.getters.uid
         for (let index = 0; index < this.department.length; index++) {
           if (this.userDept === this.department[index]._id) {
             this.form.department_name = this.department[index].department_name
           }
         }
-
-        // formData.append(this.file)
+        this.currentProject = this.form.project_name
         await this.$store
           .dispatch('api/lessThanCreatDoc', {
             uid: user_id,
@@ -299,9 +352,26 @@ export default {
             budget_year: this.form.budget_year,
             department_name: this.form.department_name,
             budget_resource: this.form.budget_resource,
+            detail_notstd: this.form.detail_notstd,
+            quantity: this.form.quantity,
+            unit: this.form.unit,
+            price_unit: this.form.price_unit,
             sum: this.form.sum,
+            method: this.form.method,
+            destination: this.form.destination,
+            cert: this.form.cert,
+            list_old: this.form.list_old,
+            locate_old: this.form.locate_old,
+            year_old: this.form.year_old,
+            obstacle: this.form.obstacle,
+            purpose_of_use: this.form.purpose_of_use,
+            compare: this.form.compare,
+            major: this.form.major,
+            quantity_major: this.form.quantity_major,
+            specific_info: this.form.specific_info,
           })
           .then(async (res) => {
+            this.loadingStatus = 'แบบรายงานการจัดหาฯ'
             console.log('this is res obj id ', res)
             let report = new FormData()
             let blueprint = new FormData()
@@ -319,37 +389,62 @@ export default {
               quotation_1.append('id', res._id)
               quotation_2.append('id', res._id)
               quotation_3.append('id', res._id)
-              await this.$store.dispatch('api/uploadReport', report, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
+              await this.$store
+                .dispatch('api/uploadReport', report, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                })
+                .then((res) => {
+                  if (res.status == 200) {
+                    this.loadingStatus = 'ใบเสนอราคา 1'
+                  }
+                })
+
+              await this.$store
+                .dispatch('api/uploadQuotation_1', quotation_1, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                })
+                .then((res) => {
+                  if (res.status == 200) {
+                    this.loadingStatus = 'ใบเสนอราคา 2'
+                  }
+                })
+              await this.$store
+                .dispatch('api/uploadQuotation_2', quotation_2, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                })
+                .then((res) => {
+                  if (res.status == 200) {
+                    this.loadingStatus = 'ใบเสนอราคา 3'
+                  }
+                })
+              await this.$store
+                .dispatch('api/uploadQuotation_3', quotation_3, {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                })
+                .then((res) => {
+                  if (res.status == 200) {
+                    this.loadingStatus = 'ผังเครือข่าย'
+                  }
+                })
+
               await this.$store.dispatch('api/uploadBlueprint', blueprint, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
                 },
               })
-              await this.$store.dispatch('api/uploadQuotation_1', quotation_1, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
-              await this.$store.dispatch('api/uploadQuotation_2', quotation_2, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
-              await this.$store.dispatch('api/uploadQuotation_3', quotation_3, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
-            } else {
-              console.log('err')
-            }
-          })
 
-        alert('Add Completed')
+              this.loading = false
+              this.completeDialog = true
+            } 
+          })
       } catch (err) {
         console.log(err)
         alert('Add Fail')
