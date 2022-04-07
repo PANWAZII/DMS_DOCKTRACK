@@ -79,7 +79,11 @@
             <p class="topices">แนบไฟล์แบบรายงานการจัดหาฯ</p>
             <v-row>
               <v-col cols="12" md="6">
-                <v-file-input show-size v-model="report_file" label="แบบรายงานการจัดหาฯ"></v-file-input>
+                <v-file-input
+                  show-size
+                  v-model="report_file"
+                  label="แบบรายงานการจัดหาฯ"
+                ></v-file-input>
               </v-col>
             </v-row>
             <br />
@@ -107,27 +111,9 @@
               </v-col>
             </v-row>
             <v-spacer></v-spacer>
-            <!-- <label
-              >File
-              <input
-                type="file"
-                id="file"
-                ref="file"
-                v-on:change="handleFileUpload()"
-              />
-            </label> -->
+
             <br />
-            <!-- <p class="topices">
-              กรณี Software โปรดแนบแบบบัญชีราคากลางและแผนพัฒนา software
-            </p>
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-file-input label="แบบบัญชีราคากลาง"></v-file-input>
-                <v-file-input label="แผนพัฒนาซอฟต์แวร์"></v-file-input>
-              </v-col>
-            </v-row>
-            <v-spacer></v-spacer>
-            <br /> -->
+
             <p class="topices">โปรดแนบผังเครือข่าย</p>
             <v-row>
               <v-col cols="12" md="6">
@@ -251,53 +237,10 @@ export default {
       project_type: '',
       budget_year: '',
       department_name: '',
-      // boss_name: '',
-      // boss_position: '',
-      // boss_tel: '',
-      // boss_fax: '',
-      // boss_email: '',
-      // Proj1: '',
-      // ProjPos1: '',
-      // ProjT1: '',
-      // ProjF1: '',
-      // ProjE1: '',
-      // user2_name: '',
-      // user2_position: '',
-      // user2_tel: '',
-      // user2_fax: '',
-      // user2_email: '',
-      // user3_name: '',
-      // user3_position: '',
-      // user3_tel: '',
-      // user3_fax: '',
-      // user3_email: '',
-
       baht_text: '',
       budget_resource: null,
-      // detail_notstd: '',
-      // quantity: 0,
-      // unit: null,
-      // price_unit: 0,
+
       sum: '',
-
-      // destination: '',
-      // cert: '',
-      // list_old: '',
-      // locate_old: '',
-      // year_old: '',
-      // obstacle: '',
-      // purpose_of_use: '',
-      // compare: '',
-      // major: '',
-      // quantity_major: '',
-
-      // items: [
-      //   'งบประมาณประจำปี 2565',
-      //   'เงินรายได้',
-      //   'เงินบำรุง',
-      //   'เปลี่ยนแปลงรายการ/เงินเหลือจ่าย',
-      //   'เงินช่วยเหลือ/เงินนอกงบประมาณ',
-      // ],
     },
 
     projnRules: [
