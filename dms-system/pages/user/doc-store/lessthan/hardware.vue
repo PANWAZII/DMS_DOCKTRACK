@@ -259,23 +259,7 @@ export default {
           budget_year: this.form.budget_year,
           department_name: this.form.department_name,
           budget_resource: this.form.budget_resource,
-          detail_notstd: this.form.detail_notstd,
-          quantity: this.form.quantity,
-          unit: this.form.unit,
-          price_unit: this.form.price_unit,
           sum: this.form.sum,
-          method: this.form.method,
-          destination: this.form.destination,
-          cert: this.form.cert,
-          list_old: this.form.list_old,
-          locate_old: this.form.locate_old,
-          year_old: this.form.year_old,
-          obstacle: this.form.obstacle,
-          purpose_of_use: this.form.purpose_of_use,
-          compare: this.form.compare,
-          major: this.form.major,
-          quantity_major: this.form.quantity_major,
-          specific_info: this.form.specific_info,
         })
 
         alert('Add Completed')
