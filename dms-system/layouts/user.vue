@@ -42,104 +42,116 @@
           </v-list-item>
           <v-divider></v-divider>
           <h5 class="text-center mt-3">แบบรายงานไม่เกิน 5 ล้านบาท</h5>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.lessthan_Hardware.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.lessthan_Hardware.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.lessthan_Hardware.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.lessthan_Software.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.lessthan_Software.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.lessthan_Software.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.lessthan_Network.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.lessthan_Network.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.lessthan_Network.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.lessthan_Camera.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.lessthan_Camera.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.lessthan_Camera.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
+          <v-list-group :value="true">
+            <template v-slot:activator>
+              <v-list-item-title class="ml-5">เลือกแบบฟอร์ม</v-list-item-title>
+            </template>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.lessthan_Hardware.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.lessthan_Hardware.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.lessthan_Hardware.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.lessthan_Software.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.lessthan_Software.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.lessthan_Software.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.lessthan_Network.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.lessthan_Network.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.lessthan_Network.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.lessthan_Camera.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.lessthan_Camera.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.lessthan_Camera.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list-group>
+
           <v-divider></v-divider>
           <h5 class="text-center mt-3">แบบรายงานเกิน 5 ล้านบาท</h5>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.morethan_Hardware.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.morethan_Hardware.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.morethan_Hardware.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.morethan_Software.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.morethan_Software.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.morethan_Software.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.morethan_Network.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.morethan_Network.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.morethan_Network.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          <v-list-item-group color="primary" class="mb-1">
-            <v-list-item :to="this.menu.morethan_Camera.to">
-              <v-list-item-icon>
-                <v-icon>{{ this.menu.morethan_Camera.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title
-                  v-text="this.menu.morethan_Camera.title"
-                ></v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
+          <v-list-group :value="true">
+            <template v-slot:activator>
+              <v-list-item-title class="ml-5">เลือกแบบฟอร์ม</v-list-item-title>
+            </template>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.morethan_Hardware.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.morethan_Hardware.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.morethan_Hardware.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.morethan_Software.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.morethan_Software.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.morethan_Software.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.morethan_Network.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.morethan_Network.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.morethan_Network.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+            <v-list-item-group color="primary" class="mb-1">
+              <v-list-item :to="this.menu.morethan_Camera.to">
+                <v-list-item-icon>
+                  <v-icon>{{ this.menu.morethan_Camera.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="this.menu.morethan_Camera.title"
+                  ></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list-group>
+
           <v-divider></v-divider>
         </v-list-item-group>
 

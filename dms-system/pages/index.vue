@@ -120,13 +120,13 @@
               <v-list-item-icon>
                 <v-icon>mdi-checkbox-blank-circle</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>เงินบริจาค</v-list-item-title>
+              <v-list-item-title>เงินอื่น ๆ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
                 >{{ donationBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
                 &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
-            <v-list-item>
+            <!-- <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-checkbox-blank-circle</v-icon>
               </v-list-item-icon>
@@ -135,7 +135,7 @@
                 >{{ foundationBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
                 &nbsp; &nbsp;บาท</v-list-item-subtitle
               >
-            </v-list-item>
+            </v-list-item> -->
           </v-list>
         </v-card>
       </v-col>
