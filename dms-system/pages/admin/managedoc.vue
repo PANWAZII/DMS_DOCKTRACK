@@ -25,11 +25,22 @@
                 <td>
                   <v-checkbox color="info" value=""></v-checkbox>
                 </td>
+                <td>
+                  <v-checkbox
+                    class="d-flex flex-wrap justify-content-center"
+                    color="info"
+                    value=""
+                  ></v-checkbox>
+                </td>
                 <td><v-checkbox color="info" value=""></v-checkbox></td>
                 <td><v-checkbox color="info" value=""></v-checkbox></td>
                 <td><v-checkbox color="info" value=""></v-checkbox></td>
-                <td><v-btn color="info" dark> บันทึก </v-btn></td>
-                <td>{{ row.item.modified_date }}</td>
+                <td><v-checkbox color="info" value=""></v-checkbox></td>
+                <td>
+                  <v-btn class="ma-2" text icon color="blue lighten-2">
+                    <v-icon>mdi-content-save</v-icon>
+                  </v-btn>
+                </td>
               </tr>
             </template>
           </v-data-table>
@@ -55,12 +66,13 @@ export default {
         { text: 'โครงการ', value: 'title' },
         { text: 'หน่วยงาน', value: 'dept' },
 
-        { text: 'รอที่ประชุมพิจารณา', value: 'report_file' },
-        { text: 'ส่งกรมฯ ลงนาม', value: 'price' },
-        { text: 'ส่งกระทรวงฯ ลงนาม', value: 'diagram' },
+        { text: 'รอที่ประชุมพิจารณา', value: '' },
+        { text: 'ส่งกรมฯ ลงนาม', value: '' },
+        { text: 'รับคืน', value: '' },
+        { text: 'ส่งกระทรวงฯ ลงนาม', value: '' },
+        { text: 'รับคืน', value: '' },
         { text: 'ส่งคืนแล้ว', value: '' },
         { text: 'บันทึก', value: '' },
-        { text: 'วันที่ปรับปรุงล่าสุด', value: '' },
       ],
       doc_info: [
         {

@@ -36,14 +36,10 @@
                   ></v-checkbox>
                   <v-checkbox label="ไม่ผ่าน" color="red" value=""></v-checkbox>
                 </td>
+
                 <td>
-                  <v-btn @click="commentDialog = true" color="primary">
-                    ความคิดเห็น
-                  </v-btn>
-                </td>
-                <td>
-                  <v-btn color="success " @click="confirmDialog = true">
-                    บันทึก
+                  <v-btn text icon color="info" @click="confirmDialog = true">
+                    <v-icon>mdi-content-save</v-icon>
                   </v-btn>
                 </td>
               </tr>
@@ -118,7 +114,7 @@ export default {
         { text: 'ผังเครือข่าย', value: 'diagram' },
         { text: 'ตรวจเอกสาร', value: '' },
         { text: 'ตรวจเนื้อหา', value: '' },
-        { text: 'ความคิดเห็น', value: '' },
+
         { text: 'บันทึก', value: '' },
       ],
       doc_info: [
