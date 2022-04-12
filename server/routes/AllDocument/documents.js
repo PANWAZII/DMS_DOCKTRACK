@@ -1,5 +1,6 @@
 import express from "express";
 import documents from "../../models/AllDocument/document.js";
+import fileInfos from "../../models/fileInfo/file.js";
 import checkAuth from "../../middleware/auth.js";
 const router = express.Router();
 // Getting all
@@ -54,10 +55,17 @@ router.post("/createNewDocument", async (req, res) => {
   try {
     console.log("start creating doc ");
     const Documents = new documents({ ...data, ...more });
-    const newDocuments = await Documents.save(function (err, documents) {
-      console.log("this is returned id ",documents.id);
-      console.log("finish creating doc ");
-      res.status(201).json({ newDocuments, _id: documents.id });
+    const newDocuments = await Documents.save(async function (err, documents) {
+      const fileInfo = new fileInfos({
+        document_id: documents.id,
+        report: null,
+        quotation_1: null,
+        quotation_2: null,
+        quotation_3: null,
+        blueprint: null,
+      });
+      const newFileInfo = await fileInfo.save();
+      res.status(201).json({ newDocuments, _id: documents.id, newFileInfo });
     });
     // console.log("finish creating doc ");
     // res.status(201).json(newLessthanfivem,_id:);
