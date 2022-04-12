@@ -3,21 +3,22 @@ import mongoose from "mongoose";
 const fileInfoSchema = new mongoose.Schema({
   document_id: {
     type: String,
-    required: true,
+    required: false,
   },
+  report: { type: String, required: false },
   quotation_1: {
     type: String,
-    required: true,
+    required: false,
   },
   quotation_2: {
     type: String,
-    required: true,
+    required: false,
   },
   quotation_3: {
     type: String,
-    required: true,
+    required: false,
   },
-  blueprint: { type: String, required: true },
+  blueprint: { type: String, required: false },
   created_date: {
     type: Date,
     required: false,
@@ -29,4 +30,4 @@ const fileInfoSchema = new mongoose.Schema({
 });
 
 //this is type name
-export default mongoose.model("fileInfo", fileInfoSchema);
+export default mongoose.model("fileInfos", fileInfoSchema);
