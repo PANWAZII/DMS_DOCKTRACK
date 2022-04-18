@@ -20,9 +20,9 @@ const storage = FirebaseApp.storage();
 const bucket = storage.bucket();
 
 router.post("/uploadReport", multer.single("report_file"), async (req, res) => {
-  if (req.file === undefined) {
-    res.status(200).json({ message: "No file attached." });
-  }
+  // if (req.file === undefined) {
+  //   return res.status(200).json({ message: "No file attached." });
+  // }
   const id = req.body.id;
   const folder = "file";
   const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -56,9 +56,9 @@ router.post(
   "/uploadBlueprint",
   multer.single("blueprint_file"),
   async (req, res) => {
-    if (req.file === undefined) {
-      res.status(200).json({ message: "No file attached." });
-    }
+    // if (req.file === undefined) {
+    //   return res.status(200).json({ message: "No file attached." });
+    // }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -92,9 +92,9 @@ router.post(
   "/uploadQuotation_1",
   multer.single("quotation_file_1"),
   async (req, res) => {
-    if (req.file === undefined) {
-      res.status(200).json({ message: "No file attached." });
-    }
+    // if (req.file === undefined) {
+    //   return res.status(200).json({ message: "No file attached." });
+    // }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -128,9 +128,9 @@ router.post(
   "/uploadQuotation_2",
   multer.single("quotation_file_2"),
   async (req, res) => {
-    if (req.file === undefined) {
-      res.status(200).json({ message: "No file attached." });
-    }
+    // if (req.file === undefined) {
+    //   return res.status(200).json({ message: "No file attached." });
+    // }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -164,9 +164,9 @@ router.post(
   "/uploadQuotation_3",
   multer.single("quotation_file_3"),
   async (req, res) => {
-    if (req.file === undefined) {
-      res.status(200).json({ message: "No file attached." });
-    }
+    // if (req.file === undefined) {
+    //   return res.status(200).json({ message: "No file attached." });
+    // }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
