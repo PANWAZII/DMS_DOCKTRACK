@@ -19,17 +19,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// Getting all
-router.post("/getAllUsers", checkAuth, async (req, res) => {
-  try {
-    const allUsers = await users.find();
-    res.json(allUsers);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Getting One
 router.post("/userInfo", checkAuth, async (req, res) => {
   const user_uid = req.body.uid;
   try {
@@ -95,10 +84,19 @@ router.post("/createNewAdmin", async (req, res) => {
 });
 
 //getAllNewDoc
-router.post("/getAllNewDoc", checkAuth, async (req, res) => {
+router.post("/getAllNewDoc", async (req, res) => {
   try {
     const Documents = await documents.find({ approval_status: "new" });
     res.status(200).json(Documents);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.post("/getAllUsers", async (req, res) => {
+  try {
+    const allUsers = await users.find();
+    res.status(200).json(allUsers);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -127,7 +125,7 @@ router.put("/updateDocStatus", async (req, res) => {
       { _id: docId },
       { $set: { approval_status: Status } }
     );
-    res.status(200).json({updatedWaiting})
+    res.status(200).json({ updatedWaiting });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
