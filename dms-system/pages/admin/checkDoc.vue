@@ -26,15 +26,25 @@
                 <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
                 <td>
                   <v-checkbox label="ครบ" color="success" value=""></v-checkbox>
-                  <v-checkbox label="ไม่ครบ" color="red" value=""></v-checkbox>
+                  <v-checkbox
+                    label="ไม่ครบ"
+                    color="red"
+                    value=""
+                    @click="commentDialog = true"
+                  ></v-checkbox>
                 </td>
                 <td>
                   <v-checkbox
-                    label="ผ่าน"
+                    label="ไม่มีประเด็น"
                     color="success"
                     value=""
                   ></v-checkbox>
-                  <v-checkbox label="ไม่ผ่าน" color="red" value=""></v-checkbox>
+                  <v-checkbox
+                    label="มีประเด็น"
+                    color="red"
+                    value=""
+                    @click="commentDialog = true"
+                  ></v-checkbox>
                 </td>
 
                 <td>
@@ -114,7 +124,6 @@ export default {
         { text: 'ผังเครือข่าย', value: 'diagram' },
         { text: 'ตรวจเอกสาร', value: '' },
         { text: 'ตรวจเนื้อหา', value: '' },
-
         { text: 'บันทึก', value: '' },
       ],
       doc_info: [

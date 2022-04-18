@@ -24,18 +24,28 @@
 
                 <td>
                   <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
                 </td>
                 <td>
-                  <v-checkbox
-                    class="d-flex flex-wrap justify-content-center"
-                    color="info"
-                    value=""
-                  ></v-checkbox>
+                  <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
                 </td>
-                <td><v-checkbox color="info" value=""></v-checkbox></td>
-                <td><v-checkbox color="info" value=""></v-checkbox></td>
-                <td><v-checkbox color="info" value=""></v-checkbox></td>
-                <td><v-checkbox color="info" value=""></v-checkbox></td>
+                <td>
+                  <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
+                </td>
+                <td>
+                  <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
+                </td>
+                <td>
+                  <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
+                </td>
+                <td>
+                  <v-checkbox color="info" value=""></v-checkbox>
+                  <div>18/4/65</div>
+                </td>
                 <td>
                   <v-btn class="ma-2" text icon color="blue lighten-2">
                     <v-icon>mdi-content-save</v-icon>
