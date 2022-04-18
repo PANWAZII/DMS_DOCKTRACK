@@ -3,7 +3,7 @@ import fileInfos from "../../models/fileInfo/file.js";
 const router = express.Router();
 import Multer from "multer";
 import admin from "firebase-admin";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import config from "../../firebaseStorageConfig.js";
 
 const multer = Multer({
   storage: Multer.memoryStorage(),
@@ -12,11 +12,6 @@ const multer = Multer({
   },
 });
 
-// const serviceAccount = require("./firebase-config.json");
-// import serviceAccount from "../../firebaseStorageConfig";
-
-import config from "../../firebaseStorageConfig.js";
-
 const FirebaseApp = admin.initializeApp({
   credential: admin.credential.cert(config),
   storageBucket: "dms-document-tracking-ef733.appspot.com",
@@ -24,13 +19,10 @@ const FirebaseApp = admin.initializeApp({
 const storage = FirebaseApp.storage();
 const bucket = storage.bucket();
 
-// router.use("/site", express.static("public"));
-
-// router.all("/", (req, res) =>
-//   res.status(200).send("Welcome to example firestorage api")
-// );
-
 router.post("/uploadReport", multer.single("report_file"), async (req, res) => {
+  if (req.file === undefined) {
+    res.status(200).json({ message: "No file attached." });
+  }
   const id = req.body.id;
   const folder = "file";
   const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -64,6 +56,9 @@ router.post(
   "/uploadBlueprint",
   multer.single("blueprint_file"),
   async (req, res) => {
+    if (req.file === undefined) {
+      res.status(200).json({ message: "No file attached." });
+    }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -97,6 +92,9 @@ router.post(
   "/uploadQuotation_1",
   multer.single("quotation_file_1"),
   async (req, res) => {
+    if (req.file === undefined) {
+      res.status(200).json({ message: "No file attached." });
+    }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -130,6 +128,9 @@ router.post(
   "/uploadQuotation_2",
   multer.single("quotation_file_2"),
   async (req, res) => {
+    if (req.file === undefined) {
+      res.status(200).json({ message: "No file attached." });
+    }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
@@ -163,6 +164,9 @@ router.post(
   "/uploadQuotation_3",
   multer.single("quotation_file_3"),
   async (req, res) => {
+    if (req.file === undefined) {
+      res.status(200).json({ message: "No file attached." });
+    }
     const id = req.body.id;
     const folder = "file";
     const fileName = `${folder}/${id}/${req.file.originalname}`;
