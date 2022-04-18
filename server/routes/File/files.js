@@ -35,12 +35,13 @@ router.post("/uploadReport", multer.single("report_file"), async (req, res) => {
   const folder = "file";
   const fileName = `${folder}/${id}/${req.file.originalname}`;
   const fileUpload = bucket.file(fileName);
-  const blobStream = fileUpload.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype,
-    },
-  });
+
   try {
+    const blobStream = fileUpload.createWriteStream({
+      metadata: {
+        contentType: req.file.mimetype,
+      },
+    });
     let addReport = await fileInfos.updateOne(
       { document_id: id },
       { $set: { report: req.file.originalname } }
@@ -64,25 +65,31 @@ router.post(
   multer.single("blueprint_file"),
   async (req, res) => {
     const id = req.body.id;
-    const filename = "blueprint";
     const folder = "file";
-    const fileName = `${folder}/${id}/${filename}`;
+    const fileName = `${folder}/${id}/${req.file.originalname}`;
     const fileUpload = bucket.file(fileName);
-    const blobStream = fileUpload.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype,
-      },
-    });
+    try {
+      const blobStream = fileUpload.createWriteStream({
+        metadata: {
+          contentType: req.file.mimetype,
+        },
+      });
+      let addReport = await fileInfos.updateOne(
+        { document_id: id },
+        { $set: { blueprint: req.file.originalname } }
+      );
+      blobStream.on("error", (err) => {
+        res.status(405).json(err);
+      });
 
-    blobStream.on("error", (err) => {
-      res.status(405).json(err);
-    });
+      blobStream.on("finish", () => {
+        res.status(200).send("Upload complete!");
+      });
 
-    blobStream.on("finish", () => {
-      res.status(200).send("Upload complete!");
-    });
-
-    blobStream.end(req.file.buffer);
+      blobStream.end(req.file.buffer);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
   }
 );
 
@@ -91,25 +98,31 @@ router.post(
   multer.single("quotation_file_1"),
   async (req, res) => {
     const id = req.body.id;
-    const filename = "quotation_1";
     const folder = "file";
-    const fileName = `${folder}/${id}/${filename}`;
+    const fileName = `${folder}/${id}/${req.file.originalname}`;
     const fileUpload = bucket.file(fileName);
-    const blobStream = fileUpload.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype,
-      },
-    });
+    try {
+      const blobStream = fileUpload.createWriteStream({
+        metadata: {
+          contentType: req.file.mimetype,
+        },
+      });
+      let addReport = await fileInfos.updateOne(
+        { document_id: id },
+        { $set: { quotation_1: req.file.originalname } }
+      );
+      blobStream.on("error", (err) => {
+        res.status(405).json(err);
+      });
 
-    blobStream.on("error", (err) => {
-      res.status(405).json(err);
-    });
+      blobStream.on("finish", () => {
+        res.status(200).send("Upload complete!");
+      });
 
-    blobStream.on("finish", () => {
-      res.status(200).send("Upload complete!");
-    });
-
-    blobStream.end(req.file.buffer);
+      blobStream.end(req.file.buffer);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
   }
 );
 
@@ -118,25 +131,31 @@ router.post(
   multer.single("quotation_file_2"),
   async (req, res) => {
     const id = req.body.id;
-    const filename = "quotation_2";
     const folder = "file";
-    const fileName = `${folder}/${id}/${filename}`;
+    const fileName = `${folder}/${id}/${req.file.originalname}`;
     const fileUpload = bucket.file(fileName);
-    const blobStream = fileUpload.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype,
-      },
-    });
+    try {
+      const blobStream = fileUpload.createWriteStream({
+        metadata: {
+          contentType: req.file.mimetype,
+        },
+      });
+      let addReport = await fileInfos.updateOne(
+        { document_id: id },
+        { $set: { quotation_2: req.file.originalname } }
+      );
+      blobStream.on("error", (err) => {
+        res.status(405).json(err);
+      });
 
-    blobStream.on("error", (err) => {
-      res.status(405).json(err);
-    });
+      blobStream.on("finish", () => {
+        res.status(200).send("Upload complete!");
+      });
 
-    blobStream.on("finish", () => {
-      res.status(200).send("Upload complete!");
-    });
-
-    blobStream.end(req.file.buffer);
+      blobStream.end(req.file.buffer);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
   }
 );
 
@@ -145,25 +164,31 @@ router.post(
   multer.single("quotation_file_3"),
   async (req, res) => {
     const id = req.body.id;
-    const filename = "quotation_3";
     const folder = "file";
-    const fileName = `${folder}/${id}/${filename}`;
+    const fileName = `${folder}/${id}/${req.file.originalname}`;
     const fileUpload = bucket.file(fileName);
-    const blobStream = fileUpload.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype,
-      },
-    });
+    try {
+      const blobStream = fileUpload.createWriteStream({
+        metadata: {
+          contentType: req.file.mimetype,
+        },
+      });
+      let addReport = await fileInfos.updateOne(
+        { document_id: id },
+        { $set: { quotation_3: req.file.originalname } }
+      );
+      blobStream.on("error", (err) => {
+        res.status(405).json(err);
+      });
 
-    blobStream.on("error", (err) => {
-      res.status(405).json(err);
-    });
+      blobStream.on("finish", () => {
+        res.status(200).send("Upload complete!");
+      });
 
-    blobStream.on("finish", () => {
-      res.status(200).send("Upload complete!");
-    });
-
-    blobStream.end(req.file.buffer);
+      blobStream.end(req.file.buffer);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
   }
 );
 
