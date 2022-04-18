@@ -87,6 +87,13 @@ export const actions = {
       .post('/admins/getAllNewDoc', data, { headers })
       .then((res) => res.data)
   },
+  async getAllUsers({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/getAllUsers', data, { headers })
+      .then((res) => res.data)
+  },
+
   //User & Admin
   async getDepartmentById({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
@@ -100,6 +107,7 @@ export const actions = {
       .post('/positions/getPositionById', data, { headers })
       .then((res) => res.data)
   },
+
   //Documents
   async lessThanCreatDoc({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
@@ -151,6 +159,7 @@ export const actions = {
   async getBudgetYear({ getters }, data) {
     return await axios.get('/documents/getBudgetYear').then((res) => res.data)
   },
+
   //Files
   async uploadReport({ getters }, data) {
     const headers = getAuthToken(this.$cookies)
