@@ -200,7 +200,7 @@ router.post("/download", async (req, res) => {
   try {
     const fileInfo = await fileInfos.find({ _id: id });
   } catch (error) {
-    res.status(404);
+    res.status(404).json({ message: error });
   }
   if (fileType === "report") {
     File = `${folder}/${id}/${fileInfo.report}`;
@@ -220,10 +220,13 @@ router.post("/download", async (req, res) => {
     action: "read",
     expires: Date.now() + 1000 * 60 * 60,
   };
-
-  const url = await bucket.file(File).getSignedUrl(options);
-  res.status(200).json({ link: url });
-  console.log(url);
+  try {
+    const url = await bucket.file(File).getSignedUrl(options);
+    res.status(200).json({ link: url });
+    console.log(url);
+  } catch (error) {
+    res.status(404).json({ message: error });
+  }
 });
 
 router.get("/profile/:id", (req, res) => {
