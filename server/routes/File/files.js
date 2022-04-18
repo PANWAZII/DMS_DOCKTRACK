@@ -199,22 +199,24 @@ router.post("/download", async (req, res) => {
   let File = "";
   try {
     const fileInfo = await fileInfos.find({ document_id: id });
+    console.log(fileInfo);
+    if (fileType === "report") {
+      File = `${folder}/${id}/${fileInfo[0].report}`;
+    } else if (fileType === "quotation_1") {
+      File = `${folder}/${id}/${fileInfo[0].quotation_1}`;
+    } else if (fileType === "quotation_2") {
+      File = `${folder}/${id}/${fileInfo[0].quotation_2}`;
+    } else if (fileType === "quotation_3") {
+      File = `${folder}/${id}/${fileInfo[0].quotation_3}`;
+    } else if (fileType === "blueprint") {
+      File = `${folder}/${id}/${fileInfo[0].blueprint}`;
+    } else {
+      res.status(400).json({ message: "Bad request" });
+    }
   } catch (error) {
     res.status(404).json({ message: error });
   }
-  if (fileType === "report") {
-    File = `${folder}/${id}/${fileInfo.report}`;
-  } else if (fileType === "quotation_1") {
-    File = `${folder}/${id}/${fileInfo.quotation_1}`;
-  } else if (fileType === "quotation_2") {
-    File = `${folder}/${id}/${fileInfo.quotation_2}`;
-  } else if (fileType === "quotation_3") {
-    File = `${folder}/${id}/${fileInfo.quotation_3}`;
-  } else if (fileType === "blueprint") {
-    File = `${folder}/${id}/${fileInfo.blueprint}`;
-  } else {
-    res.status(400).json({ message: "Bad request" });
-  }
+
   const options = {
     version: "v4",
     action: "read",
