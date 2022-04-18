@@ -74,7 +74,7 @@ router.post(
           contentType: req.file.mimetype,
         },
       });
-      let addReport = await fileInfos.updateOne(
+      let addBlueprint = await fileInfos.updateOne(
         { document_id: id },
         { $set: { blueprint: req.file.originalname } }
       );
@@ -107,7 +107,7 @@ router.post(
           contentType: req.file.mimetype,
         },
       });
-      let addReport = await fileInfos.updateOne(
+      let addQuotation_1 = await fileInfos.updateOne(
         { document_id: id },
         { $set: { quotation_1: req.file.originalname } }
       );
@@ -140,7 +140,7 @@ router.post(
           contentType: req.file.mimetype,
         },
       });
-      let addReport = await fileInfos.updateOne(
+      let addQuotation_2 = await fileInfos.updateOne(
         { document_id: id },
         { $set: { quotation_2: req.file.originalname } }
       );
@@ -173,7 +173,7 @@ router.post(
           contentType: req.file.mimetype,
         },
       });
-      let addReport = await fileInfos.updateOne(
+      let addQuotation_3 = await fileInfos.updateOne(
         { document_id: id },
         { $set: { quotation_3: req.file.originalname } }
       );
@@ -193,12 +193,32 @@ router.post(
 );
 
 router.post("/download", async (req, res) => {
-  let File = "file/624bf4d105a4e40fd7ad83b0/blueprint";
+  const folder = "file";
+  const id = req.body.id;
+  const fileType = req.body.file_type;
+  let File = "";
+  try {
+    const fileInfo = await fileInfos.find({ _id: id });
+  } catch (error) {
+    res.status(404);
+  }
+  if (fileType === "report") {
+    File = `${folder}/${id}/${fileInfo.report}`;
+  } else if (fileType === "quotation_1") {
+    File = `${folder}/${id}/${fileInfo.quotation_1}`;
+  } else if (fileType === "quotation_2") {
+    File = `${folder}/${id}/${fileInfo.quotation_2}`;
+  } else if (fileType === "quotation_3") {
+    File = `${folder}/${id}/${fileInfo.quotation_3}`;
+  } else if (fileType === "blueprint") {
+    File = `${folder}/${id}/${fileInfo.blueprint}`;
+  } else {
+    res.status(400).json({ message: "Bad request" });
+  }
   const options = {
     version: "v4",
     action: "read",
     expires: Date.now() + 1000 * 60 * 60,
-    // destination: "file/2F624bf4d105a4e40fd7ad83b0",
   };
 
   const url = await bucket.file(File).getSignedUrl(options);
