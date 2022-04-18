@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid>
-    <v-row>
+  <v-container fluid
+    ><v-row>
       <v-col cols="12">
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
@@ -15,14 +15,16 @@
             ></v-text-field>
           </v-card-title>
 
-          <v-data-table :headers="headers" :items="doc_info" :search="search">
+          <v-data-table :headers="headers" :items="users" :search="search">
             <template v-slot:item="row">
               <tr>
-                <td>{{ row.item.order }}</td>
-                <td>{{ row.item.name }}</td>
-                <td>{{ row.item.dept }}</td>
-                <td>{{ row.item.active }}</td>
-                <td>{{ row.item.role }}</td>
+                <td>{{ row.item.email }}</td>
+                <td>{{ row.item.first_name }}</td>
+                <td>{{ row.item.last_name }}</td>
+
+                <td>{{ getDepartmentName(row.item.department_id) }}</td>
+                <td>{{ getPositionName(row.item.position_id) }}</td>
+                <td>{{ row.item.tel }}</td>
                 <td>{{ row.item.created_date }}</td>
                 <!-- <td>
                   <v-btn color="info"> Test </v-btn>
@@ -40,50 +42,49 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  async fetch() {
+    this.users = await this.$store.dispatch('api/getAllUsers')
+    this.departments = await this.$store.dispatch('api/getAllDepartments')
+    this.positions = await this.$store.dispatch('api/getAllPositions')
+  },
   data() {
     return {
       search: '',
+      users: [],
+      departments: [],
+      positions: [],
       headers: [
         {
           text: 'ที่',
           align: 'start',
           sortable: false,
-          value: 'order',
+          value: 'row',
         },
-        { text: 'ชื่อ นามสกุล', value: 'name' },
-        { text: 'หน่วยงาน', value: 'dept' },
-        { text: 'สถานะการใช้งาน', value: 'active' },
-        { text: 'ระดับสิทธิ์', value: 'role' },
+        { text: 'ชื่อ', value: 'first_name' },
+        { text: 'นามสกุล', value: 'last_name' },
+        { text: 'หน่วยงาน' },
+        { text: 'ตำแหน่ง' },
+        { text: 'tel' },
         { text: 'วันที่ลงทะเบียน', value: 'created_date' },
         // { text: 'การทำงาน', value: '' },
       ],
-      doc_info: [
-        {
-          order: '1',
-          name: 'จิรายุส ปรีชาเดช',
-          dept: 'สำนักดิจิทัลการแพทย์',
-          active: '1',
-          role: 'admin',
-          created_date: '9 / 3 / 2565',
-        },
-        {
-          order: '2',
-          name: 'พันวา เมืองสง',
-          dept: 'สำนักดิจิทัลการแพทย์',
-          active: '1',
-          role: 'admin',
-          created_date: '9 / 3 / 2565',
-        },
-        {
-          order: '3',
-          name: 'สมศรี สุดใจ',
-          dept: 'สถาบันประสาท',
-          active: '1',
-          role: 'user',
-          created_date: '15 / 3 / 2565',
-        },
-      ],
     }
+  },
+  methods: {
+    getPositionName(id) {
+      for (let index = 0; index < this.positions.length; index++) {
+        if (id === this.positions[index]._id) {
+          return this.positions[index].position_name
+        }
+      }
+    },
+    getDepartmentName(id) {
+      for (let index = 0; index < this.departments.length; index++) {
+        if (id === this.departments[index]._id) {
+          return this.departments[index].department_name
+        }
+      }
+    },
   },
 }
 </script>
