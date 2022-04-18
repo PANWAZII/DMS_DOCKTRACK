@@ -198,7 +198,7 @@ router.post("/download", async (req, res) => {
   const fileType = req.body.file_type;
   let File = "";
   try {
-    const fileInfo = await fileInfos.find({ _id: id });
+    const fileInfo = await fileInfos.find({ document_id: id });
   } catch (error) {
     res.status(404).json({ message: error });
   }
