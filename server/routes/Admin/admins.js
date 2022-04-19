@@ -105,7 +105,7 @@ router.post("/getAllUsers", async (req, res) => {
 router.post("/getUserById", async (req, res) => {
   try {
     const user = await users.find({ _id: req.body.uid });
-    res.status(200).json(user);
+    res.status(200).json(user[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
