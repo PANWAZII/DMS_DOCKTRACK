@@ -180,9 +180,6 @@ export default {
         }
       }
     },
-    padTo2Digits(num) {
-      return num.toString().padStart(2, '0')
-    },
     convertDate(date) {
       let formattedDate = new Date(date).toLocaleString('th-TH')
       return formattedDate
