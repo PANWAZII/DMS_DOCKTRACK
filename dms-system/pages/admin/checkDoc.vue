@@ -21,9 +21,27 @@
                 <td>{{ row.item.order }}</td>
                 <td>{{ row.item.title }}</td>
                 <td>{{ row.item.project_type }}</td>
-                <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
-                <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
-                <td><v-btn text color="primary" dark> ไฟล์ </v-btn></td>
+                <td>
+                  <v-btn text color="secondary" dark>
+                    <v-icon>mdi-file-download</v-icon>
+                  </v-btn>
+                </td>
+                <td>
+                  <v-btn text color="secondary" dark>
+                    <v-icon>mdi-file-download</v-icon>
+                  </v-btn>
+                  <v-btn text color="secondary" dark>
+                    <v-icon>mdi-file-download</v-icon>
+                  </v-btn>
+                  <v-btn text color="secondary" dark>
+                    <v-icon>mdi-file-download</v-icon>
+                  </v-btn>
+                </td>
+                <td>
+                  <v-btn text color="secondary" dark>
+                    <v-icon>mdi-file-download</v-icon>
+                  </v-btn>
+                </td>
                 <td>
                   <v-checkbox label="ครบ" color="success" value=""></v-checkbox>
                   <v-checkbox
@@ -112,41 +130,19 @@ export default {
       headers: [
         {
           text: 'ที่',
-          align: 'start',
+          align: 'center',
           sortable: false,
           value: 'order',
         },
-        { text: 'โครงการ', value: 'title' },
-        { text: 'ประเภท', value: 'project_type' },
+        { text: 'โครงการ', value: 'title', align: 'center' },
+        { text: 'ประเภท', value: 'project_type', align: 'center' },
 
-        { text: 'แบบรายงานฯ', value: 'report_file' },
-        { text: 'ใบเสนอราคา', value: 'price' },
-        { text: 'ผังเครือข่าย', value: 'diagram' },
-        { text: 'ตรวจเอกสาร', value: '' },
-        { text: 'ตรวจเนื้อหา', value: '' },
-        { text: 'บันทึก', value: '' },
-      ],
-      doc_info: [
-        {
-          order: '1',
-          title: 'โครงการระบบลงนาม',
-          project_type: 'Software',
-        },
-        {
-          order: '2',
-          title: 'โครงการสแกนลายนิ้วมือ',
-          project_type: 'Hardware',
-        },
-        {
-          order: '3',
-          title: 'โครงการ TeleMedicine',
-          project_type: 'Software',
-        },
-        {
-          order: '4',
-          title: 'โครงการ TeleMedicine',
-          project_type: 'Network',
-        },
+        { text: 'แบบรายงานฯ', value: 'report_file', align: 'center' },
+        { text: 'ใบเสนอราคา', value: 'price', align: 'center' },
+        { text: 'ผังเครือข่าย', value: 'diagram', align: 'center' },
+        { text: 'ตรวจเอกสาร', value: '', align: 'center' },
+        { text: 'ตรวจเนื้อหา', value: '', align: 'center' },
+        { text: 'บันทึก', value: '', align: 'center' },
       ],
     }
   },
