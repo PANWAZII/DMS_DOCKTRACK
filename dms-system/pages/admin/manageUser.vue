@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid
-    ><v-row>
+  <v-container fluid>
+    <v-row>
       <v-col cols="12">
         <v-card elevation="2">
           <v-card-title class="font-weight-bold">
@@ -58,21 +58,6 @@
           <v-container>
             <v-divider></v-divider>
             <v-row class="mt-3">
-              <v-col cols="12" sm="6" md="4"
-                ><div style="font-size: 15px">หน่วยงาน</div>
-                <h4>
-                  {{ getDepartmentName(userDetail.department_id) }}
-                </h4>
-              </v-col>
-
-              <v-col cols="12" sm="6" md="4"
-                ><div style="font-size: 15px">ตำแหน่ง</div>
-                <h4>{{ getPositionName(userDetail.position_id) }}</h4>
-              </v-col>
-            </v-row>
-          </v-container>
-          <v-container>
-            <v-row>
               <v-col cols="12" sm="6" md="4">
                 <div style="font-size: 15px">ชื่อ</div>
                 <h4>{{ userDetail.first_name }}</h4>
@@ -85,7 +70,20 @@
                 <div style="font-size: 15px">อีเมล</div>
                 <h4>{{ userDetail.email }}</h4>
               </v-col>
-
+              <v-col cols="12" sm="6" md="4"
+                ><div style="font-size: 15px">หน่วยงาน</div>
+                <h4>
+                  {{ getDepartmentName(userDetail.department_id) }}
+                </h4>
+              </v-col>
+              <v-col cols="12" sm="6" md="4"
+                ><div style="font-size: 15px">ตำแหน่ง</div>
+                <h4>{{ getPositionName(userDetail.position_id) }}</h4>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-container>
+            <v-row>
               <v-col cols="12" md="4">
                 <div style="font-size: 15px">โทรศัพท์</div>
                 <h4>{{ userDetail.tel }}</h4>
@@ -93,6 +91,21 @@
               <v-col cols="12" md="4">
                 <div style="font-size: 15px">โทรสาร</div>
                 <h4>{{ userDetail.fax }}</h4>
+              </v-col>
+            </v-row>
+          </v-container>
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="4">
+                <div style="font-size: 15px">วันที่ลงทะเบียน</div>
+
+                <h4>
+                  {{ convertDate(userDetail.created_date) }}
+                </h4>
+              </v-col>
+              <v-col cols="12" md="4">
+                <div style="font-size: 15px">วันที่ปรับปรุงข้อมูลล่าสุด</div>
+                <h4>{{ convertDate(userDetail.modified_date) }}</h4>
               </v-col>
             </v-row>
           </v-container>
@@ -166,6 +179,10 @@ export default {
           return this.departments[index].department_name
         }
       }
+    },
+    convertDate(date) {
+      let formattedDate = new Date(date).toLocaleString()
+      return formattedDate
     },
   },
 }
