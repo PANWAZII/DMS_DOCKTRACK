@@ -93,6 +93,12 @@ export const actions = {
       .post('/admins/getAllUsers', data, { headers })
       .then((res) => res.data)
   },
+  async getUserById({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/getUserById', data, { headers })
+      .then((res) => res.data)
+  },
 
   //User & Admin
   async getDepartmentById({ getters }, data) {
