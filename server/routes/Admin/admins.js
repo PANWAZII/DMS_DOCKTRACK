@@ -6,6 +6,7 @@ import documents from "../../models/AllDocument/document.js";
 import documentnumbers from "../../models/DocumentNumber/documentNumber.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
+import moment from "moment";
 import checkAuth from "../../middleware/auth.js";
 
 const firebaseConfig = {
@@ -114,6 +115,9 @@ router.post("/getUserById", async (req, res) => {
 
 // Updating Doc Status
 router.put("/updateDocStatus", async (req, res) => {
+  const CurrentMonth = moment().month();
+  const CurrentYear = moment().year();
+  console.log("this is month ", CurrentMonth, "this is year ", CurrentYear);
   let Status = "";
   let StatusTh = "";
   const reqStatus = req.body.approval_status;
@@ -124,11 +128,11 @@ router.put("/updateDocStatus", async (req, res) => {
     if (!DocumentNumbers[0]) {
       const DocNum = new documentnumbers({
         id: "docnum",
-        count: "00",
-        month: "00",
-        year: "00",
+        count: 0,
+        month: 0,
+        year: 0,
       });
-      console.log("ppass if");
+      console.log("creat if empty");
       const newDocNum = await DocNum.save();
       console.log(newDocNum);
     }
