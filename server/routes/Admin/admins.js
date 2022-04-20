@@ -8,6 +8,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import moment from "moment";
 import checkAuth from "../../middleware/auth.js";
+import e from "express";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAA4gEFyqUFR-XH0LYGbysywjdIBB_Exn4",
@@ -113,32 +114,89 @@ router.post("/getUserById", async (req, res) => {
   }
 });
 
+router.post("/acceptDoc", async (req, res) => {
+  const CurrentMonth = moment().format("MM");
+  const CurrentYear = moment().format("YY");
+  const docId = req.body.id;
+  console.log("this is doc id ", docId);
+  const docNumId = "docnum";
+  let ProjectNum = "";
+  const Status = "waiting";
+  const StatusTh = "รอการประชุม";
+  console.log("this is month ", CurrentMonth, "this is year ", CurrentYear);
+  try {
+    const DocumentNumbers = await documentnumbers.find({ id: docNumId });
+    console.log("this is docnum", DocumentNumbers);
+    if (!DocumentNumbers[0]) {
+      const DocNum = new documentnumbers({
+        id: docNumId,
+        count: 1,
+        month: "00",
+        year: "00",
+      });
+      console.log("create if empty");
+      const newDocNum = await DocNum.save();
+      console.log(newDocNum);
+    }
+    console.log(DocumentNumbers[0].year, "-----", DocumentNumbers[0].month);
+    if (
+      DocumentNumbers[0].year === CurrentYear &&
+      DocumentNumbers[0].month === CurrentMonth
+    ) {
+      const YearTh = parseInt(DocumentNumbers[0].year) + 43;
+      console.log("start if 1");
+      console.log("this is length",DocumentNumbers[0].count.toString.length);
+      if (DocumentNumbers[0].count.toString.length === 1) {
+        console.log("start if 2");
+        ProjectNum =
+          DocumentNumbers[0].month + YearTh + "0" + DocumentNumbers[0].count;
+        console.log("this is project num 1", ProjectNum);
+      } else {
+        console.log("start if 2");
+        ProjectNum =
+          DocumentNumbers[0].month + YearTh + DocumentNumbers[0].count;
+        console.log("this is project num 2", ProjectNum);
+      }
+      let Count = DocumentNumbers[0].count;
+      let updatedDocStatus = await documents.updateOne(
+        { _id: docId },
+        {
+          $set: {
+            approval_status: Status,
+            approval_status_th: StatusTh,
+            project_num: ProjectNum,
+          },
+        }
+      );
+      let updatedDocNum = await documentnumbers.updateOne(
+        { id: docNumId },
+        {
+          $set: {
+            count: Count + 1,
+          },
+        }
+      );
+      console.log("update complete", updatedDocStatus, updatedDocNum);
+      return res.status(200).json({ updatedDocStatus, updatedDocNum });
+    } else if (
+      !(
+        DocumentNumbers[0].year === CurrentYear &&
+        DocumentNumbers[0].month === CurrentMonth
+      )
+    ) {
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Updating Doc Status
 router.put("/updateDocStatus", async (req, res) => {
-  const CurrentMonth = moment().month();
-  const CurrentYear = moment().year();
-  console.log("this is month ", CurrentMonth, "this is year ", CurrentYear);
   let Status = "";
   let StatusTh = "";
   const reqStatus = req.body.approval_status;
   const docId = req.body.id;
-  if (reqStatus === "waiting") {
-    const DocumentNumbers = await documentnumbers.find();
-    console.log("this is docnum", DocumentNumbers);
-    if (!DocumentNumbers[0]) {
-      const DocNum = new documentnumbers({
-        id: "docnum",
-        count: 0,
-        month: 0,
-        year: 0,
-      });
-      console.log("creat if empty");
-      const newDocNum = await DocNum.save();
-      console.log(newDocNum);
-    }
-    Status = "waiting";
-    StatusTh = "รอการประชุม";
-  } else if (reqStatus === "dms") {
+  if (reqStatus === "dms") {
     Status = "dms";
     StatusTh = "ส่งกรมฯ ลงนาม";
   } else if (reqStatus === "dms_returned") {
@@ -162,7 +220,12 @@ router.put("/updateDocStatus", async (req, res) => {
   try {
     let updatedWaiting = await documents.updateOne(
       { _id: docId },
-      { $set: { approval_status: Status, approval_status_th: StatusTh } }
+      {
+        $set: {
+          approval_status: Status,
+          approval_status_th: StatusTh,
+        },
+      }
     );
     res.status(200).json({ updatedWaiting });
   } catch (err) {
