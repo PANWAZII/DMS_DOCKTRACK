@@ -50,6 +50,7 @@ router.post("/createNewDocument", async (req, res) => {
     modified_date: date,
     approval_status: "new",
     approval_status_th: "รอรับเข้าระบบ",
+    project_num: null,
     available_status: 1,
   };
   try {
