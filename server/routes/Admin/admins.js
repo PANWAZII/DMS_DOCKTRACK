@@ -133,7 +133,7 @@ router.put("/updateDocStatus", async (req, res) => {
       console.log(newDocNum);
     }
     Status = "waiting";
-    StatusTh = "รับเข้าระบบแล้ว รอการประชุม";
+    StatusTh = "รอการประชุม";
   } else if (reqStatus === "dms") {
     Status = "dms";
     StatusTh = "ส่งกรมฯ ลงนาม";
