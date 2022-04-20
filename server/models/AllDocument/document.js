@@ -41,6 +41,30 @@ const documentSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  waiting_status_date: {
+    type: String,
+    require: false,
+  },
+  dms_status_date: {
+    type: String,
+    require: false,
+  },
+  dms_returned_status_date: {
+    type: String,
+    require: false,
+  },
+  moph_status_date: {
+    type: String,
+    require: false,
+  },
+  moph_returned_status_date: {
+    type: String,
+    require: false,
+  },
+  returned_status_date: {
+    type: String,
+    require: false,
+  },
   approval_status_th: {
     type: String,
     require: false,
