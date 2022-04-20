@@ -140,9 +140,8 @@ export default {
       this.loadingDialog = true
       console.log(docId)
       await this.$store
-        .dispatch('api/setDocApprovalStatus', {
+        .dispatch('api/acceptDoc', {
           id: docId,
-          approval_status: 'waiting',
         })
         .then((res) => {
           if (res.status == 200) {
