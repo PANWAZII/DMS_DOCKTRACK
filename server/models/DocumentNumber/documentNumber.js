@@ -10,11 +10,11 @@ const documentNumberSchema = new mongoose.Schema({
     required: false,
   },
   month: {
-    type: Number,
+    type: String,
     required: false,
   },
   year: {
-    type: Number,
+    type: String,
     required: false,
   },
 });
