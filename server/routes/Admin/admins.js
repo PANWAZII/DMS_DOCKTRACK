@@ -3,6 +3,7 @@ const router = express.Router();
 import admins from "../../models/Admin/admin.js";
 import users from "../../models/User/user.js";
 import documents from "../../models/AllDocument/document.js";
+import documentnumbers from "../../models/DocumentNumber/documentNumber.js";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import checkAuth from "../../middleware/auth.js";
@@ -114,25 +115,50 @@ router.post("/getUserById", async (req, res) => {
 // Updating Doc Status
 router.put("/updateDocStatus", async (req, res) => {
   let Status = "";
+  let StatusTh = "";
   const reqStatus = req.body.approval_status;
   const docId = req.body.id;
   if (reqStatus === "waiting") {
+    const DocumentNumbers = await documentnumbers.find();
+    console.log("this is docnum", DocumentNumbers);
+    if (!DocumentNumbers[0]) {
+      const DocNum = new documentnumbers({
+        id: "docnum",
+        count: "00",
+        month: "00",
+        year: "00",
+      });
+      console.log("ppass if");
+      const newDocNum = await DocNum.save();
+      console.log(newDocNum);
+    }
     Status = "waiting";
+    StatusTh = "";
   } else if (reqStatus === "dms") {
     Status = "dms";
+    StatusTh = "";
+  } else if (reqStatus === "dms_returned") {
+    Status = "dms_returned";
+    StatusTh = "";
   } else if (reqStatus === "moph") {
     Status = "moph";
-  } else if (reqStatus === "approved") {
-    Status = "approved";
+    StatusTh = "";
+  } else if (reqStatus === "moph_returned") {
+    Status = "moph_returned";
+    StatusTh = "";
+  } else if (reqStatus === "returned") {
+    Status = "returned";
+    StatusTh = "";
   } else if (reqStatus === "rejected") {
     Status = "rejected";
+    StatusTh = "";
   } else {
     return res.status(400).json({ message: "bad req" });
   }
   try {
     let updatedWaiting = await documents.updateOne(
       { _id: docId },
-      { $set: { approval_status: Status } }
+      { $set: { approval_status: Status, approval_status_th: StatusTh } }
     );
     res.status(200).json({ updatedWaiting });
   } catch (err) {
