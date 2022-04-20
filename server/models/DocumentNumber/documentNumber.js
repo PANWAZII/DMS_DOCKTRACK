@@ -6,15 +6,15 @@ const documentNumberSchema = new mongoose.Schema({
     required: false,
   },
   count: {
-    type: String,
+    type: Number,
     required: false,
   },
   month: {
-    type: String,
+    type: Number,
     required: false,
   },
   year: {
-    type: String,
+    type: Number,
     required: false,
   },
 });
