@@ -133,25 +133,25 @@ router.put("/updateDocStatus", async (req, res) => {
       console.log(newDocNum);
     }
     Status = "waiting";
-    StatusTh = "";
+    StatusTh = "รับเข้าระบบแล้ว รอการประชุม";
   } else if (reqStatus === "dms") {
     Status = "dms";
-    StatusTh = "";
+    StatusTh = "ส่งกรมฯ ลงนาม";
   } else if (reqStatus === "dms_returned") {
     Status = "dms_returned";
-    StatusTh = "";
+    StatusTh = "รับคืนจากกรมฯ";
   } else if (reqStatus === "moph") {
     Status = "moph";
-    StatusTh = "";
+    StatusTh = "ส่งกระทรวงฯ ลงนาม";
   } else if (reqStatus === "moph_returned") {
     Status = "moph_returned";
-    StatusTh = "";
+    StatusTh = "รับคืนจากกระทรวงฯ";
   } else if (reqStatus === "returned") {
     Status = "returned";
-    StatusTh = "";
+    StatusTh = "ส่งคืนแล้ว";
   } else if (reqStatus === "rejected") {
     Status = "rejected";
-    StatusTh = "";
+    StatusTh = "ที่ประชุมมีมติแก้ไข";
   } else {
     return res.status(400).json({ message: "bad req" });
   }
