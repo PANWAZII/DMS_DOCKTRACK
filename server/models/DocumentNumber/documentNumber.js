@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const documentNumberSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    required: false,
+  },
   count: {
     type: String,
     required: false,
