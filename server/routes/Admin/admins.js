@@ -144,20 +144,21 @@ router.post("/acceptDoc", async (req, res) => {
       DocumentNumbers[0].month === CurrentMonth
     ) {
       const YearTh = parseInt(DocumentNumbers[0].year) + 43;
+      let Count = DocumentNumbers[0].count;
+      let CountStr = Count.toString().length;
       console.log("start if 1");
-      console.log("this is length",DocumentNumbers[0].count.toString.length);
-      if (DocumentNumbers[0].count.toString.length === 1) {
+      console.log("this is count", Count);
+      console.log("this is length", Count.toString().length);
+      if (CountStr === 1) {
         console.log("start if 2");
         ProjectNum =
           DocumentNumbers[0].month + YearTh + "0" + DocumentNumbers[0].count;
         console.log("this is project num 1", ProjectNum);
-      } else {
-        console.log("start if 2");
+      } else if (CountStr === 2) {
         ProjectNum =
           DocumentNumbers[0].month + YearTh + DocumentNumbers[0].count;
         console.log("this is project num 2", ProjectNum);
       }
-      let Count = DocumentNumbers[0].count;
       let updatedDocStatus = await documents.updateOne(
         { _id: docId },
         {
@@ -176,7 +177,6 @@ router.post("/acceptDoc", async (req, res) => {
           },
         }
       );
-      console.log("update complete", updatedDocStatus, updatedDocNum);
       return res.status(200).json({ updatedDocStatus, updatedDocNum });
     } else if (
       !(
@@ -184,6 +184,32 @@ router.post("/acceptDoc", async (req, res) => {
         DocumentNumbers[0].month === CurrentMonth
       )
     ) {
+      let syncDocNum = await documentnumbers.updateOne(
+        { id: docNumId },
+        {
+          $set: {
+            count: 1,
+            month: CurrentMonth,
+            year: CurrentYear,
+          },
+        }
+      );
+      const YearTh = parseInt(CurrentYear) + 43;
+      const ProjectNum2 = CurrentMonth + YearTh + "01";
+      console.log(ProjectNum2);
+      let updatedDocStatus2 = await documents.updateOne(
+        { _id: docId },
+        {
+          $set: {
+            approval_status: Status,
+            approval_status_th: StatusTh,
+            project_num: ProjectNum2,
+          },
+        }
+      );
+      return res.status(200).json({ syncDocNum, updatedDocStatus2 });
+    } else {
+      return res.status(400);
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
