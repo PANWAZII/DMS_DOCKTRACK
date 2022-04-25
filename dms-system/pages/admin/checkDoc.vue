@@ -15,41 +15,30 @@
             ></v-text-field>
           </v-card-title>
 
-          <v-data-table :headers="headers" :items="acceptedDoc" :search="search">
-            <template  v-slot:item="row">
+          <v-data-table
+            :headers="headers"
+            :items="acceptedDoc"
+            :search="search"
+          >
+            <template v-slot:item="row">
               <tr>
-                <td >{{ row.item.project_num }}</td>
+                <td class="text-center">{{ row.item.project_num }}</td>
                 <td>{{ row.item.project_name }}</td>
                 <td>{{ row.item.project_type }}</td>
-                <td>
-                  <v-btn text color="secondary" dark>
-                    <v-icon>mdi-file-download</v-icon>
+                <td class="text-center">
+                  <v-btn
+                    text
+                    color="secondary"
+                    dark
+                    @click="downloadfileDialog = true"
+                  >
+                    <v-icon large>mdi-download</v-icon>
                   </v-btn>
                 </td>
+
                 <td>
-                  <v-btn text color="secondary" dark>
-                    <v-icon>mdi-file-download</v-icon>
-                  </v-btn>
-                  <v-btn text color="secondary" dark>
-                    <v-icon>mdi-file-download</v-icon>
-                  </v-btn>
-                  <v-btn text color="secondary" dark>
-                    <v-icon>mdi-file-download</v-icon>
-                  </v-btn>
-                </td>
-                <td>
-                  <v-btn text color="secondary" dark>
-                    <v-icon>mdi-file-download</v-icon>
-                  </v-btn>
-                </td>
-                <td>
-                  <v-checkbox label="ครบ" color="success" value=""></v-checkbox>
-                  <v-checkbox
-                    label="ไม่ครบ"
-                    color="red"
-                    value=""
-                    @click="commentDialog = true"
-                  ></v-checkbox>
+                  <v-checkbox label="ครบ" color="success"></v-checkbox>
+                  <v-checkbox label="ไม่ครบ" color="red"></v-checkbox>
                 </td>
                 <td>
                   <v-checkbox
@@ -61,16 +50,77 @@
                     label="มีประเด็น"
                     color="red"
                     value=""
-                    @click="commentDialog = true"
                   ></v-checkbox>
                 </td>
-
-                <td>
-                  <v-btn text icon color="info" @click="confirmDialog = true">
-                    <v-icon>mdi-content-save</v-icon>
-                  </v-btn>
-                </td>
               </tr>
+
+              <v-dialog v-model="downloadfileDialog" max-width="500px">
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">ดาวน์โหลดไฟล์ที่เกี่ยวข้อง</span>
+                  </v-card-title>
+                  <v-divider></v-divider>
+
+                  <v-container>
+                    <v-row justify="center">
+                      <v-btn
+                        ><v-icon class="align-center">mdi-file-download</v-icon>
+                        แบบรายงานการจัดหาฯ</v-btn
+                      >
+                    </v-row>
+                    <v-row justify="center">
+                      <v-btn
+                        ><v-icon class="align-center">mdi-file-download</v-icon>
+                        แบบรายงานการจัดหาฯ</v-btn
+                      >
+                    </v-row>
+                    <v-row justify="center">
+                      <v-btn
+                        ><v-icon class="align-center">mdi-file-download</v-icon>
+                        แบบรายงานการจัดหาฯ</v-btn
+                      >
+                    </v-row>
+                  </v-container>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" @click="downloadfileDialog = false">
+                      Close
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <!-- <v-dialog v-model="passDialog1" max-width="290">
+                <v-card>
+                  <v-card-title class="text">คุณต้องการบันทึก ? </v-card-title>
+                  <br />
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" @click="passDialog1 = false">
+                      ยกเลิก
+                    </v-btn>
+                    <v-btn color="success" @click="passDialog1 = false">
+                      ตกลง
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog> -->
+              <!-- <v-dialog v-model="passDialog2" max-width="290">
+                <v-card>
+                  <v-card-title>คุณต้องการบันทึก ? </v-card-title>
+                  <br />
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" @click="passDialog2 = false">
+                      ยกเลิก
+                    </v-btn>
+                    <v-btn color="success" @click="passDialog2 = false">
+                      ตกลง
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog> -->
             </template>
           </v-data-table>
         </v-card>
@@ -104,17 +154,6 @@
         </v-dialog>
       </v-row>
     </template>
-    <v-dialog v-model="confirmDialog" max-width="290">
-      <v-card>
-        <v-card-title class="text">คุณต้องการบันทึก ? </v-card-title>
-        <br />
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="error" @click="confirmDialog = false"> ยกเลิก </v-btn>
-          <v-btn color="success" @click="confirmDialog = false"> ตกลง </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </v-container>
 </template>
 <script>
@@ -128,26 +167,27 @@ export default {
     return {
       search: '',
       acceptedDoc: [],
+      downloadfileDialog: false,
       commentDialog: false,
-      confirmDialog: false,
+      passDialog1: false,
+      passDialog2: false,
       headers: [
         {
           text: 'ที่',
-          align: 'right',
+          align: 'center',
           sortable: true,
           value: 'project_num',
         },
         { text: 'โครงการ', value: 'project_name', align: 'center' },
         { text: 'ประเภท', value: 'project_type', align: 'center' },
 
-        { text: 'แบบรายงานฯ', value: 'report_file', align: 'center' },
-        { text: 'ใบเสนอราคา', value: 'price', align: 'center' },
-        { text: 'ผังเครือข่าย', value: 'diagram', align: 'center' },
+        { text: 'ดาวน์โหลดไฟล์ที่เกี่ยวข้อง', align: 'center' },
+
         { text: 'ตรวจเอกสาร', value: '', align: 'center' },
         { text: 'ตรวจเนื้อหา', value: '', align: 'center' },
-        { text: 'บันทึก', value: '', align: 'center' },
       ],
     }
   },
+  methods: {},
 }
 </script>
