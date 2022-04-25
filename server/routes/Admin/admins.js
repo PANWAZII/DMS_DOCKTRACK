@@ -218,6 +218,16 @@ router.post("/acceptDoc", async (req, res) => {
   }
 });
 
+router.post("/getAcceptedDoc", async (req, res) => {
+  const Status = "new"
+  try {
+    const AcceptDoc = await documents.find({ approval_status: {$ne: Status} });
+    res.status(200).json(AcceptDoc);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Updating Doc Status
 router.put("/updateDocStatus", async (req, res) => {
   let Status = "";
