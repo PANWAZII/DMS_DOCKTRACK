@@ -101,6 +101,12 @@ export const actions = {
       .post('/admins/getUserById', data, { headers })
       .then((res) => res.data)
   },
+  async getAcceptedDoc({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/getAcceptedDoc', data, { headers })
+      .then((res) => res.data)
+  },
 
   //User & Admin
   async getDepartmentById({ getters }, data) {
