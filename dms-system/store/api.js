@@ -38,14 +38,10 @@ export const actions = {
       .get('/public/getMaintenanceBudget')
       .then((res) => res.data)
   },
-  async getPublicDonationBudget({ getters }, data) {
-    return await axios.get('/public/getDonationBudget').then((res) => res.data)
+  async getPublicEtcBudget({ getters }, data) {
+    return await axios.get('/public/getEtcBudget').then((res) => res.data)
   },
-  async getPublicFoundationBudget({ getters }, data) {
-    return await axios
-      .get('/public/getFoundationBudget')
-      .then((res) => res.data)
-  },
+
   //Register
   async getAllDepartments({ getters }, data) {
     return await axios
