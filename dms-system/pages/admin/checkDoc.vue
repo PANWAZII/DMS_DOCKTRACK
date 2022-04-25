@@ -30,7 +30,7 @@
                     text
                     color="secondary"
                     dark
-                    @click="downloadfileDialog = true"
+                    @click="downloadDialog = true"
                   >
                     <v-icon large>mdi-download</v-icon>
                   </v-btn>
@@ -53,107 +53,70 @@
                   ></v-checkbox>
                 </td>
               </tr>
-
-              <v-dialog v-model="downloadfileDialog" max-width="500px">
-                <v-card>
-                  <v-card-title>
-                    <span class="text-h5">ดาวน์โหลดไฟล์ที่เกี่ยวข้อง</span>
-                  </v-card-title>
-                  <v-divider></v-divider>
-
-                  <v-container>
-                    <v-row justify="center">
-                      <v-btn
-                        ><v-icon class="align-center">mdi-file-download</v-icon>
-                        แบบรายงานการจัดหาฯ</v-btn
-                      >
-                    </v-row>
-                    <v-row justify="center">
-                      <v-btn
-                        ><v-icon class="align-center">mdi-file-download</v-icon>
-                        แบบรายงานการจัดหาฯ</v-btn
-                      >
-                    </v-row>
-                    <v-row justify="center">
-                      <v-btn
-                        ><v-icon class="align-center">mdi-file-download</v-icon>
-                        แบบรายงานการจัดหาฯ</v-btn
-                      >
-                    </v-row>
-                  </v-container>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="error" @click="downloadfileDialog = false">
-                      Close
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-
-              <!-- <v-dialog v-model="passDialog1" max-width="290">
-                <v-card>
-                  <v-card-title class="text">คุณต้องการบันทึก ? </v-card-title>
-                  <br />
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="error" @click="passDialog1 = false">
-                      ยกเลิก
-                    </v-btn>
-                    <v-btn color="success" @click="passDialog1 = false">
-                      ตกลง
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog> -->
-              <!-- <v-dialog v-model="passDialog2" max-width="290">
-                <v-card>
-                  <v-card-title>คุณต้องการบันทึก ? </v-card-title>
-                  <br />
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="error" @click="passDialog2 = false">
-                      ยกเลิก
-                    </v-btn>
-                    <v-btn color="success" @click="passDialog2 = false">
-                      ตกลง
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog> -->
             </template>
           </v-data-table>
         </v-card>
       </v-col>
     </v-row>
-    <template>
-      <v-row justify="center">
-        <v-dialog v-model="commentDialog" persistent max-width="600px">
-          <v-card>
-            <v-card-title>
-              <span class="text-h5">ความคิดเห็น</span>
-            </v-card-title>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12">
-                    <v-textarea name="input-7-1" value=""></v-textarea>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
+    <v-row justify="center">
+      <v-dialog v-model="downloadDialog" max-width="570px">
+        <v-card>
+          <v-card-title class="text"
+            ><v-avatar color="teal" rounded size="50">
+              <v-icon dark size="25"> mdi-file-download </v-icon>
+            </v-avatar>
+            <span class="text-h6 ml-5">ดาวน์โหลดไฟล์ที่เกี่ยวข้อง</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-divider></v-divider>
+              <v-row justify="center" class="mt-5">
+                <v-btn
+                  ><v-icon>mdi-file-download</v-icon>แบบรายงานการจัดหาฯ</v-btn
+                >
+              </v-row>
+              <v-row justify="center" class="mt-7">
+                <v-btn><v-icon>mdi-file-download</v-icon>ใบเสนอราคา</v-btn>
+              </v-row>
+              <v-row justify="center" class="mt-7">
+                <v-btn><v-icon>mdi-file-download</v-icon>ผังเครือข่าย</v-btn>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
 
-              <v-btn color="error " @click="commentDialog = false"> ปิด </v-btn>
-              <v-btn color="success" @click="commentDialog = false">
-                บันทึก
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
-    </template>
+            <v-btn color="error " @click="downloadDialog = false"> ปิด </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="commentDialog" max-width="600px">
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">ความคิดเห็น</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-textarea name="input-7-1" value=""></v-textarea>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="error " @click="commentDialog = false"> ปิด </v-btn>
+            <v-btn color="success" @click="commentDialog = false">
+              บันทึก
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -167,10 +130,10 @@ export default {
     return {
       search: '',
       acceptedDoc: [],
-      downloadfileDialog: false,
+
       commentDialog: false,
-      passDialog1: false,
-      passDialog2: false,
+      downloadDialog: false,
+
       headers: [
         {
           text: 'ที่',
