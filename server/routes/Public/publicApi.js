@@ -120,39 +120,16 @@ router.get("/getMaintenanceBudget", async (req, res) => {
   }
 });
 
-router.get("/getDonationBudget", async (req, res) => {
+router.get("/getEtcBudget", async (req, res) => {
   const govYear = getGovYear();
   try {
     const donationBudget = await documents.find({
-      $and: [{ budget_year: govYear }, { budget_resource: "donation_budget" }],
+      $and: [{ budget_year: govYear }, { budget_resource: "etc_budget" }],
     });
     if (!donationBudget[0]) {
       res.status(200).json({ sum: 0 });
     } else {
       const data = donationBudget
-        .map((item) => item.sum)
-        .reduce((prev, next) => prev + next);
-      res.status(200).json({ sum: data });
-    }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-router.get("/getFoundationBudget", async (req, res) => {
-  const govYear = getGovYear();
-  console.log(govYear);
-  try {
-    const foundationBudget = await documents.find({
-      $and: [
-        { budget_year: govYear },
-        { budget_resource: "foundation_budget" },
-      ],
-    });
-    if (!foundationBudget[0]) {
-      res.status(200).json({ sum: 0 });
-    } else {
-      const data = foundationBudget
         .map((item) => item.sum)
         .reduce((prev, next) => prev + next);
       res.status(200).json({ sum: data });
