@@ -122,8 +122,8 @@
               </v-list-item-icon>
               <v-list-item-title>เงินอื่น ๆ</v-list-item-title>
               <v-list-item-subtitle class="text-right"
-                >{{ donationBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp;
-                &nbsp; &nbsp;บาท</v-list-item-subtitle
+                >{{ etcBudget.sum.toLocaleString('en-US') }}&nbsp; &nbsp; &nbsp;
+                &nbsp;บาท</v-list-item-subtitle
               >
             </v-list-item>
             <!-- <v-list-item>
@@ -390,8 +390,7 @@ export default {
     let cam = []
     let normalBudget = []
     let maintenanceBudget = []
-    let donationBudget = []
-    let foundationBudget = []
+    let etcBudget = []
     let allProject = ''
     let allBudget = ''
     let allDoc = []
@@ -403,17 +402,12 @@ export default {
 
       normalBudget = await store.dispatch('api/getPublicNormalBudget')
       maintenanceBudget = await store.dispatch('api/getPublicMaintenanceBudget')
-      donationBudget = await store.dispatch('api/getPublicDonationBudget')
-      foundationBudget = await store.dispatch('api/getPublicFoundationBudget')
+      etcBudget = await store.dispatch('api/getPublicEtcBudget')
 
       allDoc = await store.dispatch('api/getPublicDoc')
       allProject = hardware.count + software.count + network.count + cam.count
 
-      allBudget =
-        normalBudget.sum +
-        maintenanceBudget.sum +
-        donationBudget.sum +
-        foundationBudget.sum
+      allBudget = normalBudget.sum + maintenanceBudget.sum + etcBudget.sum
     } catch (err) {
       console.log(err)
     }
@@ -424,8 +418,7 @@ export default {
       cam,
       normalBudget,
       maintenanceBudget,
-      donationBudget,
-      foundationBudget,
+      etcBudget,
       allProject,
       allBudget,
       allDoc,
@@ -439,8 +432,7 @@ export default {
       cam: [],
       normalBudget: [],
       maintenanceBudget: [],
-      donationBudget: [],
-      foundationBudget: [],
+      etcBudget: [],
       allBudget: '',
       allProject: '',
       allDoc: [],
