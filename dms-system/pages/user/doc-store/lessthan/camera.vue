@@ -148,7 +148,7 @@
             <v-btn
               class="rounded-1"
               color="#056839"
-              @click="submit"
+              @click="confirmDialog = true"
               x-large
               block
             >
@@ -186,7 +186,41 @@
         </v-card>
       </v-dialog>
     </div>
+    <v-row justify="center">
+      <v-dialog v-model="confirmDialog" max-width="500" max-height="300">
+        <v-card>
+          <v-card-title class="text-h5"
+            ><v-icon justify="left" class="mr-3" size="50"
+              >mdi-information</v-icon
+            >
+            จัดส่งโครงการ
+          </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text>
+            โครงการของคุณกำลังถูกบันทึกเข้าระบบ
+            คุณแน่ใจว่าต้องการส่งและได้ตรวจสอบถูกต้องครบถ้วนแล้ว
+          </v-card-text>
 
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="success"
+              @click="submit"
+              class="font-weight-medium mt-3"
+            >
+              ตกลง
+            </v-btn>
+            <v-btn
+              color="info"
+              @click="confirmDialog = false"
+              class="font-weight-medium mt-3 ml-3"
+            >
+              ยกเลิก
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
     <v-dialog v-model="completeDialog" max-width="290">
       <v-card>
         <v-card-title class="text">Send complete</v-card-title>
@@ -263,14 +297,14 @@ export default {
   data: () => ({
     loading: false,
     loadingStatus: '',
+    confirmDialog: false,
     completeDialog: false,
     warningdialog: false,
-    currentProject:'',
+    currentProject: '',
     budget: [
       { name: 'เงินงบประมาณ', value: 'normal_budget' },
       { name: 'เงินบำรุง', value: 'maintenance_budget' },
-      { name: 'เงินบริจาค', value: 'donation_budget' },
-      { name: 'เงินมูลนิธิ', value: 'foundation_budget' },
+      { name: 'เงินอื่น ๆ', value: 'donation_budget' },
     ],
     file: null,
     report_file: null,
@@ -312,7 +346,8 @@ export default {
       this.completeDialog = false
     },
     submit() {
-      this.saveAct()
+      this.confirmDialog = false
+      this.submitDocument()
       // this.$refs.form.validate()
       // console.log(this.$refs.form.validate())
       // if (this.$refs.form.validate() == true) {
@@ -325,13 +360,13 @@ export default {
       if (mutiplied > 5000000) {
         alert('ราคารวมเกินห้าล้านบาท โปรดเลือกแบบฟอร์มชนิดอื่น')
       } else {
-        this.saveAct()
+        this.submitDocument()
       }
     },
     // handleFileUpload() {
     //   this.file = this.$refs.file.files[0]
     // },
-    async saveAct() {
+    async submitDocument() {
       try {
         // const user_id = await this.$cookies.get('uid_token')
         this.loading = true
@@ -443,7 +478,7 @@ export default {
 
               this.loading = false
               this.completeDialog = true
-            } 
+            }
           })
       } catch (err) {
         console.log(err)
