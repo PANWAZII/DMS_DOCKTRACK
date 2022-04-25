@@ -15,11 +15,11 @@
             ></v-text-field>
           </v-card-title>
 
-          <v-data-table :headers="headers" :items="doc_info" :search="search">
-            <template v-slot:item="row">
+          <v-data-table :headers="headers" :items="acceptedDoc" :search="search">
+            <template  v-slot:item="row">
               <tr>
-                <td>{{ row.item.order }}</td>
-                <td>{{ row.item.title }}</td>
+                <td >{{ row.item.project_num }}</td>
+                <td>{{ row.item.project_name }}</td>
                 <td>{{ row.item.project_type }}</td>
                 <td>
                   <v-btn text color="secondary" dark>
@@ -121,20 +121,23 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
-
+  async fetch() {
+    this.acceptedDoc = await this.$store.dispatch('api/getAcceptedDoc')
+  },
   data() {
     return {
       search: '',
+      acceptedDoc: [],
       commentDialog: false,
       confirmDialog: false,
       headers: [
         {
           text: 'ที่',
-          align: 'center',
-          sortable: false,
-          value: 'order',
+          align: 'right',
+          sortable: true,
+          value: 'project_num',
         },
-        { text: 'โครงการ', value: 'title', align: 'center' },
+        { text: 'โครงการ', value: 'project_name', align: 'center' },
         { text: 'ประเภท', value: 'project_type', align: 'center' },
 
         { text: 'แบบรายงานฯ', value: 'report_file', align: 'center' },
