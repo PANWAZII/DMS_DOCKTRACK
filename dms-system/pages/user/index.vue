@@ -43,8 +43,8 @@ export default {
         {
           text: 'ที่',
           align: 'start',
-          sortable: false,
-          value: 'order',
+          sortable: true,
+          value: 'project_num',
         },
         { text: 'โครงการ', value: 'project_name' },
 
