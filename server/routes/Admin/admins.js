@@ -125,26 +125,27 @@ router.post("/acceptDoc", async (req, res) => {
   const StatusTh = "รอการประชุม";
   console.log("this is month ", CurrentMonth, "this is year ", CurrentYear);
   try {
-    const DocumentNumbers = await documentnumbers.find({ id: docNumId });
-    console.log("this is docnum", DocumentNumbers);
-    if (!DocumentNumbers[0]) {
+    const DocumentNumbers1 = await documentnumbers.find({ id: docNumId });
+    console.log("this is docnum", DocumentNumbers1);
+    if (!DocumentNumbers1[0]) {
       const DocNum = new documentnumbers({
         id: docNumId,
         count: 1,
-        month: "00",
-        year: "00",
+        month: CurrentMonth,
+        year: CurrentYear,
       });
       console.log("create if empty");
       const newDocNum = await DocNum.save();
       console.log(newDocNum);
     }
-    console.log(DocumentNumbers[0].year, "-----", DocumentNumbers[0].month);
+    const DocumentNumbers2 = await documentnumbers.find({ id: docNumId });
+    console.log(DocumentNumbers2[0].year, "-----", DocumentNumbers2[0].month);
     if (
-      DocumentNumbers[0].year === CurrentYear &&
-      DocumentNumbers[0].month === CurrentMonth
+      DocumentNumbers2[0].year === CurrentYear &&
+      DocumentNumbers2[0].month === CurrentMonth
     ) {
-      const YearTh = parseInt(DocumentNumbers[0].year) + 43;
-      let Count = DocumentNumbers[0].count;
+      const YearTh = parseInt(DocumentNumbers2[0].year) + 43;
+      let Count = DocumentNumbers2[0].count;
       let CountStr = Count.toString().length;
       console.log("start if 1");
       console.log("this is count", Count);
@@ -152,11 +153,11 @@ router.post("/acceptDoc", async (req, res) => {
       if (CountStr === 1) {
         console.log("start if 2");
         ProjectNum =
-          DocumentNumbers[0].month + YearTh + "0" + DocumentNumbers[0].count;
+          DocumentNumbers2[0].month + YearTh + "0" + DocumentNumbers2[0].count;
         console.log("this is project num 1", ProjectNum);
       } else if (CountStr === 2) {
         ProjectNum =
-          DocumentNumbers[0].month + YearTh + DocumentNumbers[0].count;
+          DocumentNumbers2[0].month + YearTh + DocumentNumbers2[0].count;
         console.log("this is project num 2", ProjectNum);
       }
       let updatedDocStatus = await documents.updateOne(
@@ -180,8 +181,8 @@ router.post("/acceptDoc", async (req, res) => {
       return res.status(200).json({ updatedDocStatus, updatedDocNum });
     } else if (
       !(
-        DocumentNumbers[0].year === CurrentYear &&
-        DocumentNumbers[0].month === CurrentMonth
+        DocumentNumbers2[0].year === CurrentYear &&
+        DocumentNumbers2[0].month === CurrentMonth
       )
     ) {
       let syncDocNum = await documentnumbers.updateOne(
@@ -209,6 +210,7 @@ router.post("/acceptDoc", async (req, res) => {
       );
       return res.status(200).json({ syncDocNum, updatedDocStatus2 });
     } else {
+      console.log("ELSE");
       return res.status(400);
     }
   } catch (err) {
