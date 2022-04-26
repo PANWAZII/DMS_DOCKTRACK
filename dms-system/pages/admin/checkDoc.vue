@@ -123,6 +123,11 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  head() {
+    return {
+      title: 'Check Document',
+    }
+  },
   async fetch() {
     this.acceptedDoc = await this.$store.dispatch('api/getAcceptedDoc')
   },
@@ -130,7 +135,7 @@ export default {
     return {
       search: '',
       acceptedDoc: [],
-
+      title: 'check document',
       commentDialog: false,
       downloadDialog: false,
 

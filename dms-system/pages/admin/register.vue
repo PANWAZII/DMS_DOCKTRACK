@@ -215,6 +215,11 @@ import axios from 'axios'
 export default {
   layout: 'admin',
   middleware: 'middleware-admin-auth',
+  head() {
+    return {
+      title: 'User Register',
+    }
+  },
   // fetchOnServer: true,
   // async fetch() {
   //   this.isDataReady = false

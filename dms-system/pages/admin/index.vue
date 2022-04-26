@@ -93,6 +93,11 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  head() {
+    return {
+      title: 'Home',
+    }
+  },
   // async asyncData({ store }) {
   //   let allNewDoc = []
   //   try {

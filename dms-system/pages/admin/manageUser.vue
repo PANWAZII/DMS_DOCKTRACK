@@ -124,6 +124,11 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  head() {
+    return {
+      title: 'Manage Users',
+    }
+  },
   async fetch() {
     this.users = await this.$store.dispatch('api/getAllUsers')
     this.departments = await this.$store.dispatch('api/getAllDepartments')

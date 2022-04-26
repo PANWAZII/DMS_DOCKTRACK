@@ -63,6 +63,11 @@
 export default {
   middleware: 'middleware-admin-auth',
   layout: 'admin',
+  head() {
+    return {
+      title: 'Manage Document',
+    }
+  },
   data() {
     return {
       search: '',

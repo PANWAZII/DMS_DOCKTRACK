@@ -58,6 +58,11 @@
 export default {
   layout: 'admin',
   middleware: 'middleware-admin-auth',
+  head() {
+    return {
+      title: 'Profile',
+    }
+  },
   name: 'profile',
   // async fetch() {
   //   const user_uid = await this.$cookies.get('uid_token')
