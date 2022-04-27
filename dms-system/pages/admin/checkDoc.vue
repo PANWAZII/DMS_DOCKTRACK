@@ -30,7 +30,7 @@
                     text
                     color="secondary"
                     dark
-                    @click="downloadDialog = true"
+                    @click="saveDownloadInfo(row.item._id)"
                   >
                     <v-icon large>mdi-download</v-icon>
                   </v-btn>
@@ -71,22 +71,35 @@
             <v-container>
               <v-divider></v-divider>
               <v-row justify="center" class="mt-5">
-                <v-btn
+                <v-btn @click="download('report')"
                   ><v-icon>mdi-file-download</v-icon>แบบรายงานการจัดหาฯ</v-btn
                 >
               </v-row>
               <v-row justify="center" class="mt-7">
-                <v-btn><v-icon>mdi-file-download</v-icon>ใบเสนอราคา</v-btn>
+                <v-btn @click="download('quotation_1')"
+                  ><v-icon>mdi-file-download</v-icon>ใบเสนอราคา 1</v-btn
+                >
               </v-row>
               <v-row justify="center" class="mt-7">
-                <v-btn><v-icon>mdi-file-download</v-icon>ผังเครือข่าย</v-btn>
+                <v-btn @click="download('quotation_2')"
+                  ><v-icon>mdi-file-download</v-icon>ใบเสนอราคา 2</v-btn
+                >
+              </v-row>
+              <v-row justify="center" class="mt-7">
+                <v-btn @click="download('quotation_3')"
+                  ><v-icon>mdi-file-download</v-icon>ใบเสนอราคา 3</v-btn
+                >
+              </v-row>
+              <v-row justify="center" class="mt-7">
+                <v-btn @click="download('blueprint')"
+                  ><v-icon>mdi-file-download</v-icon>ผังเครือข่าย</v-btn
+                >
               </v-row>
             </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-
-            <v-btn color="error " @click="downloadDialog = false"> ปิด </v-btn>
+            <v-btn color="error " @click="clearDownloadInfo()"> ปิด </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -138,7 +151,7 @@ export default {
       title: 'check document',
       commentDialog: false,
       downloadDialog: false,
-
+      downloadInfo: { id: '' },
       headers: [
         {
           text: 'ที่',
@@ -156,6 +169,24 @@ export default {
       ],
     }
   },
-  methods: {},
+  methods: {
+    saveDownloadInfo(id) {
+      this.downloadInfo.id = id
+      this.downloadDialog = true
+    },
+    async download(type) {
+      let downloadData = await this.$store.dispatch('api/downloadFile', {
+        id: this.downloadInfo.id,
+        file_type: type,
+      })
+      console.log(downloadData.link)
+      this.userInfoDialog = true
+      window.open(downloadData.link, '_blank');
+    },
+    clearDownloadInfo() {
+      this.downloadInfo = { id: '' }
+      this.downloadDialog = false
+    },
+  },
 }
 </script>
