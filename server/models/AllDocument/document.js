@@ -77,6 +77,14 @@ const documentSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
+  document_comment: {
+    type: String,
+    require: false,
+  },
+  technical_comment: {
+    type: String,
+    require: false,
+  },
   available_status: {
     type: Number,
     required: false,
