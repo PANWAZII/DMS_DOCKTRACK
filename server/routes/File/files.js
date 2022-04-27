@@ -203,7 +203,7 @@ router.post("/download", async (req, res) => {
   let File = "";
   try {
     const fileInfo = await fileInfos.find({ document_id: id });
-    console.log(fileInfo);
+    console.log("this is report file", fileInfo[0].report);
     if (fileType === "report") {
       File = `${folder}/${id}/${fileInfo[0].report}`;
     } else if (fileType === "quotation_1") {
@@ -220,7 +220,6 @@ router.post("/download", async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error });
   }
-
   const options = {
     version: "v4",
     action: "read",
@@ -229,7 +228,6 @@ router.post("/download", async (req, res) => {
   try {
     const url = await bucket.file(File).getSignedUrl(options);
     res.status(200).json({ link: url });
-    console.log(url);
   } catch (error) {
     res.status(404).json({ message: error });
   }
