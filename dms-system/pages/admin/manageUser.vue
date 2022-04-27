@@ -58,10 +58,10 @@
           <v-container>
             <v-divider></v-divider>
             <v-row class="mt-3">
-              <!-- <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" md="4">
                 <div style="font-size: 15px">ชื่อ</div>
                 <h4>{{ userDetail.first_name }}</h4>
-              </v-col> -->
+              </v-col>
               <v-col cols="12" sm="6" md="4">
                 <div style="font-size: 15px">นามสกุล</div>
                 <h4>{{ userDetail.last_name }}</h4>
