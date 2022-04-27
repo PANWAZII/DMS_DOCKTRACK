@@ -14,11 +14,26 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table
+          <v-data-table :headers="headers" :items="documents" :search="search">
+            <template v-slot:item="row">
+              <tr>
+                <td>{{ row.item.project_num }}</td>
+                <td>{{ row.item.project_name }}</td>
+                <td>{{ row.item.approval_status_th }}</td>
+                <td>{{ row.item.modified_date }}</td>
+                <td>
+                  <v-btn class="ma-2" text icon color="info" large>
+                    <v-icon>mdi-file-search</v-icon>
+                  </v-btn>
+                </td>
+              </tr>
+            </template>
+          </v-data-table>
+          <!-- <v-data-table
             :headers="headers"
             :items="documents"
             :search="search"
-          ></v-data-table>
+          ></v-data-table> -->
         </v-card>
       </v-col>
     </v-row>
@@ -50,6 +65,7 @@ export default {
 
         { text: 'สถานะ', value: 'approval_status_th' },
         { text: 'วันที่ปรับปรุงล่าสุด', value: 'modified_date' },
+        { text: 'รายละเอียด' },
       ],
     }
   },
