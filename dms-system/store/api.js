@@ -205,4 +205,10 @@ export const actions = {
       .post('/files/uploadQuotation_3', data, { headers })
       .then((res) => res)
   },
+  async downloadFile({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/files/download', data, { headers })
+      .then((res) => res.data)
+  },
 }
