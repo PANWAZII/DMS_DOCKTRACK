@@ -40,6 +40,15 @@
                   <v-checkbox label="ครบ" color="success"></v-checkbox>
                   <v-checkbox label="ไม่ครบ" color="red"></v-checkbox>
                 </td>
+                <td class="text-center">
+                  <v-btn
+                    text
+                    color="secondary"
+                    dark
+                    @click="papercommentDialog = true"
+                    ><v-icon>mdi-comment-processing</v-icon></v-btn
+                  >
+                </td>
                 <td>
                   <v-checkbox
                     label="ไม่มีประเด็น"
@@ -51,6 +60,15 @@
                     color="red"
                     value=""
                   ></v-checkbox>
+                </td>
+                <td class="text-center">
+                  <v-btn
+                    text
+                    color="secondary"
+                    dark
+                    @click="techniquecommentDialog = true"
+                    ><v-icon>mdi-comment-processing</v-icon></v-btn
+                  >
                 </td>
               </tr>
             </template>
@@ -105,10 +123,10 @@
       </v-dialog>
     </v-row>
     <v-row justify="center">
-      <v-dialog v-model="commentDialog" max-width="600px">
+      <v-dialog v-model="papercommentDialog" max-width="600px">
         <v-card>
           <v-card-title>
-            <span class="text-h5">ความคิดเห็น</span>
+            <span class="text-h5">ความคิดเห็น กรณีเอกสารไม่ครบ</span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -122,8 +140,38 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="error " @click="commentDialog = false"> ปิด </v-btn>
-            <v-btn color="success" @click="commentDialog = false">
+            <v-btn color="error " @click="papercommentDialog = false">
+              ปิด
+            </v-btn>
+            <v-btn color="success" @click="papercommentDialog = false">
+              บันทึก
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="techniquecommentDialog" max-width="600px">
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">ความคิดเห็น กรณีมีประเด็นทางเทคนิค</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-textarea name="input-7-1" value=""></v-textarea>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="error " @click="techniquecommentDialog = false">
+              ปิด
+            </v-btn>
+            <v-btn color="success" @click="techniquecommentDialog = false">
               บันทึก
             </v-btn>
           </v-card-actions>
@@ -149,7 +197,8 @@ export default {
       search: '',
       acceptedDoc: [],
       title: 'check document',
-      commentDialog: false,
+      papercommentDialog: false,
+      techniquecommentDialog: false,
       downloadDialog: false,
       downloadInfo: { id: '' },
       headers: [
@@ -165,7 +214,9 @@ export default {
         { text: 'ดาวน์โหลดไฟล์ที่เกี่ยวข้อง', align: 'center' },
 
         { text: 'ตรวจเอกสาร', value: '', align: 'center' },
+        { text: 'ความเห็น', value: '', align: 'center' },
         { text: 'ตรวจเนื้อหา', value: '', align: 'center' },
+        { text: 'ความเห็น', value: '', align: 'center' },
       ],
     }
   },
@@ -181,7 +232,7 @@ export default {
       })
       console.log(downloadData.link)
       this.userInfoDialog = true
-      window.open(downloadData.link, '_blank');
+      window.open(downloadData.link, '_blank')
     },
     clearDownloadInfo() {
       this.downloadInfo = { id: '' }
