@@ -20,7 +20,7 @@
                 <td>{{ row.item.project_num }}</td>
                 <td>{{ row.item.project_name }}</td>
                 <td>{{ row.item.approval_status_th }}</td>
-                <td>{{ row.item.modified_date }}</td>
+                <td>{{ new Date(row.item.modified_date).toLocaleString() }}</td>
                 <td>
                   <v-btn class="ma-2" text icon color="info" large>
                     <v-icon>mdi-file-search</v-icon>
