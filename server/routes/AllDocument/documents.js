@@ -51,6 +51,8 @@ router.post("/createNewDocument", async (req, res) => {
     approval_status: "new",
     approval_status_th: "รอรับเข้าระบบ",
     project_num: null,
+    document_comment: "",
+    technical_comment: "",
     available_status: 1,
   };
   try {
