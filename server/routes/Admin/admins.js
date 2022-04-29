@@ -219,9 +219,11 @@ router.post("/acceptDoc", async (req, res) => {
 });
 
 router.post("/getAcceptedDoc", async (req, res) => {
-  const Status = "new"
+  const Status = "new";
   try {
-    const AcceptDoc = await documents.find({ approval_status: {$ne: Status} });
+    const AcceptDoc = await documents.find({
+      approval_status: { $ne: Status },
+    });
     res.status(200).json(AcceptDoc);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -271,6 +273,22 @@ router.put("/updateDocStatus", async (req, res) => {
   }
 });
 
+router.post("/getDocumentComment", async (req, res) => {
+  try {
+    const DocumentComment = await documents.find({ _id: req.body.id });
+    res.status(200).json({ comment: DocumentComment[0].document_comment });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+router.post("/getTechnicalComment", async (req, res) => {
+  try {
+    const TechnicalComment = await documents.find({ _id: req.body.id });
+    res.status(200).json({ comment: TechnicalComment[0].technical_comment });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 // // Deleting One
 // router.delete("/:id", getSubscriber, async (req, res) => {
 //   try {
