@@ -119,6 +119,18 @@ export const actions = {
       .post('/admins/getTechnicalComment', data, { headers })
       .then((res) => res.data)
   },
+  async setDocumentComment({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/createDocumentComment', data, { headers })
+      .then((res) => res.data)
+  },
+  async setTechnicalComment({ getters }, data) {
+    const headers = getAuthToken(this.$cookies)
+    return await axios
+      .post('/admins/createTechnicalComment', data, { headers })
+      .then((res) => res.data)
+  },
 
   //User & Admin
   async getDepartmentById({ getters }, data) {
