@@ -45,7 +45,7 @@
                     text
                     color="secondary"
                     dark
-                    @click="papercommentDialog = true"
+                    @click="getDocumentComment(row.item._id)"
                     ><v-icon>mdi-comment-processing</v-icon></v-btn
                   >
                 </td>
@@ -66,7 +66,7 @@
                     text
                     color="secondary"
                     dark
-                    @click="techniquecommentDialog = true"
+                    @click="getTechnicalComment(row.item._id)"
                     ><v-icon>mdi-comment-processing</v-icon></v-btn
                   >
                 </td>
@@ -123,7 +123,7 @@
       </v-dialog>
     </v-row>
     <v-row justify="center">
-      <v-dialog v-model="papercommentDialog" max-width="600px">
+      <v-dialog v-model="documentCommentDialog" max-width="600px">
         <v-card>
           <v-card-title>
             <span class="text-h5">ความคิดเห็น กรณีเอกสารไม่ครบ</span>
@@ -132,7 +132,11 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-textarea name="input-7-1" value=""></v-textarea>
+                  <v-textarea
+                    v-model="documentComment"
+                    name="input-7-1"
+                    value=""
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -140,10 +144,10 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="error " @click="papercommentDialog = false">
+            <v-btn color="error " @click="documentCommentDialog = false">
               ปิด
             </v-btn>
-            <v-btn color="success" @click="papercommentDialog = false">
+            <v-btn color="success" @click="setDocumentComment(documentId)">
               บันทึก
             </v-btn>
           </v-card-actions>
@@ -151,7 +155,7 @@
       </v-dialog>
     </v-row>
     <v-row justify="center">
-      <v-dialog v-model="techniquecommentDialog" max-width="600px">
+      <v-dialog v-model="technicalCommentDialog" max-width="600px">
         <v-card>
           <v-card-title>
             <span class="text-h5">ความคิดเห็น กรณีมีประเด็นทางเทคนิค</span>
@@ -160,7 +164,11 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-textarea name="input-7-1" value=""></v-textarea>
+                  <v-textarea
+                    v-model="technicalComment"
+                    name="input-7-1"
+                    value=""
+                  ></v-textarea>
                 </v-col>
               </v-row>
             </v-container>
@@ -168,10 +176,10 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="error " @click="techniquecommentDialog = false">
+            <v-btn color="error " @click="technicalCommentDialog = false">
               ปิด
             </v-btn>
-            <v-btn color="success" @click="techniquecommentDialog = false">
+            <v-btn color="success" @click="setTechnicalComment(documentId)">
               บันทึก
             </v-btn>
           </v-card-actions>
@@ -197,10 +205,13 @@ export default {
       search: '',
       acceptedDoc: [],
       title: 'check document',
-      papercommentDialog: false,
-      techniquecommentDialog: false,
+      documentCommentDialog: false,
+      technicalCommentDialog: false,
       downloadDialog: false,
       downloadInfo: { id: '' },
+      documentComment: '',
+      technicalComment: '',
+      documentId: '',
       headers: [
         {
           text: 'ที่',
@@ -237,6 +248,44 @@ export default {
     clearDownloadInfo() {
       this.downloadInfo = { id: '' }
       this.downloadDialog = false
+    },
+    async getDocumentComment(id) {
+      console.log(id)
+      let Comment = await this.$store.dispatch('api/getDocumentComment', {
+        id: id,
+      })
+      this.documentComment = Comment.comment
+      this.documentId = id
+      this.documentCommentDialog = true
+      console.log(Comment.comment)
+    },
+    async getTechnicalComment(id) {
+      console.log(id)
+      let Comment = await this.$store.dispatch('api/getTechnicalComment', {
+        id: id,
+      })
+      this.technicalComment = Comment.comment
+      this.documentId = id
+      this.technicalCommentDialog = true
+      console.log(Comment.comment)
+    },
+    async setDocumentComment(id) {
+      console.log(id)
+      let NewComment = await this.$store
+        .dispatch('api/setDocumentComment', {
+          id: id,
+          comment: this.documentComment,
+        })
+        .then((this.documentCommentDialog = false))
+    },
+    async setTechnicalComment(id) {
+      console.log(id)
+      let NewComment = await this.$store
+        .dispatch('api/setTechnicalComment', {
+          id: id,
+          comment: this.technicalComment,
+        })
+        .then((this.technicalCommentDialog = false))
     },
   },
 }
