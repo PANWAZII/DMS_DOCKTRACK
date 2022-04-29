@@ -85,6 +85,14 @@ const documentSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
+  document_check: {
+    type: Boolean,
+    require: false,
+  },
+  technical_check: {
+    type: Boolean,
+    require: false,
+  },
   available_status: {
     type: Number,
     required: false,
