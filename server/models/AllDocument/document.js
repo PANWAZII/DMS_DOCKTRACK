@@ -85,11 +85,19 @@ const documentSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
-  document_check: {
+  document_check_true: {
     type: Boolean,
     require: false,
   },
-  technical_check: {
+  document_check_false: {
+    type: Boolean,
+    require: false,
+  },
+  technical_check_true: {
+    type: Boolean,
+    require: false,
+  },
+  technical_check_false: {
     type: Boolean,
     require: false,
   },
