@@ -319,6 +319,42 @@ router.post("/createTechnicalComment", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
+router.post("/changeDocumentCheck", async (req, res) => {
+  const Id = req.body.id;
+  const Complete = req.body.complete;
+  try {
+    await documents.updateOne(
+      { _id: Id },
+      {
+        $set: {
+          document_check: Complete,
+        },
+      }
+    );
+    return res.status(201);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.post("/changeTechnicalCheck", async (req, res) => {
+  const Id = req.body.id;
+  const Complete = req.body.complete;
+  try {
+    await documents.updateOne(
+      { _id: Id },
+      {
+        $set: {
+          technical_check: Complete,
+        },
+      }
+    );
+    return res.status(201);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 // // Deleting One
 // router.delete("/:id", getSubscriber, async (req, res) => {
 //   try {
