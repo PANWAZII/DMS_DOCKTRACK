@@ -53,10 +53,8 @@ router.post("/createNewDocument", async (req, res) => {
     project_num: null,
     document_comment: "",
     technical_comment: "",
-    document_check_true: false,
-    document_check_false: false,
-    technical_check_true:false,
-    technical_check_false:false,
+    document_check: null,
+    technical_check: null,
     available_status: 1,
   };
   try {
