@@ -322,13 +322,13 @@ router.post("/createTechnicalComment", async (req, res) => {
 
 router.post("/changeDocumentCheck", async (req, res) => {
   const Id = req.body.id;
-  const Complete = req.body.complete;
+  const NewStatus = req.body.new_status;
   try {
     await documents.updateOne(
       { _id: Id },
       {
         $set: {
-          document_check: Complete,
+          document_check: NewStatus,
         },
       }
     );
@@ -340,13 +340,13 @@ router.post("/changeDocumentCheck", async (req, res) => {
 
 router.post("/changeTechnicalCheck", async (req, res) => {
   const Id = req.body.id;
-  const Complete = req.body.complete;
+  const NewStatus = req.body.new_status;
   try {
     await documents.updateOne(
       { _id: Id },
       {
         $set: {
-          technical_check: Complete,
+          technical_check: NewStatus,
         },
       }
     );
