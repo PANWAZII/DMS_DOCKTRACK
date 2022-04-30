@@ -20,7 +20,7 @@
             :items="acceptedDoc"
             :search="search"
           >
-            <template v-slot:item="row">
+            <template v-slot:item="row" :activator="{ on, attrs }">
               <tr>
                 <td class="text-center">{{ row.item.project_num }}</td>
                 <td>{{ row.item.project_name }}</td>
@@ -37,8 +37,25 @@
                 </td>
 
                 <td>
-                  <v-checkbox label="ครบ" color="success"></v-checkbox>
-                  <v-checkbox label="ไม่ครบ" color="red"></v-checkbox>
+                  <v-radio-group
+                    v-model="row.item.document_check"
+                    @change="
+                      setDocumentCheck(row.item._id, row.item.document_check)
+                    "
+                  >
+                    <v-radio
+                      on-icon="mdi-checkbox-marked"
+                      off-icon="mdi-checkbox-blank-outline"
+                      label="ครบ"
+                      :value="true"
+                    ></v-radio>
+                    <v-radio
+                      on-icon="mdi-checkbox-marked"
+                      off-icon="mdi-checkbox-blank-outline"
+                      label="ไม่ครบ"
+                      :value="false"
+                    ></v-radio>
+                  </v-radio-group>
                 </td>
                 <td class="text-center">
                   <v-btn
@@ -50,16 +67,25 @@
                   >
                 </td>
                 <td>
-                  <v-checkbox
-                    label="ไม่มีประเด็น"
-                    color="success"
-                    value=""
-                  ></v-checkbox>
-                  <v-checkbox
-                    label="มีประเด็น"
-                    color="red"
-                    value=""
-                  ></v-checkbox>
+                  <v-radio-group
+                    v-model="row.item.technical_check"
+                    @change="
+                      setTechnicalCheck(row.item._id, row.item.technical_check)
+                    "
+                  >
+                    <v-radio
+                      on-icon="mdi-checkbox-marked"
+                      off-icon="mdi-checkbox-blank-outline"
+                      label="ครบ"
+                      :value="true"
+                    ></v-radio>
+                    <v-radio
+                      on-icon="mdi-checkbox-marked"
+                      off-icon="mdi-checkbox-blank-outline"
+                      label="ไม่ครบ"
+                      :value="false"
+                    ></v-radio>
+                  </v-radio-group>
                 </td>
                 <td class="text-center">
                   <v-btn
@@ -212,6 +238,7 @@ export default {
       documentComment: '',
       technicalComment: '',
       documentId: '',
+      test: null,
       headers: [
         {
           text: 'ที่',
@@ -257,7 +284,6 @@ export default {
       this.documentComment = Comment.comment
       this.documentId = id
       this.documentCommentDialog = true
-      console.log(Comment.comment)
     },
     async getTechnicalComment(id) {
       console.log(id)
@@ -267,11 +293,9 @@ export default {
       this.technicalComment = Comment.comment
       this.documentId = id
       this.technicalCommentDialog = true
-      console.log(Comment.comment)
     },
     async setDocumentComment(id) {
-      console.log(id)
-      let NewComment = await this.$store
+      await this.$store
         .dispatch('api/setDocumentComment', {
           id: id,
           comment: this.documentComment,
@@ -279,13 +303,30 @@ export default {
         .then((this.documentCommentDialog = false))
     },
     async setTechnicalComment(id) {
-      console.log(id)
-      let NewComment = await this.$store
+      await this.$store
         .dispatch('api/setTechnicalComment', {
           id: id,
           comment: this.technicalComment,
         })
         .then((this.technicalCommentDialog = false))
+    },
+    async setDocumentCheck(id, complete) {
+      console.log(id, ' ', complete)
+      await this.$store
+        .dispatch('api/setDocumentCheck', {
+          id: id,
+          complete: complete,
+        })
+        .then(await this.$nuxt.refresh())
+    },
+    async setTechnicalCheck(id, complete) {
+      console.log(id, ' ', complete)
+      await this.$store
+        .dispatch('api/setTechnicalCheck', {
+          id: id,
+          complete: complete,
+        })
+        .then(await this.$nuxt.refresh())
     },
   },
 }
