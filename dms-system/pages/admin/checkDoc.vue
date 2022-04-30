@@ -310,21 +310,19 @@ export default {
         })
         .then((this.technicalCommentDialog = false))
     },
-    async setDocumentCheck(id, complete) {
-      console.log(id, ' ', complete)
+    async setDocumentCheck(id, status) {
       await this.$store
         .dispatch('api/setDocumentCheck', {
           id: id,
-          complete: complete,
+          new_status: status,
         })
         .then(await this.$nuxt.refresh())
     },
-    async setTechnicalCheck(id, complete) {
-      console.log(id, ' ', complete)
+    async setTechnicalCheck(id, status) {
       await this.$store
         .dispatch('api/setTechnicalCheck', {
           id: id,
-          complete: complete,
+          new_status: status,
         })
         .then(await this.$nuxt.refresh())
     },
