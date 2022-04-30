@@ -76,13 +76,13 @@
                     <v-radio
                       on-icon="mdi-checkbox-marked"
                       off-icon="mdi-checkbox-blank-outline"
-                      label="ครบ"
+                      label="ไม่มีประเด็น"
                       :value="true"
                     ></v-radio>
                     <v-radio
                       on-icon="mdi-checkbox-marked"
                       off-icon="mdi-checkbox-blank-outline"
-                      label="ไม่ครบ"
+                      label="มีประเด็น"
                       :value="false"
                     ></v-radio>
                   </v-radio-group>
