@@ -223,10 +223,10 @@
     </v-row>
     <v-dialog v-model="completeDialog" max-width="290">
       <v-card>
-        <v-card-title class="text">Send complete</v-card-title>
+        <v-card-title class="text">ส่งโครงการเรียบร้อย</v-card-title>
         <!-- <br /> -->
         <v-card-text
-          >upload project {{ currentProject }} เข้าระบบแล้ว</v-card-text
+          >คุณได้อัปโหลด {{ currentProject }} เข้าระบบเรียบร้อยแล้ว</v-card-text
         >
         <v-card-actions>
           <v-spacer></v-spacer>
