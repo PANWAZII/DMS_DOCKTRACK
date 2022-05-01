@@ -212,6 +212,97 @@
         </v-card>
       </v-dialog>
     </v-row>
+    <v-row justify="center">
+      <v-dialog
+        v-model="documentConfirmDialog"
+        max-width="500"
+        max-height="300"
+      >
+        <v-card>
+          <v-card-title class="text-h5"
+            ><v-icon justify="left" class="mr-3" size="50"
+              >mdi-text-box-check</v-icon
+            >
+            ตรวจสอบเอกสาร
+          </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text> คุณได้ตรวจสอบว่าเอกสารครบถ้วนแล้ว </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="success" class="font-weight-medium mt-3">
+              ตกลง
+            </v-btn>
+            <v-btn
+              color="info"
+              @click="documentConfirmDialog = false"
+              class="font-weight-medium mt-3 ml-3"
+            >
+              ยกเลิก
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog
+        v-model="technicalConfirmDialog"
+        max-width="500"
+        max-height="300"
+      >
+        <v-card>
+          <v-card-title class="text-h5"
+            ><v-icon justify="left" class="mr-3" size="50"
+              >mdi-desktop-classic</v-icon
+            >
+            ตรวจสอบเนื้อหา
+          </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text>
+            คุณได้ตรวจสอบว่าเนื้อหาแล้วว่า ไม่มีประเด็นใด ๆ
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="success" class="font-weight-medium mt-3">
+              ตกลง
+            </v-btn>
+            <v-btn
+              color="info"
+              @click="technicalConfirmDialog = false"
+              class="font-weight-medium mt-3 ml-3"
+            >
+              ยกเลิก
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="completeDialog" max-width="500" max-height="300">
+        <v-card>
+          <v-card-title class="text-h5"
+            ><v-icon justify="left" class="mr-3" size="50"
+              >mdi-check-underline</v-icon
+            >
+            เสร็จสมบูรณ์
+          </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text> คุณได้บันทึกการตรวจสอบเรียบร้อย </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="success"
+              @click="completeDialog = false"
+              class="font-weight-medium mt-3"
+            >
+              ปิด
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -231,8 +322,11 @@ export default {
       search: '',
       acceptedDoc: [],
       title: 'check document',
+      documentConfirmDialog: false,
+      technicalConfirmDialog: false,
       documentCommentDialog: false,
       technicalCommentDialog: false,
+      completeDialog: true,
       downloadDialog: false,
       downloadInfo: { id: '' },
       documentComment: '',
