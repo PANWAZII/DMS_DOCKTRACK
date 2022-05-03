@@ -143,7 +143,7 @@
           </v-card-text>
           <v-card-actions class="mt-3">
             <v-spacer></v-spacer>
-            <v-btn color="success" @click="allCommentDialog = true">
+            <v-btn color="success" @click="getAllComment()">
               ความคิดเห็น
             </v-btn>
             <v-btn color="info"> ดาวน์โหลดทั้งหมด </v-btn>
@@ -319,9 +319,9 @@
           <v-divider class="mb-3"></v-divider>
           <v-card-text>
             <h5>ความเห็นด้านเอกสาร</h5>
-            <div>abcdef</div>
+            <div>{{ documentComment.comment }}</div>
             <h5>ความเห็นด้านเนื้อหา</h5>
-            <div>abcdef</div>
+            <div>{{ technicalComment.comment }}</div>
           </v-card-text>
 
           <v-card-actions>
@@ -329,7 +329,7 @@
 
             <v-btn
               color="info"
-              @click="allCommentDialog = false"
+              @click="clearAllComment()"
               class="font-weight-medium mt-3 ml-3"
             >
               ปิด
@@ -406,6 +406,11 @@ export default {
       this.downloadInfo = { id: '' }
       this.downloadDialog = false
     },
+    clearAllComment() {
+      this.documentComment = ''
+      this.technicalComment = ''
+      this.allCommentDialog = false
+    },
     async getDocumentComment(id) {
       console.log(id)
       let Comment = await this.$store.dispatch('api/getDocumentComment', {
@@ -423,6 +428,21 @@ export default {
       this.technicalComment = Comment.comment
       this.documentId = id
       this.technicalCommentDialog = true
+    },
+    async getAllComment() {
+      this.documentComment = await this.$store.dispatch(
+        'api/getDocumentComment',
+        {
+          id: this.downloadInfo.id,
+        }
+      )
+      this.technicalComment = await this.$store.dispatch(
+        'api/getTechnicalComment',
+        {
+          id: this.downloadInfo.id,
+        }
+      )
+      this.allCommentDialog = true
     },
     async setDocumentComment(id) {
       await this.$store
