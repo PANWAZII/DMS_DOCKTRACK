@@ -23,7 +23,6 @@
                 <td>{{ row.item.dept }}</td>
 
                 <td>
-                  <v-checkbox color="info" value=""></v-checkbox>
                   <div>18/4/65</div>
                 </td>
                 <td>
@@ -273,7 +272,7 @@ export default {
         { text: 'โครงการ', value: 'title' },
         { text: 'หน่วยงาน', value: 'dept' },
 
-        { text: 'รอที่ประชุมพิจารณา', value: '' },
+        { text: 'รับเข้าระบบ', value: '' },
         { text: 'ส่งกรมฯ ลงนาม', value: '' },
         { text: 'รับคืน', value: '' },
         { text: 'ส่งกระทรวงฯ ลงนาม', value: '' },
