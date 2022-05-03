@@ -344,6 +344,7 @@ export default {
   methods: {
     submitComplete() {
       this.completeDialog = false
+      this.$router.push('/user')
     },
     submit() {
       this.confirmDialog = false
@@ -499,6 +500,7 @@ export default {
         return mutiplied
       }
     },
+
 
     // numtotext() {
     //   bahttext(20520)
