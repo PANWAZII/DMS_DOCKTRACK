@@ -141,8 +141,12 @@
               </v-row>
             </v-container>
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="mt-3">
             <v-spacer></v-spacer>
+            <v-btn color="success" @click="allCommentDialog = true">
+              ความคิดเห็น
+            </v-btn>
+            <v-btn color="info"> ดาวน์โหลดทั้งหมด </v-btn>
             <v-btn color="error " @click="clearDownloadInfo()"> ปิด </v-btn>
           </v-card-actions>
         </v-card>
@@ -303,6 +307,37 @@
         </v-card>
       </v-dialog>
     </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="allCommentDialog" max-width="500" max-height="300">
+        <v-card>
+          <v-card-title class="text-h5"
+            ><v-icon justify="left" class="mr-3" size="50"
+              >mdi-text-box-check</v-icon
+            >
+            ความคิดเห็น
+          </v-card-title>
+          <v-divider class="mb-3"></v-divider>
+          <v-card-text>
+            <h5>ความเห็นด้านเอกสาร</h5>
+            <div>abcdef</div>
+            <h5>ความเห็นด้านเนื้อหา</h5>
+            <div>abcdef</div>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn
+              color="info"
+              @click="allCommentDialog = false"
+              class="font-weight-medium mt-3 ml-3"
+            >
+              ปิด
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -328,6 +363,7 @@ export default {
       technicalCommentDialog: false,
       completeDialog: false,
       downloadDialog: false,
+      allCommentDialog: false,
       downloadInfo: { id: '' },
       documentComment: '',
       technicalComment: '',
