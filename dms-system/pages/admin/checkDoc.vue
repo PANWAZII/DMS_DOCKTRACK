@@ -326,7 +326,7 @@ export default {
       technicalConfirmDialog: false,
       documentCommentDialog: false,
       technicalCommentDialog: false,
-      completeDialog: true,
+      completeDialog: false,
       downloadDialog: false,
       downloadInfo: { id: '' },
       documentComment: '',
