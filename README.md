@@ -1,5 +1,5 @@
 # DMS DOCKTRACK
-###  This is my internship project for the Ministry of Public Healt.  
+###  This is my internship project for the Ministry of Public Health.  
 ### :computer: Technology
 #### Frontend : Nuxt.js, Vuetify
 #### Backend : Express.js, Mongoose, Firebase Auth, Firebase Cloud Stroage
