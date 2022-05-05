@@ -3,7 +3,7 @@
 ### :computer: Technology
 #### Frontend : Nuxt.js, Vuetify
 #### Backend : Express.js, Mongoose, Firebase Auth, Firebase Cloud Stroage
-#### Database : MongoDB(noSql)
+#### Database : MongoDB(NoSql)
 
 
 
